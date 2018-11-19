@@ -37,7 +37,12 @@ module.exports = {
     'import/no-extraneous-dependencies': [ 'error', {
       devDependencies: true,
     }],
+    'eol-last': [ 'error', 'never' ],
     'quote-props': [ 'error', 'consistent' ],
+    'import/extensions': ['error', 'always', {
+      js: 'never',
+      vue: 'never'
+    }],
     'consistent-return': 'off',
     'no-param-reassign': 'off',
     'one-var': 'off',
@@ -48,6 +53,7 @@ module.exports = {
     'vue/valid-v-for': 'off',
     'one-var-declaration-per-line': 'off',
     'prefer-promise-reject-errors': 'off',
+    'global-require': 'off',
   },
   parserOptions: {
     // 此项是用来指定eslint解析器的，解析器必须符合规则，

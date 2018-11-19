@@ -1,11 +1,11 @@
 <template>
   <el-container>
     <el-header :style="header">
-      <img src="@/assets/images/home/logo_page.zh_CN.png" class="logo_page">
-      <section class="slot">
+      <img src="~Assets/images/home/logo_page.zh_CN.png" class="logo-page" alt="logo page">
+      <template class="slot">
         <svg-icon iconName="email" class="icon-email"></svg-icon>
         <el-button class="lang-btn" size="small">ENGLISH</el-button>
-      </section>
+      </template>
       <el-dropdown class="dropdown-menu"
                    @command="handleCommand"
                    @visible-change="dropdownIconChange"
@@ -23,8 +23,8 @@
       </el-dropdown>
     </el-header>
     <el-container :style="mainContainer">
-      <el-aside class="aside-menu" width="185px">
-        <el-menu
+      <el-aside class="aside" width="185px">
+        <el-menu class="aside-menu"
                  :default-openeds="['1']"
                  default-active="1-1"
                  background-color="#f7f7f7"
@@ -114,7 +114,7 @@ export default {
   },
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .el-header {
     background-color: #B3C0D1;
   }
@@ -128,7 +128,7 @@ export default {
     border-bottom-left-radius: 5px;
   }
 
-  .logo_page {
+  .logo-page {
     height: 60%;
   }
 
@@ -149,9 +149,13 @@ export default {
     margin-right: 30px;
   }
 
-  .aside-menu {
+  .aside {
     background-color: #f7f7f7;
     padding-top: 50px;
+  }
+
+  .aside-menu {
+    border-right-width: 0;
   }
 
   .dropdown-menu {
@@ -200,11 +204,23 @@ export default {
 
   .sub-menu {
     border-bottom: 1px solid #e1e1e1;
+    border-top: 1px solid #fff;
     margin: 0 1em;
   }
 
+  // 等待官方扩展，直接使用其内部 class 不推荐
+  .el-menu-item-group__title {
+    display: none;
+  }
+
+  // 等待官方扩展，直接使用其内部 class 不推荐
+  .el-submenu__icon-arrow {
+    font-weight: 900;
+    font-size: 16px;
+  }
+
   @media screen and (max-width: 720px) {
-    .logo_page {
+    .logo-page {
       display: none;
     }
 

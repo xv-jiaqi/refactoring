@@ -1,0 +1,53 @@
+@import "~normalize.css";
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+// 以下自定义 reset 全定义在 body 下以增大权值
+body {
+    @media (min-width: 991px) {
+        min-width: 1000px;
+    }
+    font-size: 14px;
+
+    // Better Font Rendering
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+
+    &, blockquote, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    ol, ul {
+        list-style: none
+    }
+
+    :focus {
+        outline: 0
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: inherit;
+        color: inherit;
+        line-height: 1;
+    }
+}

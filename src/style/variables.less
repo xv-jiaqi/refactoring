@@ -1,0 +1,76 @@
+/////////////////////// 皮肤由主题色（基色调）、强调色和辅助色构成 ///////////////////////
+// 三种主色调-start//
+@themeColor: #37b0e4;                 // 主题色
+
+@emphasizeColor: #00336e;             // 强调色
+
+@auxiliaryColor: #00BCD4;             // 辅助色
+// 三种主色调-end//
+
+// 主色调选中色-start//
+@themeColorSelected: #008393;         // 主题色选中
+
+@emphasizeColorSelected: #B24C2D;     // 强调色选中
+
+@auxiliaryColorSelected: #DB7282;     // 辅助色选中
+
+// 主色调选中色-end//
+
+/////////////////////// 不同的皮肤涉及的「补充色」数量可能不尽相同 ///////////////////////
+// 尽量避免添加过多的补充色，在「theme-tpl」统一样式中少使用补充色
+// 其他色调-start
+@assistColorPopular: rgba(0, 0, 0, .87);   // 补充色
+
+@assistColorLight: rgba(0, 0, 0, .54);
+
+@assistColorBlack: #000;                  // 补充色
+
+@assistColorWhite: #FFF;                  // 补充色
+
+@assistColorGray: #f7f7f7;               // 补充色
+
+@assistColorDarkGray: #6d6d6d;               // 补充色
+
+@fontSizeSmall: 12px;
+@fontSizeNormal: 14px;
+@fontSizeLarge: 16px;
+
+// Media queries breakpoints
+// Extra small screen / phone
+@screen-xs              : 480px;
+@screen-xs-min          : @screen-xs;
+
+// Small screen / tablet
+@screen-sm              : 576px;
+@screen-sm-min          : @screen-sm;
+
+// Medium screen / desktop
+@screen-md              : 768px;
+@screen-md-min          : @screen-md;
+
+// Large screen / wide desktop
+@screen-lg              : 992px;
+@screen-lg-min          : @screen-lg;
+
+// Extra large screen / full hd
+@screen-xl              : 1200px;
+@screen-xl-min          : @screen-xl;
+
+// Extra extra large screen / large descktop
+@screen-xxl              : 1600px;
+@screen-xxl-min          : @screen-xxl;
+
+// provide a maximum
+@screen-xs-max          : (@screen-sm-min - 1px);
+@screen-sm-max          : (@screen-md-min - 1px);
+@screen-md-max          : (@screen-lg-min - 1px);
+@screen-lg-max          : (@screen-xl-min - 1px);
+@screen-xl-max          : (@screen-xxl-min - 1px);
+
+// 其他色调-end
+
+/////////////////////// 部分CSSSprites生成皮肤后图需要微调定位 ///////////////////////
+// 图标替换-start
+
+//图标替换-end
+

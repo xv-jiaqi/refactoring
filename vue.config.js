@@ -9,14 +9,21 @@ function resolve(dir) {
 module.exports = {
   configureWebpack: {
     resolve: {
-      mainFields: ['src:main', 'main'],
+      mainFields: [ 'src:main', 'main' ],
     },
     module: {
       rules: [{
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/],
-      },
+        include: [ path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/ ],
+      }, {
+        test: /\.scss$/,
+        use: [
+          'style-loader', // creates style nodes from JS strings
+          'css-loader', // translates CSS into CommonJS
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+        ]
+      }
       //   {
       //   test: /\.svg$/,
       //   loader: 'svg-sprite-loader',
@@ -56,15 +63,15 @@ module.exports = {
   // - https://github.com/vuejs/vue-cli/issues/1351
   // - https://github.com/jantimon/html-webpack-plugin/issues/870
   // - https://github.com/jantimon/html-webpack-plugin/pull/953
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.plugin('html').tap((args) => {
       args[0].chunksSortMode = 'none';
       return args;
     });
 
     config.module.rules.delete('svg'); // 重点:删除默认配置中处理svg,
-    //const svgRule = config.module.rule('svg')
-    //svgRule.uses.clear()
+    // const svgRule = config.module.rule('svg')
+    // svgRule.uses.clear()
     config.module
       .rule('svg-sprite-loader')
       .test(/\.svg$/)
@@ -76,6 +83,10 @@ module.exports = {
       .options({
         symbolId: 'icon-[name]',
       });
+
+    config.resolve.alias
+      .set('Assets', resolve('src/assets'))
+      .set('Style', resolve('src/Style'));
 
     // if (process.env.NODE_ENV === 'development') {
     //   config.devtool = 'eval-source-map';

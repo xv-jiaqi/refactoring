@@ -3,10 +3,11 @@ import Vue from 'vue';
 import VuePcms from 'vue-pcms';
 import ElementUI from 'element-ui';
 import 'es6-shim';
-import App from './App.vue';
+import App from './App';
 import router from '@/router/';
 import store from '@/store/';
-import '@/assets/less/style.less';
+import '@/style/index.less';
+// import '@/style/scss.scss';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/directives/';
 

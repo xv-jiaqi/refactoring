@@ -1,16 +1,31 @@
 <template>
-  <gt-login :ds="dataSource"
-    v-bind="config"></gt-login>
+  <div class="body">123</div>
+  <gt-login :ds="dataSource" v-bind="config">
+    <template slot="header">
+      <Header></Header>
+    </template>
+    <template slot="footer">
+      <Footer></Footer>
+    </template>
+  </gt-login>
 </template>
-
+<style lang="scss">
+.body {
+  border: 1px solid blue;
+}
+</style>
 <script>
-import GtLogin from '@/components/gt-login/index.vue';
+import GtLogin from '@/components/gt-login/index';
+import Footer from './footer';
+import Header from './header';
 import * as types from '@/store/types/account-types';
 import md5 from 'md5';
 
 export default {
   components: {
     GtLogin,
+    Footer,
+    Header,
   },
   data() {
     return {
@@ -20,6 +35,7 @@ export default {
       },
       config: {
         register: false,
+        dashboardImg: require('Assets/images/account/login_banner_pic.png'),
       },
     };
   },
