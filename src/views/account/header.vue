@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img class="logo-login" src="~Assets/images/account/logo_login.zh_CN.png" alt="logo page">
+    <img class="logo-login" src="~Assets/images/home/logo_login.zh_CN.png" alt="logo page">
     <div class="lang">
       <el-button class="lang-btn" size="small">ENGLISH</el-button>
     </div>
@@ -13,10 +13,9 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-  @import "~Style/variables";
+<style lang="scss" scoped>
   .header {
-    background-color: @assistColorWhite;
+    background-color: $white;
     display: flex;
     height: 65px;
     align-items: center;
@@ -29,11 +28,15 @@ export default {
   }
 
   .lang-btn {
-    background-color: @themeColor;
-    color: @assistColorWhite;
+    background-color: $themeColor;
+    color: $white;
   }
 
-  @media screen and (max-width: @screen-sm) {
+  .logo-login {
+    height: 60%;
+  }
+
+  @media screen and (max-width: $screen-xs-max) {
     .logo-login {
       display: none;
     }

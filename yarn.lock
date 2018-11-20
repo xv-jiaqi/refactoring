@@ -616,28 +616,28 @@
   version "3.1.0"
   resolved "http://192.168.10.223:7001/@vue/cli-overlay/download/@vue/cli-overlay-3.1.0.tgz#47db870055060c30189454919dbf9381be8695f2"
 
-"@vue/cli-plugin-babel@^3.0.0":
+"@vue/cli-plugin-babel@3.1.1":
   version "3.1.1"
-  resolved "http://192.168.10.223:7001/@vue/cli-plugin-babel/download/@vue/cli-plugin-babel-3.1.1.tgz#443441456ea1141b3a8070255034342dd47809e0"
+  resolved "http://registry.npm.taobao.org/@vue/cli-plugin-babel/download/@vue/cli-plugin-babel-3.1.1.tgz#443441456ea1141b3a8070255034342dd47809e0"
   dependencies:
     "@babel/core" "^7.0.0"
     "@vue/babel-preset-app" "^3.1.0"
     babel-loader "^8.0.4"
 
-"@vue/cli-plugin-eslint@^3.0.0":
-  version "3.1.4"
-  resolved "http://192.168.10.223:7001/@vue/cli-plugin-eslint/download/@vue/cli-plugin-eslint-3.1.4.tgz#7cf1a4a4540db9210a5e418eae3c19e1eb302275"
+"@vue/cli-plugin-eslint@3.1.2":
+  version "3.1.2"
+  resolved "http://registry.npm.taobao.org/@vue/cli-plugin-eslint/download/@vue/cli-plugin-eslint-3.1.2.tgz#7b6664ee51f8d694552cc5e0ba6718c3d5a5f76d"
   dependencies:
-    "@vue/cli-shared-utils" "^3.1.1"
+    "@vue/cli-shared-utils" "^3.1.0"
     babel-eslint "^10.0.1"
     eslint "^4.19.1"
     eslint-loader "^2.1.1"
     eslint-plugin-vue "^4.7.1"
     globby "^8.0.1"
 
-"@vue/cli-service@^3.0.0":
-  version "3.1.3"
-  resolved "http://192.168.10.223:7001/@vue/cli-service/download/@vue/cli-service-3.1.3.tgz#05e65b1c18f735497580e1d38650e3f50db618c6"
+"@vue/cli-service@3.1.2":
+  version "3.1.2"
+  resolved "http://registry.npm.taobao.org/@vue/cli-service/download/@vue/cli-service-3.1.2.tgz#e3ca43cefd7c9b5fa5e148a8d1f667de9ddc2579"
   dependencies:
     "@intervolga/optimize-cssnano-plugin" "^1.0.5"
     "@vue/cli-overlay" "^3.1.0"
@@ -648,7 +648,7 @@
     acorn-walk "^6.1.0"
     address "^1.0.3"
     autoprefixer "^8.6.5"
-    cache-loader "^1.2.5"
+    cache-loader "1.2.2"
     case-sensitive-paths-webpack-plugin "^2.1.2"
     chalk "^2.4.1"
     clipboardy "^1.2.3"
@@ -683,14 +683,14 @@
     thread-loader "^1.2.0"
     url-loader "^1.1.2"
     vue-loader "^15.4.2"
-    webpack "^4.18.1"
+    webpack "^4.23.1"
     webpack-bundle-analyzer "^3.0.3"
     webpack-chain "^4.11.0"
     webpack-dev-server "^3.1.10"
     webpack-merge "^4.1.4"
     yorkie "^2.0.0"
 
-"@vue/cli-shared-utils@^3.1.1":
+"@vue/cli-shared-utils@^3.1.0", "@vue/cli-shared-utils@^3.1.1":
   version "3.1.1"
   resolved "http://192.168.10.223:7001/@vue/cli-shared-utils/download/@vue/cli-shared-utils-3.1.1.tgz#ab8638c25318e5812b57877d7cfc65cd2af43740"
   dependencies:
@@ -1179,7 +1179,7 @@ babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-eslint@^10.0.1:
+babel-eslint@10.0.1, babel-eslint@^10.0.1:
   version "10.0.1"
   resolved "http://192.168.10.223:7001/babel-eslint/download/babel-eslint-10.0.1.tgz#919681dc099614cd7d31d45c8908695092a1faed"
   dependencies:
@@ -1316,6 +1316,16 @@ bonjour@^3.5.0:
 boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "http://192.168.10.223:7001/boolbase/download/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
+
+bourbon-neat@^1.9.1:
+  version "1.9.1"
+  resolved "http://registry.npm.taobao.org/bourbon-neat/download/bourbon-neat-1.9.1.tgz#f7932e889bb24ac908c45d399b04bd5b0df1e949"
+  dependencies:
+    node-sass "^4.1.1"
+
+bourbon@^5.1.0:
+  version "5.1.0"
+  resolved "http://registry.npm.taobao.org/bourbon/download/bourbon-5.1.0.tgz#84fa10de4c4e837602d8c2ec716d74bcb8915bad"
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -1494,9 +1504,9 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
-cache-loader@^1.2.5:
-  version "1.2.5"
-  resolved "http://192.168.10.223:7001/cache-loader/download/cache-loader-1.2.5.tgz#9ab15b0ae5f546f376083a695fc1a75f546cb266"
+cache-loader@1.2.2:
+  version "1.2.2"
+  resolved "http://registry.npm.taobao.org/cache-loader/download/cache-loader-1.2.2.tgz#6d5c38ded959a09cc5d58190ab5af6f73bd353f5"
   dependencies:
     loader-utils "^1.1.0"
     mkdirp "^0.5.1"
@@ -1769,10 +1779,6 @@ commander@2.17.x, commander@~2.17.1:
 commander@^2.18.0:
   version "2.19.0"
   resolved "http://192.168.10.223:7001/commander/download/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
-
-commander@~2.13.0:
-  version "2.13.0"
-  resolved "http://192.168.10.223:7001/commander/download/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -4757,7 +4763,7 @@ node-releases@^1.0.1:
   dependencies:
     semver "^5.3.0"
 
-node-sass@^4.10.0:
+node-sass@^4.1.1, node-sass@^4.10.0:
   version "4.10.0"
   resolved "http://registry.npm.taobao.org/node-sass/download/node-sass-4.10.0.tgz#dcc2b364c0913630945ccbf7a2bbf1f926effca4"
   dependencies:
@@ -6167,7 +6173,7 @@ sax@^1.2.4, sax@~1.2.4:
   version "1.2.4"
   resolved "http://192.168.10.223:7001/sax/download/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-schema-utils@^0.4.2, schema-utils@^0.4.4, schema-utils@^0.4.5:
+schema-utils@^0.4.2, schema-utils@^0.4.4:
   version "0.4.7"
   resolved "http://192.168.10.223:7001/schema-utils/download/schema-utils-0.4.7.tgz#ba74f597d2be2ea880131746ee17d0a093c68187"
   dependencies:
@@ -6950,32 +6956,12 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "http://192.168.10.223:7001/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-uglify-es@^3.3.4:
-  version "3.3.9"
-  resolved "http://192.168.10.223:7001/uglify-es/download/uglify-es-3.3.9.tgz#0c1c4f0700bed8dbc124cdb304d2592ca203e677"
-  dependencies:
-    commander "~2.13.0"
-    source-map "~0.6.1"
-
 uglify-js@3.4.x:
   version "3.4.9"
   resolved "http://192.168.10.223:7001/uglify-js/download/uglify-js-3.4.9.tgz#af02f180c1207d76432e473ed24a28f4a782bae3"
   dependencies:
     commander "~2.17.1"
     source-map "~0.6.1"
-
-uglifyjs-webpack-plugin@^1.2.4:
-  version "1.3.0"
-  resolved "http://192.168.10.223:7001/uglifyjs-webpack-plugin/download/uglifyjs-webpack-plugin-1.3.0.tgz#75f548160858163a08643e086d5fefe18a5d67de"
-  dependencies:
-    cacache "^10.0.4"
-    find-cache-dir "^1.0.0"
-    schema-utils "^0.4.5"
-    serialize-javascript "^1.4.0"
-    source-map "^0.6.1"
-    uglify-es "^3.3.4"
-    webpack-sources "^1.1.0"
-    worker-farm "^1.5.2"
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
@@ -7331,9 +7317,9 @@ webpack-sources@^1.1.0, webpack-sources@^1.3.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.18.1:
-  version "4.25.1"
-  resolved "http://192.168.10.223:7001/webpack/download/webpack-4.25.1.tgz#4f459fbaea0f93440dc86c89f771bb3a837cfb6d"
+webpack@^4.23.1:
+  version "4.26.0"
+  resolved "http://registry.npm.taobao.org/webpack/download/webpack-4.26.0.tgz#adbe80b869148c8d108b7d88965d00d72b3178de"
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
     "@webassemblyjs/helper-module-context" "1.7.11"
@@ -7356,7 +7342,7 @@ webpack@^4.18.1:
     node-libs-browser "^2.0.0"
     schema-utils "^0.4.4"
     tapable "^1.1.0"
-    uglifyjs-webpack-plugin "^1.2.4"
+    terser-webpack-plugin "^1.1.0"
     watchpack "^1.5.0"
     webpack-sources "^1.3.0"
 

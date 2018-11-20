@@ -1,5 +1,7 @@
 // const SrcCompileWebpackPlugin = require('webpack-gt-src-compile')
 const path = require('path');
+// const bourbon = require('bourbon').includePaths;
+// coust neat = require('bourbon-neat').includePaths;
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function resolve(dir) {
@@ -7,48 +9,14 @@ function resolve(dir) {
 }
 
 module.exports = {
-  configureWebpack: {
-    resolve: {
-      mainFields: [ 'src:main', 'main' ],
-    },
-    module: {
-      rules: [{
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [ path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/ ],
-      }, {
-        test: /\.scss$/,
-        use: [
-          'style-loader', // creates style nodes from JS strings
-          'css-loader', // translates CSS into CommonJS
-          'sass-loader' // compiles Sass to CSS, using Node Sass by default
-        ]
-      }
-      //   {
-      //   test: /\.svg$/,
-      //   loader: 'svg-sprite-loader',
-      //   include: [path.resolve('src/assets/svgIcons')],
-      //   options: {
-      //     symbolId: 'icon-[name]',
-      //   },
-      // }
-      //   {
-      //   test: /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/,
-      //   loader: 'url-loader',
-      //   exclude: [path.resolve('src/assets/svgIcons')],
-      //   options: {
-      //     limit: 10000,
-      //     // name: utils.assetsPath('img/[name].[hash:7].[ext]'),
-      //   },
-      // }
-      ],
-    },
-    // plugins: [new SrcCompileWebpackPlugin()],
-    // plugins: [
-    //   new BundleAnalyzerPlugin(),
-    // ],
-  },
   devServer: {
+    disableHostCheck: true,
+    port: 8888,
+    open: process.platform === 'darwin',
+    host: '0.0.0.0',
+    https: false,
+    hotOnly: false,
+    before: app => {},
     proxy: {
       '/td': {
         target: 'http://192.168.10.151:7081',
@@ -58,6 +26,38 @@ module.exports = {
         // }
       },
     },
+  },
+  // 基本路径
+  baseUrl: '/',
+  // 输出文件目录
+  outputDir: 'dist',
+  // eslint-loader 是否在保存的时候检查
+  lintOnSave: true,
+  css: {
+      loaderOptions: {
+        // 给 sass-loader 传递选项
+        sass: {
+          data: `@import '@/style/variables.scss';`,
+          // includePaths: [...bourbon, ...neat],
+        },
+      },
+  },
+  configureWebpack: {
+    resolve: {
+      mainFields: [ 'src:main', 'main' ],
+    },
+
+    module: {
+      rules: [{
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: [ path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/ ],
+      },],
+    },
+    // plugins: [new SrcCompileWebpackPlugin()],
+    // plugins: [
+    //   new BundleAnalyzerPlugin(),
+    // ],
   },
   // Workaround for
   // - https://github.com/vuejs/vue-cli/issues/1351

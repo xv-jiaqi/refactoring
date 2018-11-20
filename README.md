@@ -1,3 +1,11 @@
+[TOC]
+
+# refactoring
+
+`Angular.js` technology stack migrated to `vue.js`。
+
+## TODO
+
 1. √️ sourcemap debug —— 不完善
 1. √️ 动态导入
 1. √️ 权限系统
@@ -16,12 +24,13 @@
 1. 微服务化
 1. 皮肤/主题
 1. SASS/LESS
-    1. normalize
-    1. 皮肤
-    1. 引入 SASS，跟 Less 共存
-    1. LESS 重复引用
-    1. 书写规范
-    1. 全局变量
+    - normalize
+    - 皮肤
+    - 引入 SASS，跟 Less 共存
+    - LESS 重复引用
+    - 书写规范
+    - 全局变量
+    - compass OR bourbon
 1. 过渡动画
 1. 多 APP 切换
 1. TS

@@ -114,7 +114,7 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .el-header {
     background-color: #B3C0D1;
   }
@@ -219,7 +219,7 @@ export default {
     font-size: 16px;
   }
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: $screen-sm-max) {
     .logo-page {
       display: none;
     }

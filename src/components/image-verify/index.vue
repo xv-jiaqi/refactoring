@@ -1,9 +1,6 @@
 <template>
-  <div
-    @click='init'
-    class="img-verify-box"
-  >
-    <img class="verify-img" :src="imageSrc">
+  <div @click='init' class="img-verify-box">
+    <img class="verify-img" :src="imageSrc" alt="verify img">
   </div>
 </template>
 <script>
@@ -48,9 +45,8 @@ export default {
 .img-verify-box {
   cursor: pointer;
   display: inline-block;
-  width: 135px;
-  height: 40px;
-  vertical-align: top;
+  width: 50%;
+  height: 100%;
 }
 .verify-img {
   width: 100%;

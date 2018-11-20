@@ -8,19 +8,18 @@ export default {
   name: 'footer',
 };
 </script>
-<style lang="less" scoped>
-  @import "~Style/variables";
+<style lang="scss" scoped>
   .footer {
     height: 160px;
-    background-color: @assistColorGray;
+    background-color: $gray-400;
     text-align: center;
   }
 
   .copyright {
     height: 100px;
-    background-color: @assistColorWhite;
+    background-color: $white;
     line-height: 100px;
-    color: @assistColorDarkGray;
-    font-size: @fontSizeNormal;
+    color: $gray-800;
+    font-size: $font-size-base;
   }
 </style>

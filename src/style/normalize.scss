@@ -1,0 +1,157 @@
+@import '~normalize.css';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+}
+
+body {
+    font-family: $font-family;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    background-color: $white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    color: inherit;
+    line-height: 1;
+    font-weight: normal;
+}
+
+h1{
+    font-size: $h1-font-size;
+}
+h2{
+    font-size: $h2-font-size;
+}
+h3{
+    font-size: $h3-font-size;
+}
+h4{
+    font-size: $h4-font-size;
+}
+h5{
+    font-size: $h5-font-size;
+}
+h6{
+    font-size: $h6-font-size;
+}
+
+p{
+    font-size: $font-size-base;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+input::-ms-clear, input::-ms-reveal {
+    display: none;
+}
+
+ol, ul {
+    list-style: none
+}
+
+:focus {
+    outline: 0
+}
+
+a {
+    color: $link-color;
+    background: transparent;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:hover {
+        color: $link-hover-color;
+    }
+
+    &:active {
+        color: $link-color;
+    }
+
+    &:active,
+    &:hover {
+        outline: 0;
+        text-decoration: $link-decoration;
+    }
+
+    &[disabled] {
+        color: #ccc;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+img {
+    font-size: $font-size-small;
+    font-weight: $font-weight-normal;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    min-height: 1em;
+
+    &:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: -4px;
+        left: 0;
+        height: calc(100% + 4 * 2px);
+        width: 100%;
+        background-color: $gray-200;
+        border: 1px dashed $gray-400;
+        border-radius: 5px;
+    }
+
+    &:after {
+        content: "\f127" " Broken Image of " attr(alt);
+        display: block;
+        font-family: FontAwesome;
+        color: rgb(100, 100, 100);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        line-height: 1.4;
+        overflow: hidden;
+    }
+}

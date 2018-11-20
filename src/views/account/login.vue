@@ -1,5 +1,4 @@
 <template>
-  <div class="body">123</div>
   <gt-login :ds="dataSource" v-bind="config">
     <template slot="header">
       <Header></Header>
@@ -9,11 +8,6 @@
     </template>
   </gt-login>
 </template>
-<style lang="scss">
-.body {
-  border: 1px solid blue;
-}
-</style>
 <script>
 import GtLogin from '@/components/gt-login/index';
 import Footer from './footer';
@@ -36,6 +30,7 @@ export default {
       config: {
         register: false,
         dashboardImg: require('Assets/images/account/login_banner_pic.png'),
+        vcode: true,
       },
     };
   },
@@ -61,19 +56,19 @@ export default {
       });
     },
     getVcode() {
-      return this.$store.dispatch(types.GET_VCODE_REQUEST).then(res => ({
-        pid: res.data.pid,
-        img: res.data.img,
-      }), () => {
-        this.$message({
-          message: '验证码服务暂时不可用',
-          type: 'info',
-        });
-        this.config = {
-          ...this.config,
-          vcode: false,
-        };
+      return Promise.resolve({
+        pid: '12',
+        img: 'http://editerupload.eepw.com.c1n/201809/61001537857032.jpg',
       });
+      // return this.$store.dispatch(types.GET_VCODE_REQUEST).then(res => ({
+      //   pid: res.data.pid,
+      //   img: res.data.img,
+      // }), () => {
+      //   this.$message({
+      //     message: '验证码服务暂时不可用',
+      //     type: 'info',
+      //   });
+      // });
     },
   },
 };
