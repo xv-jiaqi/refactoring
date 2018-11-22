@@ -1,25 +1,25 @@
 <template>
   <gt-login :ds="dataSource" v-bind="config">
     <template slot="header">
-      <Header></Header>
+      <header-bar></header-bar>
     </template>
     <template slot="footer">
-      <Footer></Footer>
+      <footer-bar></footer-bar>
     </template>
   </gt-login>
 </template>
 <script>
 import GtLogin from '@/components/gt-login/index';
-import Footer from './footer';
-import Header from './header';
+import FooterBar from './footer-bar';
+import HeaderBar from './header-bar';
 import * as types from '@/store/types/account-types';
 import md5 from 'md5';
 
 export default {
   components: {
     GtLogin,
-    Footer,
-    Header,
+    FooterBar,
+    HeaderBar,
   },
   data() {
     return {
@@ -58,7 +58,7 @@ export default {
     getVcode() {
       return Promise.resolve({
         pid: '12',
-        img: 'http://editerupload.eepw.com.c1n/201809/61001537857032.jpg',
+        img: 'http://127.0.0.1:8081/mock-vcode.jpeg',
       });
       // return this.$store.dispatch(types.GET_VCODE_REQUEST).then(res => ({
       //   pid: res.data.pid,

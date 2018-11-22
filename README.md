@@ -11,13 +11,16 @@
 1. √️ 权限系统
 1. √️ 动态加载 babel-plugin-syntax-dynamic-import
 1. 异常、日志
-    1. 错误上报
-    1. 全局 promise reject 监听
+    - 错误上报
+    - 全局 promise reject 监听
 1. 国际化
-1. SVG
-  - svg 雪碧图
-  - svgo 自动压缩
-  - svg dom 懒加载
+1. 图标
+    - fontawesome<br>
+      使用方法参照 [vue-awesome](https://justineo.github.io/vue-awesome/demo/) <br>
+      图标名字的查询 [Fontawesome name](https://fontawesome.com/icons?d=gallery)
+    - svg 雪碧图
+    - svgo 自动压缩
+    - svg dom 懒加载
 1. 按需加载
 1. 多 TD
 1. 版本控制
@@ -36,8 +39,8 @@
 1. TS
 1. 单元测试
 1. 老系统兼容
-    1. 鉴权
-    2. 数据共享
+    - 鉴权
+    - 数据共享
 1. 系统退出销毁数据
 1. error 提交代码失败
 1. HTTP2/3

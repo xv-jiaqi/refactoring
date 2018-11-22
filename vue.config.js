@@ -10,16 +10,18 @@ function resolve(dir) {
 
 module.exports = {
   devServer: {
-    disableHostCheck: true,
+    // disableHostCheck: true,
     port: 8888,
-    open: process.platform === 'darwin',
-    host: '0.0.0.0',
-    https: false,
-    hotOnly: false,
-    before: app => {},
+    // open: process.platform === 'darwin',
+    host: 'localhost',
+    https: true,
+    hot: true,
+    hotOnly: true,
+    // before: app => {},
     proxy: {
       '/td': {
-        target: 'http://192.168.10.151:7081',
+        // target: 'http://192.168.10.151:7081',
+        target: 'https://192.168.10.130:17080',
         changeOrigin: true,
         // pathRewrite: {
         //   '^/td': '/td' // 目前暂不需要重写路径
@@ -34,13 +36,13 @@ module.exports = {
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
   css: {
-      loaderOptions: {
-        // 给 sass-loader 传递选项
-        sass: {
-          data: `@import '@/style/variables.scss';`,
-          // includePaths: [...bourbon, ...neat],
-        },
+    loaderOptions: {
+      // 给 sass-loader 传递选项
+      sass: {
+        data: '@import "@/style/variables.scss";',
+        // includePaths: [...bourbon, ...neat],
       },
+    },
   },
   configureWebpack: {
     resolve: {
@@ -104,4 +106,7 @@ module.exports = {
     //   config.output.devtoolFallbackModuleFilenameTemplate = 'webpack:///[resource-path]?[hash]';
     // }
   },
+  transpileDependencies: [
+    /\bvue-awesome\b/
+  ],
 };

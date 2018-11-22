@@ -117,6 +117,6 @@ async function authConfig(privileges) {
   return auth;
 }
 
-export default async function authProcess(privileges = []) {
+export default function (privileges = []) {
   return authConfig(privileges);
 }

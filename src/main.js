@@ -1,17 +1,26 @@
 // import 'proxy-polyfill'
 import Vue from 'vue';
 import VuePcms from 'vue-pcms';
-import ElementUI from 'element-ui';
+
 import 'es6-shim';
-import App from './App';
-import router from '@/router/';
-import store from '@/store/';
+import 'element-ui/lib/theme-chalk/index.css';
+
+import ElementUI from 'element-ui';
 import '@/style/index.le.less';
 import '@/style/index.sc.scss';
-import 'element-ui/lib/theme-chalk/index.css';
-import '@/directives/';
-
 import '@/assets/svgIcons/index';
+import '@/directives/';
+import router from '@/router/';
+import store from '@/store/';
+import 'vue-awesome/icons';
+
+import SvgIcon from '@/components/icon/svgIcon/index';
+import Icon from 'vue-awesome/components/Icon';
+
+import App from './App';
+
+Vue.component('svg-icon', SvgIcon);
+Vue.component('fa-icon', Icon);
 
 Vue.use(ElementUI);
 

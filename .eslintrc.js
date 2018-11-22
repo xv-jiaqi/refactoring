@@ -43,6 +43,7 @@ module.exports = {
       js: 'never',
       vue: 'never'
     }],
+    'no-shadow': 'off',
     'consistent-return': 'off',
     'no-param-reassign': 'off',
     'one-var': 'off',

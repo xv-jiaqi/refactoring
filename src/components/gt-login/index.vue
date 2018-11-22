@@ -11,11 +11,9 @@
              alt="dashboard img">
       </div>
       <div class="login-container">
-        <div class="login-head comm-flex-box">
-          <h4 class="login-title">欢迎使用高露洁受众管理平台！</h4>
-        </div>
+        <h4 class="login-title">欢迎使用高露洁受众管理平台！</h4>
         <el-form ref="loginForm" :model="formData" class="login-form">
-          <el-form-item>
+          <el-form-item class="form-item">
             <el-input
                 v-model="formData.username"
                 placeholder="请输入用户名"
@@ -23,7 +21,7 @@
             >
             </el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item class="form-item">
             <el-input
                 v-model="formData.password"
                 :type="showPwd ? 'text' : 'password'"
@@ -33,16 +31,19 @@
                 :suffix-icon="showPwd ? 'hide-pwd-icon' : 'show-pwd-icon'"
             ></el-input>
           </el-form-item>
-          <el-form-item v-if="vcode">
+          <el-form-item class="form-item" v-if="vcode">
             <el-input
                 v-model="formData.code"
                 class="code-input"
                 placeholder="验证码"
                 maxlength="4">
             </el-input>
-            <image-verify @pid-change="pidChange" :ds="dataSource"></image-verify>
+            <image-verify class="verify-code" @pid-change="pidChange" :ds="dataSource"></image-verify>
           </el-form-item>
-          <el-form-item>
+          <el-form-item class="form-item">
+            <el-checkbox v-model="formData.keeping">记住我</el-checkbox>
+          </el-form-item>
+          <el-form-item class="form-item">
             <el-button type="primary" class="login-btn" @click="confirmLogin" :disabled="loading || formInvalid">
               登&nbsp;&nbsp;录
             </el-button>
@@ -83,7 +84,7 @@
 
   .login-image {
     max-width: 40vw;
-    margin-right: 6vw;
+    margin-right: 8vw;
   }
 
   .dashboard-img {
@@ -91,73 +92,90 @@
   }
 
   .login-container {
-    border-radius: 9px;
-    width: 370px;
-    height: 500px;
-    background: $white;
+    display: flex;
+    flex-flow: column;
     flex: none;
+    padding: 55px 34px;
+    width: 380px;
+    height: 500px;
+    border-radius: 9px;
+    background: $white;
     box-shadow: -2px 2px 20px 5px rgba(0, 0, 0, 0.25);
-  }
-
-  .login-head {
-    height: 100px;
-    font-weight: $font-weight-bold;
-    color: $primary;
   }
 
   .login-title {
     font-weight: $font-weight-bold;
     color: $primary;
+    text-align: center;
   }
 
   .login-form {
-    padding: 0 25px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    flex: auto;
+  }
 
-    .user-name-icon,
-    .user-pwd-icon,
-    .hide-pwd-icon,
-    .show-pwd-icon {
-      width: 16px;
-      height: 16px;
-      margin: 12px 6px;
-      background-size: 100%;
-      display: inline-block;
+  .form-item {
+    &:first-child {
+      margin-top: 40px;
     }
 
-    .el-input--prefix .el-input__inner {
-      padding-left: 35px;
-    }
-
-    .user-name-icon {
-      background-image: url('./images/user-name-icon.png');
-    }
-
-    .user-pwd-icon {
-      background-image: url('./images/user-pwd-icon.png');
-    }
-
-    .show-pwd-icon {
-      background-image: url('./images/show-pwd-icon.png');
-      cursor: pointer;
-    }
-
-    .hide-pwd-icon {
-      background-image: url('./images/hide-pwd-icon.png');
-      cursor: pointer;
-    }
-
-    .code-input {
-      width: 134px;
-      margin-right: 21px;
-    }
-
-    .login-btn {
-      width: 100%;
-      font-size: $font-size-x-large;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
+  .user-name-icon,
+  .user-pwd-icon,
+  .hide-pwd-icon,
+  .show-pwd-icon {
+    width: 16px;
+    height: 16px;
+    margin: 12px 6px;
+    background-size: 100%;
+    display: inline-block;
+  }
+
+  .el-input--prefix .el-input__inner {
+    padding-left: 35px;
+  }
+
+  .user-name-icon {
+    background-image: url('./images/user-name-icon.png');
+  }
+
+  .user-pwd-icon {
+    background-image: url('./images/user-pwd-icon.png');
+  }
+
+  .show-pwd-icon {
+    background-image: url('./images/show-pwd-icon.png');
+    cursor: pointer;
+  }
+
+  .hide-pwd-icon {
+    background-image: url('./images/hide-pwd-icon.png');
+    cursor: pointer;
+  }
+
+  .code-input, .verify-code {
+    width: 50%;
+    vertical-align: middle;
+  }
+
+  .code-input {
+    padding-right: 3px;
+  }
+
   .verify-code {
+    padding-left: 3px;
+  }
+
+  .login-btn {
+    height: 55px;
+    width: 100%;
+    font-size: $font-size-x-large;
   }
 </style>
 <script>
@@ -188,6 +206,7 @@ export default {
         password: '',
         code: '',
         pid: '',
+        keeping: '',
       },
       showPwd: false,
       loading: false,

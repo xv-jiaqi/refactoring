@@ -4,14 +4,12 @@
   </section>
 </template>
 <script>
-export default {
-  name: 'footer',
-};
+export default {};
 </script>
 <style lang="scss" scoped>
   .footer {
     height: 160px;
-    background-color: $gray-400;
+    background-color: $gray-100;
     text-align: center;
   }
 

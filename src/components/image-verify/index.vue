@@ -41,15 +41,17 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .img-verify-box {
   cursor: pointer;
   display: inline-block;
   width: 50%;
-  height: 100%;
+  height: 40px;
 }
 .verify-img {
   width: 100%;
   height: 100%;
+  border: 1px $gray-300 solid;
+  border-radius: 3px;
 }
 </style>

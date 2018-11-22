@@ -2,12 +2,20 @@ import * as types from '../types/account-types';
 import accountService from '@/services/account-service';
 import Vue from 'vue';
 import CONF from '@/config/';
+import Router from '@/router/';
+// import errorCode from '../../services/xhr/errorCode';
 
 // initial state
-const state = {};
+const state = {
+  userInfo: null,
+  auth: null,
+};
 
 // getters
-const getters = {};
+const getters = {
+  userInfo: state => state.userInfo,
+  auth: state => state.auth,
+};
 
 // actions
 const actions = {
@@ -19,7 +27,7 @@ const actions = {
     return accountService.logout();
   },
 
-  [types.GET_LOGIN_INFO_REQUEST]() {
+  [types.GET_LOGIN_INFO_REQUEST]({ commit, }) {
     return accountService
       .getLoginInfo()
       .then(async ({ data = {}, }) => {
@@ -32,11 +40,16 @@ const actions = {
 
         const { privileges = [], } = data;
 
-        const authProcess = await import('@/store/authProcess');
+        const { default: authProcess, } = await import('@/store/authProcess');
 
         Vue.session.auth = await authProcess(privileges);
 
+        commit(types.USER_INFO, Vue.session);
+        commit(types.AUTH, Vue.session.auth);
+
         return Vue.session;
+      }).catch(() => {
+        Router.push({ name: 'login', });
       });
   },
 
@@ -46,7 +59,14 @@ const actions = {
 };
 
 // mutations
-const mutations = {};
+const mutations = {
+  [types.USER_INFO](state, userInfo) {
+    state.userInfo = userInfo;
+  },
+  [types.AUTH](state, auth) {
+    state.auth = auth;
+  },
+};
 
 export default {
   state,

@@ -7148,6 +7148,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-awesome@^3.2.0:
+  version "3.2.0"
+  resolved "http://registry.npm.taobao.org/vue-awesome/download/vue-awesome-3.2.0.tgz#885a64eab6fba6f51ba9b6565f2747ac0e35a2cc"
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "http://192.168.10.223:7001/vue-eslint-parser/download/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
