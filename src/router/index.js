@@ -22,8 +22,7 @@ const routes = new Router({
         auth: 'about-need-auth',
       },
       component: () => import('@/views/home/home.vue'),
-    }
-    ],
+    }],
     redirect: () => 'login',
   }, {
     path: '/login',

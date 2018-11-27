@@ -21,7 +21,8 @@ module.exports = {
     proxy: {
       '/td': {
         // target: 'http://192.168.10.151:7081',
-        target: 'https://192.168.10.130:17080',
+        // target: 'https://192.168.10.130:17080',
+        target: 'http://127.0.0.1:6666',
         changeOrigin: true,
         // pathRewrite: {
         //   '^/td': '/td' // 目前暂不需要重写路径
@@ -35,6 +36,8 @@ module.exports = {
   outputDir: 'dist',
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
+  // 生产环境是否生成 sourceMap 文件
+  productionSourceMap: false,
   css: {
     loaderOptions: {
       // 给 sass-loader 传递选项
@@ -45,16 +48,26 @@ module.exports = {
     },
   },
   configureWebpack: {
+    devtool: 'eval-source-map',
+
+    output: {
+      devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
+        ? `webpack-generated:///${info.resourcePath}?${info.hash}`
+        : `webpack-yourCode:///${info.resourcePath}`,
+
+      devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]',
+    },
+
     resolve: {
-      mainFields: [ 'src:main', 'main' ],
+      mainFields: ['src:main', 'main'],
     },
 
     module: {
       rules: [{
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [ path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/ ],
-      },],
+        include: [path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/],
+      }],
     },
     // plugins: [new SrcCompileWebpackPlugin()],
     // plugins: [
@@ -89,24 +102,8 @@ module.exports = {
     config.resolve.alias
       .set('Assets', resolve('src/assets'))
       .set('Style', resolve('src/Style'));
-
-    // if (process.env.NODE_ENV === 'development') {
-    //   config.devtool = 'eval-source-map';
-    //
-    //   config.output.devtoolModuleFilenameTemplate = info => {
-    //     let $filename = `sources://${info.resourcePath}`;
-    //
-    //     if (info.resourcePath.match(/\.vue$/) && !info.identifier.match(/type=script/)) {
-    //       $filename = `webpack-generated:///${info.resourcePath}?${info.hash}`;
-    //     }
-    //
-    //     return $filename;
-    //   };
-    //
-    //   config.output.devtoolFallbackModuleFilenameTemplate = 'webpack:///[resource-path]?[hash]';
-    // }
   },
   transpileDependencies: [
-    /\bvue-awesome\b/
+    /\bvue-awesome\b/,
   ],
 };

@@ -6,6 +6,7 @@
 import * as types from '@/store/types/account-types.js'
 export default {
   created() {
+    console.log('index.vue');
     // this.$store.dispatch(types.GET_LOGIN_INFO_REQUEST)
   },
 }

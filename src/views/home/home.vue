@@ -1,6 +1,12 @@
 <template>
   <el-container class="wrap-container">
-    <nav-menu :drop-list="dropList" :username="username"></nav-menu>
+    <nav-menu :logo-src="logoSrc"
+              :drop-list="dropList"
+              :username="username">
+      <template slot="handle">
+        <nav-handle></nav-handle>
+      </template>
+    </nav-menu>
     <el-container>
       <side-menu></side-menu>
       <el-main class="main-container">
@@ -19,15 +25,16 @@
   </el-container>
 </template>
 <script>
-import { mapGetters, } from 'vuex';
 import * as types from '@/store/types/account-types';
 import SideMenu from './side-menu';
-import NavMenu from './nav-Menu';
+import NavMenu from './nav-menu';
+import NavHandle from './nav-handle';
 
 export default {
   components: {
     SideMenu,
     NavMenu,
+    NavHandle,
   },
   data() {
     const item = {
@@ -55,16 +62,22 @@ export default {
         },
       }
     ];
+
+    const logoSrc = require('Assets/images/home/logo_page.zh_CN.png');
+
     return {
       tableData: Array(20).fill(item),
 
       isActive: false,
 
+      logoSrc,
       dropList,
     };
   },
   computed: {
-    ...mapGetters(['userInfo']),
+    username() {
+      return this.$store.getters['userInfo'].username;
+    },
   },
   methods: {
     handleCommand(command) {
@@ -74,7 +87,6 @@ export default {
       this.isActive = isActive;
     },
   },
-
 };
 </script>
 <style lang="scss" scoped>

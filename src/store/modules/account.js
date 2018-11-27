@@ -7,8 +7,8 @@ import Router from '@/router/';
 
 // initial state
 const state = {
-  userInfo: null,
-  auth: null,
+  userInfo: {},
+  auth: [],
 };
 
 // getters

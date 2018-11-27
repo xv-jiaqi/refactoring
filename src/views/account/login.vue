@@ -9,7 +9,7 @@
   </gt-login>
 </template>
 <script>
-import GtLogin from '@/components/gt-login/index';
+import GtLogin from '@/components/gt-login/';
 import FooterBar from './footer-bar';
 import HeaderBar from './header-bar';
 import * as types from '@/store/types/account-types';
@@ -56,19 +56,15 @@ export default {
       });
     },
     getVcode() {
-      return Promise.resolve({
-        pid: '12',
-        img: 'http://127.0.0.1:8081/mock-vcode.jpeg',
+      return this.$store.dispatch(types.GET_VCODE_REQUEST).then(res => ({
+        pid: res.data.pid,
+        img: res.data.img,
+      }), () => {
+        this.$message({
+          message: '验证码服务暂时不可用',
+          type: 'info',
+        });
       });
-      // return this.$store.dispatch(types.GET_VCODE_REQUEST).then(res => ({
-      //   pid: res.data.pid,
-      //   img: res.data.img,
-      // }), () => {
-      //   this.$message({
-      //     message: '验证码服务暂时不可用',
-      //     type: 'info',
-      //   });
-      // });
     },
   },
 };

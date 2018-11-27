@@ -7,7 +7,6 @@
 import * as types from '@/store/types/account-types';
 
 export default {
-  name: 'app',
   created() {
     if (this.$route.name === 'login') return false;
     this.$store.dispatch(types.GET_LOGIN_INFO_REQUEST);

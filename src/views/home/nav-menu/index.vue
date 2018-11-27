@@ -1,10 +1,7 @@
 <template>
   <el-header class="header">
-    <img src="~Assets/images/home/logo_page.zh_CN.png" class="logo-page" alt="logo page">
-    <section class="slot">
-      <svg-icon iconName="email" class="icon-email"></svg-icon>
-      <el-button class="lang-btn" size="small">ENGLISH</el-button>
-    </section>
+    <img :src="logoSrc" class="logo-page" alt="logo page">
+    <slot name="handle"></slot>
     <el-dropdown class="dropdown-menu"
                  @command="handleCommand"
                  @visible-change="dropdownIconChange"
@@ -29,13 +26,17 @@
 <script>
 export default {
   props: {
-    dropList: {
-      type: Array,
-      default: () => [],
+    logoSrc: {
+      type: String,
+      default: '',
     },
     username: {
       type: String,
-      required: true,
+      default: '',
+    },
+    dropList: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {
@@ -65,22 +66,6 @@ export default {
 
   .logo-page {
     height: 60%;
-  }
-
-  .slot {
-    flex: auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .lang-btn {
-    font-weight: bold;
-    background-color: #fff;
-    color: #0090c8;
-    width: 80px;
-    height: 30px;
-    margin-right: 30px;
   }
 
   .dropdown-menu {
@@ -119,17 +104,9 @@ export default {
     font-size: 14px;
   }
 
-  .icon-email {
-    margin-right: 30px;
-  }
-
   @media screen and (max-width: $screen-xs-max) {
     .logo-page {
       display: none;
-    }
-
-    .slot {
-      justify-content: left;
     }
   }
 </style>
