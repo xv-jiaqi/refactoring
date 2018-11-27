@@ -10,6 +10,7 @@
     <el-container>
       <side-menu></side-menu>
       <el-main class="main-container">
+        <router-view transition="fade" transition-mode="out-in"></router-view>
         <section>
           <el-table :data="tableData">
             <el-table-column prop="date" label="日期" width="140">

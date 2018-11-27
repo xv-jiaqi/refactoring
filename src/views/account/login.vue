@@ -50,9 +50,9 @@ export default {
         dog_info: {},
         pid,
         code,
-      }).then(() => {
-        this.$store.dispatch(types.GET_LOGIN_INFO_REQUEST);
-        this.$router.push('/home');
+      }).then(async () => {
+        await this.$store.dispatch(types.GET_LOGIN_INFO_REQUEST);
+        this.$router.push({ name: 'home', });
       });
     },
     getVcode() {

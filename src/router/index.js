@@ -7,28 +7,39 @@ Vue.use(Router);
 
 const routes = new Router({
   mode: 'history',
-  routes: [{
-    path: '/',
-    component: () => import('@/views/'),
-    children: [{
-      path: '/home',
-      name: 'home',
-      component: () => import('@/views/home/home.vue'),
-    },
+  routes: [
     {
-      path: '/about-need-auth',
-      name: 'about-need-auth',
-      meta: {
-        auth: 'about-need-auth',
-      },
-      component: () => import('@/views/home/home.vue'),
+      path: '/',
+      component: () => import('@/views/'),
+      redirect: () => 'login',
+      children: [
+        {
+          path: '/login',
+          name: 'login',
+          component: () => import('@/views/account/login'),
+        },
+        {
+          path: '/home',
+          name: 'home',
+          component: () => import('@/views/home/home.vue'),
+          children: [{
+            path: '/test',
+            name: 'test',
+            meta: {
+              auth: '',
+            },
+            component: () => import('@/views/test/test'),
+          }, {
+            path: '/first',
+            name: 'first',
+            meta: {
+              auth: '',
+            },
+            component: () => import('@/views/test/first'),
+          }],
+        }
+      ],
     }],
-    redirect: () => 'login',
-  }, {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/account/login.vue'),
-  }],
 });
 
 routes.beforeEach((to, from, next) => {
