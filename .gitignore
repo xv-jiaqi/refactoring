@@ -1,5 +1,24 @@
-# webstorm
-.idea/
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+dist/
+
+!.gitkeep
+
+.DS_Store
+node_modules
+/dist
+/build
+
+# local env files
+.env.local
+.env.*.local
 
 # Logs
 logs
