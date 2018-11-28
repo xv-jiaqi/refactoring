@@ -24,6 +24,7 @@ export default {
       routes: [
         { name: '/sub-app-one', title: 'sub-app-one' },
         { name: '/sub-app-two', title: 'sub-app-two' },
+        { name: '/td', title: 'td' },
       ],
     };
   },

@@ -5,4 +5,7 @@ module.exports = {
   '/sub-app-two/': {
     target: 'http://localhost:6600/', // 指向 sub-app-two 开发服务
   },
+  '/td/': {
+    target: 'http://localhost:8888/'
+  }
 };

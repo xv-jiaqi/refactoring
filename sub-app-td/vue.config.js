@@ -1,20 +1,32 @@
 // const SrcCompileWebpackPlugin = require('webpack-gt-src-compile')
 const path = require('path');
 // const bourbon = require('bourbon').includePaths;
-// coust neat = require('bourbon-neat').includePaths;
+// const neat = require('bourbon-neat').includePaths;
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpack = require('webpack');
+const ModifyChunkIdPlugin = require('modify-chunk-id-webpack-plugin');
+const patchCliService = require('./scripts/patch-cli-service');
+const {name: APP_NAME, devPort: PORT = 8888} = require('./package.json');
+
+patchCliService();
 
 function resolve(dir) {
   return path.join(__dirname, '.', dir);
 }
 
 module.exports = {
+  baseUrl: `/${APP_NAME}`,
+
+  outputDir: 'dist',
+
+  lintOnSave: true,
+
+  productionSourceMap: false,
+
   devServer: {
-    // disableHostCheck: true,
-    port: 8888,
-    // open: process.platform === 'darwin',
+    port: PORT,
     host: 'localhost',
-    https: true,
+    // https: true,
     hot: true,
     hotOnly: true,
     // before: app => {},
@@ -30,14 +42,6 @@ module.exports = {
       },
     },
   },
-  // 基本路径
-  baseUrl: '/',
-  // 输出文件目录
-  outputDir: 'dist',
-  // eslint-loader 是否在保存的时候检查
-  lintOnSave: true,
-  // 生产环境是否生成 sourceMap 文件
-  productionSourceMap: false,
   css: {
     loaderOptions: {
       // 给 sass-loader 传递选项
@@ -50,7 +54,16 @@ module.exports = {
   configureWebpack: {
     devtool: 'eval-source-map',
 
+    externals: {
+      vue: 'Vue',
+      'element-ui': 'ELEMENT',
+    },
+
+    entry: './src/module.js',
+
     output: {
+      libraryExport: 'default',
+
       devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
         ? `webpack-generated:///${info.resourcePath}?${info.hash}`
         : `webpack-yourCode:///${info.resourcePath}`,
@@ -69,10 +82,13 @@ module.exports = {
         include: [path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/],
       }],
     },
-    // plugins: [new SrcCompileWebpackPlugin()],
-    // plugins: [
-    //   new BundleAnalyzerPlugin(),
-    // ],
+
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.VUE_APP_NAME': JSON.stringify(APP_NAME),
+      }),
+      new ModifyChunkIdPlugin({ random: process.env.NODE_ENV === 'development' }),
+    ],
   },
   // Workaround for
   // - https://github.com/vuejs/vue-cli/issues/1351
@@ -84,9 +100,7 @@ module.exports = {
       return args;
     });
 
-    config.module.rules.delete('svg'); // 重点:删除默认配置中处理svg,
-    // const svgRule = config.module.rule('svg')
-    // svgRule.uses.clear()
+    config.module.rules.delete('svg');
     config.module
       .rule('svg-sprite-loader')
       .test(/\.svg$/)

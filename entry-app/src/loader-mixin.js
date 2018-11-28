@@ -6,6 +6,7 @@ import router from '@/router';
 const modules = [
   { name: 'sub-app-one', url: '/sub-app-one/main.js' },
   { name: 'sub-app-two', url: '/sub-app-two/main.js' },
+  { name: 'td', url: '/td/main.js' },
   // more...
 ];
 
