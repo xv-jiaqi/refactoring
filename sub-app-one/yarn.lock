@@ -5192,6 +5192,11 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
+modify-chunk-id-webpack-plugin@^0.1.4:
+  version "0.1.4"
+  resolved "http://registry.npm.taobao.org/modify-chunk-id-webpack-plugin/download/modify-chunk-id-webpack-plugin-0.1.4.tgz#e859f5863e07409ed99980f8b7a02f58b4c8093a"
+  integrity sha1-6Fn1hj4HQJ7ZmYD4t6AvWLTICTo=
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -6240,6 +6245,13 @@ postcss-reduce-transforms@^4.0.1:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
+postcss-selector-namespace@^1.5.0:
+  version "1.5.0"
+  resolved "http://registry.npm.taobao.org/postcss-selector-namespace/download/postcss-selector-namespace-1.5.0.tgz#62335de8f1992eae989d1be33ba2298156ab458b"
+  integrity sha1-YjNd6PGZLq6YnRvjO6IpgVarRYs=
+  dependencies:
+    postcss "^6.0.14"
+
 postcss-selector-parser@^3.0.0, postcss-selector-parser@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-3.1.1.tgz#4f875f4afb0c96573d5cf4d74011aee250a7e865"
@@ -6282,7 +6294,7 @@ postcss-value-parser@^3.0.0, postcss-value-parser@^3.2.3, postcss-value-parser@^
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-3.3.1.tgz#9ff822547e2893213cf1c30efa51ac5fd1ba8281"
   integrity sha512-pISE66AbVkp4fDQ7VHBwRNXzAAKJjw4Vw7nWI/+Q3vuly7SNfgYXvm6i5IgFylHGK5sP/xHAbB7N49OS4gWNyQ==
 
-postcss@^6.0.1, postcss@^6.0.20, postcss@^6.0.23:
+postcss@^6.0.1, postcss@^6.0.14, postcss@^6.0.20, postcss@^6.0.23:
   version "6.0.23"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.23.tgz#61c82cc328ac60e677645f979054eb98bc0e3324"
   integrity sha512-soOk1h6J3VMTZtVeVpv15/Hpdl2cBLX3CAw4TAbkpTJiNPk9YP/zWcD1ND+xEtvyuuvKzbxliTOIyvkSeSJ6ag==
@@ -8008,6 +8020,11 @@ vue-loader@^15.4.2:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-module-register@1.0.4:
+  version "1.0.4"
+  resolved "http://registry.npm.taobao.org/vue-module-register/download/vue-module-register-1.0.4.tgz#0e277fdd1b965f9d474d7f2b0eba7f7af5abdcb1"
+  integrity sha1-Did/3RuWX51HTX8rDrp/evWr3LE=
 
 vue-router@^3.0.1:
   version "3.0.2"
