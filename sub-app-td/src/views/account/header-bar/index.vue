@@ -20,8 +20,9 @@ export default {
     },
   },
   computed: {
-    logoSrc: function () {
-      return require('Assets/images/home/logo_login.' + (this.$i18n.locale || 'zh_CN') + '.png');
+    logoSrc() {
+      // eslint-disable-next-line
+      return require(`Assets/images/home/logo_login.${this.$i18n.locale}.png`);
     },
   },
 };

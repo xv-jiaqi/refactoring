@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const lang = {
   lang: '中文',
   login: {

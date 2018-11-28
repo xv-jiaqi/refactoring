@@ -7,6 +7,6 @@ export default new VueI18n({
   locale: 'zh_CN',
   messages: {
     'zh_CN': require('Assets/lang/zh'),
-    'en_US': require('Assets/lang/en')
+    'en_US': require('Assets/lang/en'),
   },
 });
