@@ -11,45 +11,44 @@
              alt="dashboard img">
       </div>
       <div class="login-container">
-        <!--<h4 class="login-title">{{$t('lang.login.title')}}</h4>-->
-        12333333
-        <!--<el-form ref="loginForm" :model="formData" class="login-form">-->
-          <!--<el-form-item class="form-item">-->
-            <!--<el-input-->
-                <!--v-model="formData.username"-->
-                <!--:placeholder="$t('lang.login.username')"-->
-                <!--prefix-icon="user-name-icon"-->
-            <!--&gt;-->
-            <!--</el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item class="form-item">-->
-            <!--<el-input-->
-                <!--v-model="formData.password"-->
-                <!--:type="showPwd ? 'text' : 'password'"-->
-                <!--:placeholder="$t('lang.login.password')"-->
-                <!--prefix-icon="user-pwd-icon"-->
-                <!--@click.native="togglePwdShow"-->
-                <!--:suffix-icon="showPwd ? 'hide-pwd-icon' : 'show-pwd-icon'"-->
-            <!--&gt;</el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item class="form-item" v-if="vcode">-->
-            <!--<el-input-->
-                <!--v-model="formData.code"-->
-                <!--class="code-input"-->
-                <!--:placeholder="$t('lang.login.verificationCode')"-->
-                <!--maxlength="4">-->
-            <!--</el-input>-->
-            <!--<image-verify class="verify-code" @pid-change="pidChange" :ds="dataSource"></image-verify>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item class="form-item">-->
-            <!--<el-checkbox v-model="formData.keeping">{{$t('lang.login.keeping')}}</el-checkbox>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item class="form-item">-->
-            <!--<el-button type="primary" class="login-btn" @click="confirmLogin" :disabled="loading || formInvalid">-->
-              <!--{{$t('lang.login.submit')}}-->
-            <!--</el-button>-->
-          <!--</el-form-item>-->
-        <!--</el-form>-->
+        <h4 class="login-title">{{$t('lang.login.title')}}</h4>
+        <el-form ref="loginForm" :model="formData" class="login-form">
+          <el-form-item class="form-item">
+            <el-input
+                v-model="formData.username"
+                :placeholder="$t('lang.login.username')"
+                prefix-icon="user-name-icon"
+            >
+            </el-input>
+          </el-form-item>
+          <el-form-item class="form-item">
+            <el-input
+                v-model="formData.password"
+                :type="showPwd ? 'text' : 'password'"
+                :placeholder="$t('lang.login.password')"
+                prefix-icon="user-pwd-icon"
+                @click.native="togglePwdShow"
+                :suffix-icon="showPwd ? 'hide-pwd-icon' : 'show-pwd-icon'"
+            ></el-input>
+          </el-form-item>
+          <el-form-item class="form-item" v-if="vcode">
+            <el-input
+                v-model="formData.code"
+                class="code-input"
+                :placeholder="$t('lang.login.verificationCode')"
+                maxlength="4">
+            </el-input>
+            <image-verify class="verify-code" @pid-change="pidChange" :ds="dataSource"></image-verify>
+          </el-form-item>
+          <el-form-item class="form-item">
+            <el-checkbox v-model="formData.keeping">{{$t('lang.login.keeping')}}</el-checkbox>
+          </el-form-item>
+          <el-form-item class="form-item">
+            <el-button type="primary" class="login-btn" @click="confirmLogin" :disabled="loading || formInvalid">
+              {{$t('lang.login.submit')}}
+            </el-button>
+          </el-form-item>
+        </el-form>
       </div>
     </div>
     <slot name="footer">

@@ -46,3 +46,8 @@
 1. error 提交代码失败
 1. HTTP2/3
 1. JSX
+
+TODO
+- 尾随逗号
+- 样式冗余
+- FontAwesome font-face

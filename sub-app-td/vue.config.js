@@ -47,7 +47,6 @@ module.exports = {
       // 给 sass-loader 传递选项
       sass: {
         data: '@import "@/style/variables.scss";',
-        // includePaths: [...bourbon, ...neat],
       },
     },
   },
@@ -117,7 +116,4 @@ module.exports = {
       .set('Assets', resolve('src/assets'))
       .set('Style', resolve('src/style'));
   },
-  transpileDependencies: [
-    /\bvue-awesome\b/,
-  ],
 };

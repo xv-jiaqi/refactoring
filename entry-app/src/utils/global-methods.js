@@ -1,5 +1,5 @@
-import bus from './bus';
 import { CreateRegister } from 'vue-module-register';
+import bus from './bus';
 
 const shared = {
   $bus: bus,

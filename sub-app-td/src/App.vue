@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view transition="fade" transition-mode="out-in"></router-view>
+    <section style="">
+      <router-view transition="fade" transition-mode="out-in"></router-view>
+    </section>
   </div>
 </template>
 <script>

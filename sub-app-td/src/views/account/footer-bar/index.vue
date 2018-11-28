@@ -1,7 +1,7 @@
 <template>
   <section class="footer">
     copy
-    <!--<p class="copyright">{{$t('lang.login.copyright')}}</p>-->
+    <p class="copyright">{{$t('lang.login.copyright')}}</p>
   </section>
 </template>
 <script>

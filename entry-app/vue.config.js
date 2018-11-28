@@ -30,10 +30,24 @@ module.exports = {
     ],
   },
 
+  css: {
+    loaderOptions: {
+      // 给 sass-loader 传递选项
+      sass: {
+        data: '@import "@/style/variables.scss";',
+        // includePaths: [...bourbon, ...neat],
+      },
+    },
+  },
+
   devServer: {
     port: PORT,
     proxy: PROXY,
   },
+
+  transpileDependencies: [
+    /\bvue-awesome\b/
+  ],
 };
 
 function log(label, content, options) {

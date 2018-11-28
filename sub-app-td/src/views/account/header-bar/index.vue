@@ -2,8 +2,7 @@
   <div class="header">
     <img class="logo-login" :src="logoSrc" alt="logo page">
     <div class="lang">
-      <!--<el-button class="lang-btn" size="small" @click="changeLangEvent">{{$t('lang.lang')}}</el-button>-->
-      1111
+      <el-button class="lang-btn" size="small" @click="changeLangEvent">{{$t('lang.lang')}}</el-button>
     </div>
   </div>
 </template>
@@ -11,19 +10,19 @@
 <script>
 export default {
   methods: {
-    // changeLangEvent() {
-    //   const langKeys = Object.keys(this.$i18n.messages);
-    //   const currentLang = this.$i18n.locale;
-    //
-    //   const nextLangIndex = langKeys.length - (langKeys.indexOf(currentLang) + 1);
-    //
-    //   this.$i18n.locale = langKeys[nextLangIndex];
-    // },
+    changeLangEvent() {
+      const langKeys = Object.keys(this.$i18n.messages);
+      const currentLang = this.$i18n.locale;
+
+      const nextLangIndex = langKeys.length - (langKeys.indexOf(currentLang) + 1);
+
+      this.$i18n.locale = langKeys[nextLangIndex];
+    },
   },
   computed: {
     logoSrc() {
       // eslint-disable-next-line
-      // return require(`Assets/images/home/logo_login.${this.$i18n.locale}.png`);
+      return require(`Assets/images/home/logo_login.${this.$i18n.locale}.png`);
     },
   },
 };
