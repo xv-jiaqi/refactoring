@@ -12,44 +12,44 @@
 </template>
 
 <script>
-  import loaderMixin from '@/loader-mixin';
+import loaderMixin from '@/loader-mixin';
 
-  export default {
-    name: 'EntryApp',
+export default {
+  name: 'EntryApp',
 
-    mixins: [loaderMixin],
+  mixins: [loaderMixin],
 
-    data() {
-      return {
-        routes: [
-          { name: '/sub-app-one', title: 'sub-app-one' },
-          { name: '/sub-app-two', title: 'sub-app-two' },
-        ],
-      };
+  data() {
+    return {
+      routes: [
+        { name: '/sub-app-one', title: 'sub-app-one' },
+        { name: '/sub-app-two', title: 'sub-app-two' },
+      ],
+    };
+  },
+
+  watch: {
+    $route({ path }) {
+      if (typeof path === 'undefined') {
+        return;
+      }
+      // remove active class
+      const oldActivedRoute = this.routes.find(v => v.isActive);
+      if (oldActivedRoute) {
+        oldActivedRoute.isActive = false;
+      }
+      // add active class
+      const activedRoute = this.routes.find(({ name }) => path.startsWith(name));
+      if (activedRoute) {
+        activedRoute.isActive = true;
+      }
     },
-
-    watch: {
-      $route({ path }) {
-        if (typeof path === 'undefined') {
-          return;
-        }
-        // remove active class
-        const oldActivedRoute = this.routes.find((v) => v.isActive);
-        if (oldActivedRoute) {
-          oldActivedRoute.isActive = false;
-        }
-        // add active class
-        const activedRoute = this.routes.find(({ name }) => path.startsWith(name));
-        if (activedRoute) {
-          activedRoute.isActive = true;
-        }
-      },
-    },
-  };
+  },
+};
 </script>
 
 
-<style lang="less">
+<style lang="scss">
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

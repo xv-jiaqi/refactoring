@@ -10,7 +10,9 @@ log('NODE_ENV: ', NODE_ENV);
 
 module.exports = {
   baseUrl: './',
+
   productionSourceMap: false,
+
   configureWebpack: {
     externals: {
       lodash: '_',
@@ -20,12 +22,14 @@ module.exports = {
       'vue-router': 'VueRouter',
       'element-ui': 'ELEMENT',
     },
+
     plugins: [
       new webpack.DefinePlugin({
         'process.env.VUE_APP_NAME': JSON.stringify(APP_NAME),
       }),
     ],
   },
+
   devServer: {
     port: PORT,
     proxy: PROXY,

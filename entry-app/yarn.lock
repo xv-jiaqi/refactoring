@@ -8009,6 +8009,11 @@ vue-loader@^15.4.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-module-register@1.0.4:
+  version "1.0.4"
+  resolved "http://registry.npm.taobao.org/vue-module-register/download/vue-module-register-1.0.4.tgz#0e277fdd1b965f9d474d7f2b0eba7f7af5abdcb1"
+  integrity sha1-Did/3RuWX51HTX8rDrp/evWr3LE=
+
 vue-router@^3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.2.tgz#dedc67afe6c4e2bc25682c8b1c2a8c0d7c7e56be"
