@@ -2,7 +2,7 @@
   "name": "sub-app-two",
   "version": "0.1.0",
   "private": true,
-  "devPort": 7320,
+  "devPort": 6600,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --report --target lib --formats umd-min --name sub-app-two ./src/module.js",
