@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3bc368da-61fa-4975-b79c-c87b66a54b17" name="Default" comment=":see_no_evil: Adding or updating a .gitignore file.">
-      <change afterPath="$PROJECT_DIR$/sub-app-td/scripts/patch-cli-service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sub-app-td/src/module.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sub-app-td/src/router/router-list.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sub-app-td/src/store/store-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry-app/config/proxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry-app/config/proxy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry-app/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/entry-app/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry-app/src/loader-mixin.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry-app/src/loader-mixin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub-app-td/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/sub-app-td/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub-app-td/src/components/gt-login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/sub-app-td/src/components/gt-login/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub-app-td/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/sub-app-td/src/router/index.js.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub-app-td/src/views/account/footer-bar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/sub-app-td/src/views/account/footer-bar/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub-app-td/src/views/account/header-bar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/sub-app-td/src/views/account/header-bar/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub-app-td/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/sub-app-td/vue.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub-app-td/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/sub-app-td/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="3bc368da-61fa-4975-b79c-c87b66a54b17" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -346,11 +329,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543398712993</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary=":building_construction: Micro frontend, Making architectural changes,">
+      <created>1543407594415</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1543407594415</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247142000" />
+    <option name="totallyTimeSpent" value="247385000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -365,7 +355,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16772375" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1627907" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32969698" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -373,7 +363,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.5369697" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.45090908" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.2860606" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.52969694" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -469,7 +459,8 @@
     <MESSAGE value=":ok_hand: Updating code due to code review changes." />
     <MESSAGE value=":building_construction: Making architectural changes." />
     <MESSAGE value=":arrow_up: Upgrading code" />
-    <option name="LAST_COMMIT_MESSAGE" value=":arrow_up: Upgrading code" />
+    <MESSAGE value=":building_construction: Micro frontend, Making architectural changes," />
+    <option name="LAST_COMMIT_MESSAGE" value=":building_construction: Micro frontend, Making architectural changes," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -561,6 +552,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="4" column="68" lean-forward="true" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -575,6 +569,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -583,18 +580,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="288">
             <caret line="12" column="8" selection-end-line="47" />
-          </first_editor>
-          <second_editor>
-            <js_state />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="241">
-            <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
           </first_editor>
           <second_editor>
             <js_state />
@@ -810,6 +795,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="384">
+            <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          </first_editor>
+          <second_editor>
+            <js_state />
+          </second_editor>
         </state>
       </provider>
     </entry>
