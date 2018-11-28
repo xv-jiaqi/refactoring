@@ -1,6 +1,6 @@
 <template>
   <section class="footer">
-    <p class="copyright">©2018 [m]PLATFORM Mobile 京ICP备16022547号</p>
+    <p class="copyright">{{$t('lang.login.copyright')}}</p>
   </section>
 </template>
 <script>

@@ -11,12 +11,12 @@
              alt="dashboard img">
       </div>
       <div class="login-container">
-        <h4 class="login-title">欢迎使用高露洁受众管理平台！</h4>
+        <h4 class="login-title">{{$t('lang.login.title')}}</h4>
         <el-form ref="loginForm" :model="formData" class="login-form">
           <el-form-item class="form-item">
             <el-input
                 v-model="formData.username"
-                placeholder="请输入用户名"
+                :placeholder="$t('lang.login.username')"
                 prefix-icon="user-name-icon"
             >
             </el-input>
@@ -25,7 +25,7 @@
             <el-input
                 v-model="formData.password"
                 :type="showPwd ? 'text' : 'password'"
-                placeholder="请输入密码"
+                :placeholder="$t('lang.login.password')"
                 prefix-icon="user-pwd-icon"
                 @click.native="togglePwdShow"
                 :suffix-icon="showPwd ? 'hide-pwd-icon' : 'show-pwd-icon'"
@@ -35,17 +35,17 @@
             <el-input
                 v-model="formData.code"
                 class="code-input"
-                placeholder="验证码"
+                :placeholder="$t('lang.login.verificationCode')"
                 maxlength="4">
             </el-input>
             <image-verify class="verify-code" @pid-change="pidChange" :ds="dataSource"></image-verify>
           </el-form-item>
           <el-form-item class="form-item">
-            <el-checkbox v-model="formData.keeping">记住我</el-checkbox>
+            <el-checkbox v-model="formData.keeping">{{$t('lang.login.keeping')}}</el-checkbox>
           </el-form-item>
           <el-form-item class="form-item">
             <el-button type="primary" class="login-btn" @click="confirmLogin" :disabled="loading || formInvalid">
-              登&nbsp;&nbsp;录
+              {{$t('lang.login.submit')}}
             </el-button>
           </el-form-item>
         </el-form>
@@ -107,6 +107,7 @@
     font-weight: $font-weight-bold;
     color: $primary;
     text-align: center;
+    word-break: break-all;
   }
 
   .login-form {

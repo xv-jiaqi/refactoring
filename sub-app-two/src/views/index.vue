@@ -1,14 +1,40 @@
 <template>
-  <router-view transition="fade" transition-mode="out-in"></router-view>
+  <div class="sub-app-wrapper sub-app-two">
+    <h1>{{ name }}</h1>
+    <div class="nav">
+      <router-link class="link"
+                   :to="{name: 'sub-app-two.page-a'}">PageA</router-link>
+      <router-link class="link"
+                   :to="{name: 'sub-app-two.page-b'}">PageB</router-link>
+    </div>
+    <router-view />
+  </div>
 </template>
-<script>
-import * as types from '@/store/types/account-types';
 
+<script>
 export default {
-  created() {
-    console.log('index.vue');
-    if (this.$route.name === 'login') return false;
-    this.$store.dispatch(types.GET_LOGIN_INFO_REQUEST);
+  name: 'ModuleTwoIndex',
+
+  data() {
+    return {
+      name: process.env.VUE_APP_NAME,
+    };
   },
 };
 </script>
+
+<style lang="less">
+.nav {
+  padding: 30px;
+}
+
+.link {
+  padding: 0 10px;
+  font-weight: bold;
+  color: #2c3e50;
+
+  &.router-link-exact-active {
+    color: #ea6e76;
+  }
+}
+</style>

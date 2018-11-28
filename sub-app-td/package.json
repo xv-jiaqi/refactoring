@@ -1,0 +1,58 @@
+{
+    "name": "vue_base",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "dev": "npx --max_old_space_size=4096 vue-cli-service serve",
+        "analyz": "NODE_ENV=production npm_config_report=true npm run build"
+    },
+    "dependencies": {
+        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+        "@vue/eslint-config-airbnb": "^4.0.0",
+        "axios": "^0.18.0",
+        "babel-eslint": "10.0.1",
+        "bourbon": "^5.1.0",
+        "bourbon-neat": "^1.9.1",
+        "css-loader": "^1.0.1",
+        "date-fns": "^1.29.0",
+        "es6-shim": "^0.35.3",
+        "lodash": "^4.17.11",
+        "lodash.camelcase": "^4.3.0",
+        "md5": "^2.2.1",
+        "node-sass": "^4.10.0",
+        "normalize.css": "^8.0.1",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "svg-sprite-loader": "^4.1.3",
+        "vue": "^2.5.17",
+        "vue-awesome": "^3.2.0",
+        "vue-i18n": "^8.3.2",
+        "vue-router": "^3.0.1",
+        "vuex": "^3.0.1",
+        "webpack-bundle-analyzer": "^3.0.3"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "3.1.1",
+        "@vue/cli-plugin-eslint": "3.1.2",
+        "@vue/cli-service": "3.1.2",
+        "@vue/eslint-config-standard": "^3.0.0",
+        "babel-plugin-syntax-dynamic-import": "^6.18.0",
+        "cross-env": "^5.1.6",
+        "element-ui": "^2.4.1",
+        "less": "^3.0.4",
+        "less-loader": "^4.1.0",
+        "pcms-components-basic": "^0.1.5",
+        "vue-pcms": "^1.0.1-ci.20",
+        "vue-template-compiler": "^2.5.17",
+        "webpack-gt-src-compile": "^2.0.0-ci.3"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 3 versions",
+        "not ie <= 10"
+    ],
+    "pcms-template-version": "1.1.0"
+}
