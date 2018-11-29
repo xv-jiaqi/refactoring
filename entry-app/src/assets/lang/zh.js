@@ -1,5 +1,4 @@
-/* eslint-disable */
-export const lang = {
+export default {
   lang: 'ENGLISH',
   login: {
     title: '欢迎使用高露洁受众管理平台！',

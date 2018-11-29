@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import GlobalMethods from '@/utils/global-methods';
+import Icon from 'vue-awesome/components/Icon.vue';
+import i18n from './common/i18n';
+
 import '@/style/index.sc.scss';
 import 'vue-awesome/icons';
-import i18n from './common/i18n';
-import Icon from 'vue-awesome/components/Icon.vue';
 
 import router from './router';
 import store from './store';

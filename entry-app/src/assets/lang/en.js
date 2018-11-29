@@ -1,5 +1,4 @@
-/* eslint-disable */
-export const lang = {
+export default {
   lang: '中文',
   login: {
     title: 'Welcome to the Colgate audience management platform！',

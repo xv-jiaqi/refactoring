@@ -51,3 +51,4 @@ TODO
 - 尾随逗号
 - 样式冗余
 - FontAwesome font-face
+- index.html 规范化
