@@ -32,13 +32,6 @@ export default {
       });
     },
   },
-
-  created() {
-    // eslint-disable-next-line
-    this.$addDS('mock', require('./ds/mock.js'));
-
-    this.init();
-  },
 };
 </script>
 <style lang="scss" scoped>

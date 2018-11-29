@@ -1,5 +1,6 @@
 import md5 from 'md5';
 import Vue from 'vue';
+import CONF from '@/config/';
 import { getAuthByAppNameFn, } from '@/config/';
 
 const { stringify, parse, } = JSON;
@@ -88,7 +89,7 @@ function path2MD5(authMap, appName) {
  * @returns {Promise<any>}
  */
 async function authConfig(privileges) {
-  const { appName, role, } = Vue.session;
+  const { appName, role, } = CONF;
 
   const authMap = await getAuthByAppNameFn(appName);
 

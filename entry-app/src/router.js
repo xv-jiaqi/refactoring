@@ -8,7 +8,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: { name: 'sub-app-two' },
+      redirect: { name: 'td' },
     },
   ],
 });

@@ -43,7 +43,7 @@ export default {
         pid,
         code,
       } = formData;
-      return this.$store.dispatch(types.LOGIN_REQUEST, {
+      return this.$store.dispatch(`td/${types.LOGIN_REQUEST}`, {
         username,
         password: md5(`${password}${username}`),
         platform: 'cgtdesk',
@@ -51,12 +51,12 @@ export default {
         pid,
         code,
       }).then(async () => {
-        await this.$store.dispatch(types.GET_LOGIN_INFO_REQUEST);
+        await this.$store.dispatch(`${types.GET_LOGIN_INFO_REQUEST}`);
         this.$router.push({ name: 'home', });
       });
     },
     getVcode() {
-      return this.$store.dispatch(types.GET_VCODE_REQUEST).then(res => ({
+      return this.$store.dispatch(`td/${types.GET_VCODE_REQUEST}`).then(res => ({
         pid: res.data.pid,
         img: res.data.img,
       }), () => {

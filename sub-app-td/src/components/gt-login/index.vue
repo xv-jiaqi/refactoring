@@ -11,12 +11,12 @@
              alt="dashboard img">
       </div>
       <div class="login-container">
-        <h4 class="login-title">{{$t('lang.login.title')}}</h4>
+        <h4 class="login-title">{{$t('login.title')}}</h4>
         <el-form ref="loginForm" :model="formData" class="login-form">
           <el-form-item class="form-item">
             <el-input
                 v-model="formData.username"
-                :placeholder="$t('lang.login.username')"
+                :placeholder="$t('login.username')"
                 prefix-icon="user-name-icon"
             >
             </el-input>
@@ -25,7 +25,7 @@
             <el-input
                 v-model="formData.password"
                 :type="showPwd ? 'text' : 'password'"
-                :placeholder="$t('lang.login.password')"
+                :placeholder="$t('login.password')"
                 prefix-icon="user-pwd-icon"
                 @click.native="togglePwdShow"
                 :suffix-icon="showPwd ? 'hide-pwd-icon' : 'show-pwd-icon'"
@@ -35,17 +35,17 @@
             <el-input
                 v-model="formData.code"
                 class="code-input"
-                :placeholder="$t('lang.login.verificationCode')"
+                :placeholder="$t('login.verificationCode')"
                 maxlength="4">
             </el-input>
             <image-verify class="verify-code" @pid-change="pidChange" :ds="dataSource"></image-verify>
           </el-form-item>
           <el-form-item class="form-item">
-            <el-checkbox v-model="formData.keeping">{{$t('lang.login.keeping')}}</el-checkbox>
+            <el-checkbox v-model="formData.keeping">{{$t('login.keeping')}}</el-checkbox>
           </el-form-item>
           <el-form-item class="form-item">
             <el-button type="primary" class="login-btn" @click="confirmLogin" :disabled="loading || formInvalid">
-              {{$t('lang.login.submit')}}
+              {{$t('login.submit')}}
             </el-button>
           </el-form-item>
         </el-form>
@@ -56,6 +56,94 @@
     </slot>
   </div>
 </template>
+<script>
+import ImageVerify from '../image-verify/index';
+
+export default {
+  components: { ImageVerify, },
+
+  props: {
+    vcode: {
+      type: Boolean,
+      default: () => true,
+    },
+    register: {
+      type: Boolean,
+      default: () => true,
+    },
+    dashboardImg: {
+      type: String,
+      default: () => null,
+    },
+  },
+
+  data() {
+    return {
+      formData: {
+        username: '',
+        password: '',
+        code: '',
+        pid: '',
+        keeping: '',
+      },
+      showPwd: false,
+      loading: false,
+      dataSource: {},
+    };
+  },
+
+  computed: {
+    formInvalid() {
+      const {
+        // eslint-disable-next-line
+        username, password, code, pid,
+      } = this.formData;
+
+      if (!this.vcode) {
+        return Boolean(!username || !password);
+      }
+      return Boolean(!username || !password || !code);
+    },
+  },
+
+  methods: {
+    registerEmit() {
+      this.$emit('register-action');
+    },
+
+    pidChange(pid) {
+      this.formData.pid = pid;
+    },
+
+    togglePwdShow(e) {
+      const classList = Array.prototype.slice.call(e.target.classList);
+      if (classList.indexOf('hide-pwd-icon') >= 0) {
+        this.showPwd = false;
+      }
+      if (classList.indexOf('show-pwd-icon') >= 0) {
+        this.showPwd = true;
+      }
+    },
+
+    confirmLogin() {
+      if (this.formInvalid) return false;
+      this.loading = true;
+      this.$DS.login(this.formData).then(
+        () => {
+          this.loading = false;
+        },
+        (err) => {
+          this.loading = false;
+          this.$notify.error({
+            title: '错误',
+            message: err || '登录失败',
+          });
+        }
+      );
+    },
+  },
+};
+</script>
 <style lang="scss">
   @media screen and (max-width: $screen-sm-max) {
     .login-image {
@@ -179,98 +267,3 @@
     font-size: $font-size-x-large;
   }
 </style>
-<script>
-import ImageVerify from '../image-verify/index';
-
-export default {
-  components: { ImageVerify, },
-
-  props: {
-    vcode: {
-      type: Boolean,
-      default: () => true,
-    },
-    register: {
-      type: Boolean,
-      default: () => true,
-    },
-    dashboardImg: {
-      type: String,
-      default: () => null,
-    },
-  },
-
-  data() {
-    return {
-      formData: {
-        username: '',
-        password: '',
-        code: '',
-        pid: '',
-        keeping: '',
-      },
-      showPwd: false,
-      loading: false,
-      dataSource: {},
-    };
-  },
-
-  computed: {
-    formInvalid() {
-      const {
-        // eslint-disable-next-line
-        username, password, code, pid,
-      } = this.formData;
-
-      if (!this.vcode) {
-        return Boolean(!username || !password);
-      }
-      return Boolean(!username || !password || !code);
-    },
-  },
-
-  methods: {
-    registerEmit() {
-      this.$emit('register-action');
-    },
-
-    pidChange(pid) {
-      this.formData.pid = pid;
-    },
-
-    togglePwdShow(e) {
-      const classList = Array.prototype.slice.call(e.target.classList);
-      if (classList.indexOf('hide-pwd-icon') >= 0) {
-        this.showPwd = false;
-      }
-      if (classList.indexOf('show-pwd-icon') >= 0) {
-        this.showPwd = true;
-      }
-    },
-
-    confirmLogin() {
-      if (this.formInvalid) return false;
-      this.loading = true;
-      this.$DS.login(this.formData).then(
-        () => {
-          this.loading = false;
-        },
-        (err) => {
-          this.loading = false;
-          this.$notify.error({
-            title: '错误',
-            message: err || '登录失败',
-          });
-        }
-      );
-    },
-  },
-
-  created() {
-    // eslint-disable-next-line
-    this.$addDS('mock', require('./ds/mock.js'));
-
-    this.dataSource.getVcode = this.$DS.getVcode;
-  },
-};
-</script>

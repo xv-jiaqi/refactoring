@@ -4,10 +4,7 @@ import router from '@/router';
 
 // 打包后的 sub-app 路径
 const modules = [
-  { name: 'sub-app-one', url: '/sub-app-one/main.js' },
-  { name: 'sub-app-two', url: '/sub-app-two/main.js' },
   { name: 'td', url: '/td/main.js' },
-  // more...
 ];
 
 export default new CreateLoaderMixin({

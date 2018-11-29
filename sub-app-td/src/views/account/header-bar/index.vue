@@ -2,22 +2,17 @@
   <div class="header">
     <img class="logo-login" :src="logoSrc" alt="logo page">
     <div class="lang">
-      <el-button class="lang-btn" size="small" @click="changeLangEvent">{{$t('lang.lang')}}</el-button>
+      <lang-btn></lang-btn>
     </div>
   </div>
 </template>
 
 <script>
+import LangBtn from '@/components/lang-btn/';
+
 export default {
-  methods: {
-    changeLangEvent() {
-      const langKeys = Object.keys(this.$i18n.messages);
-      const currentLang = this.$i18n.locale;
-
-      const nextLangIndex = langKeys.length - (langKeys.indexOf(currentLang) + 1);
-
-      this.$i18n.locale = langKeys[nextLangIndex];
-    },
+  components: {
+    LangBtn,
   },
   computed: {
     logoSrc() {
@@ -42,15 +37,9 @@ export default {
     text-align: right;
   }
 
-  .lang-btn {
-    background-color: $themeColor;
-    color: $white;
-    min-width: 7em;
-  }
-
   .logo-login {
     height: 60%;
-    min-width: 12em;
+    min-width: 10em;
   }
 
   @media screen and (max-width: $screen-xs-max) {

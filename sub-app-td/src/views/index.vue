@@ -6,9 +6,8 @@ import * as types from '@/store/types/account-types';
 
 export default {
   created() {
-    console.log('index.vue');
     if (this.$route.name === 'login') return false;
-    this.$store.dispatch(types.GET_LOGIN_INFO_REQUEST);
+    this.$store.dispatch(`td/${types.GET_LOGIN_INFO_REQUEST}`);
   },
 };
 </script>

@@ -1,12 +1,17 @@
 <template>
   <section class="slot">
     <svg-icon iconName="email" class="icon-email"></svg-icon>
-    <el-button class="lang-btn" size="small">ENGLISH</el-button>
+    <lang-btn></lang-btn>
   </section>
 </template>
 
 <script>
+import LangBtn from '@/components/lang-btn/';
+
 export default {
+  components: {
+    LangBtn,
+  },
 };
 </script>
 
@@ -18,16 +23,13 @@ export default {
     align-items: center;
   }
 
-  .lang-btn {
-    font-weight: bold;
-    background-color: #fff;
-    color: #0090c8;
-    width: 80px;
-    height: 30px;
+  .icon-email {
     margin-right: 30px;
   }
 
-  .icon-email {
+  .lang-btn {
+    background-color: $white;
+    color: $themeColor;
     margin-right: 30px;
   }
 

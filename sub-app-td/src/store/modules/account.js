@@ -2,7 +2,6 @@ import * as types from '../types/account-types';
 import accountService from '@/services/account-service';
 import Vue from 'vue';
 import CONF from '@/config/';
-import Router from '@/router/';
 // import errorCode from '../../services/xhr/errorCode';
 
 // initial state
@@ -31,7 +30,7 @@ const actions = {
     return accountService
       .getLoginInfo()
       .then(async ({ data = {}, }) => {
-        Vue.session = Object.assign({}, {
+        const session = Object.assign({}, {
           ...Vue.session,
           ...data,
           ...CONF,
@@ -42,14 +41,14 @@ const actions = {
 
         const { default: authProcess, } = await import('@/store/authProcess');
 
-        Vue.session.auth = await authProcess(privileges);
+        session.auth = await authProcess(privileges);
 
-        commit(types.USER_INFO, Vue.session);
-        commit(types.AUTH, Vue.session.auth);
+        commit(`${types.USER_INFO}`, session);
+        commit(`${types.AUTH}`, session.auth);
 
-        return Vue.session;
+        return session;
       }).catch(() => {
-        Router.push({ name: 'login', });
+        // Router.push({ name: 'login', });
       });
   },
 

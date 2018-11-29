@@ -1,5 +1,5 @@
 import axios from 'axios';
-import router from '@/router/';
+// import router from '@/router/';
 import Vue from 'vue';
 import errorCode from './errorCode';
 import CONF from '@/config/';
@@ -46,7 +46,7 @@ export default function ({
             message: '该账号已在别处登录',
             type: 'error',
           });
-          return router.push({ name: 'login', });
+          // return router.push({ name: 'login', });
         }
 
         resolve(data);
@@ -54,7 +54,7 @@ export default function ({
       .catch((error) => {
         const { response, } = error;
         if (response && response.status === 401) {
-          return router.push({ name: 'login', });
+          // return router.push({ name: 'login', });
         }
         Vue.prototype.$message({
           message: '请求失败',

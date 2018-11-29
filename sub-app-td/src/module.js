@@ -1,4 +1,3 @@
-// import 'proxy-polyfill'
 import Vue from 'vue';
 import store from '@/store/store-module';
 import routes from '@/router/router-list';
@@ -29,4 +28,6 @@ const register = new CreateRegister({
   name: process.env.VUE_APP_NAME,
 });
 
-register.registerModule(store).addRoutes(routes);
+register
+  .registerModule(store)
+  .addRoutes(routes);

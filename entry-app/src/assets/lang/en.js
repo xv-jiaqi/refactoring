@@ -1,5 +1,5 @@
 export default {
-  lang: '中文',
+  lang: '中 文',
   login: {
     title: 'Welcome to the Colgate audience management platform！',
     submit: 'Login',
@@ -9,4 +9,7 @@ export default {
     password: 'Please enter password',
     copyright: '©2018 [m]PLATFORM Mobile 京ICP备16022547号',
   },
+  home: {
+    welcome: 'Welcome'
+  }
 };

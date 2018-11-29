@@ -9,7 +9,7 @@
                  size="medium"
                  :show-timeout="100"
                  placement="bottom">
-      <span class="dropdown-link">欢迎您, {{username}}</span>
+      <span class="dropdown-link">{{$t('home.welcome')}}, {{username}}</span>
       <i class="el-icon-arrow-down dropdown-icon" :class="{'dropdown-active': isActive}"></i>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item v-for="(item, index) in dropList" :key="item.key"
@@ -66,6 +66,7 @@ export default {
 
   .logo-page {
     height: 60%;
+    min-width: 10em;
   }
 
   .dropdown-menu {

@@ -64,20 +64,21 @@ export default {
       }
     ];
 
-    const logoSrc = require('Assets/images/home/logo_page.zh_CN.png');
-
     return {
       tableData: Array(20).fill(item),
 
       isActive: false,
 
-      logoSrc,
       dropList,
     };
   },
   computed: {
     username() {
-      return this.$store.getters['userInfo'].username;
+      return this.$store.getters['td/userInfo'].username;
+    },
+    logoSrc() {
+      // eslint-disable-next-line
+      return require(`Assets/images/home/logo_page.${this.$i18n.locale}.png`);
     },
   },
   methods: {
