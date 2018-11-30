@@ -10,6 +10,6 @@ export default {
     copyright: '©2018 [m]PLATFORM Mobile 京ICP备16022547号',
   },
   home: {
-    welcome: '欢迎您'
-  }
+    welcome: '欢迎您',
+  },
 };

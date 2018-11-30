@@ -1,7 +1,5 @@
 import md5 from 'md5';
-import Vue from 'vue';
-import CONF from '@/config/';
-import { getAuthByAppNameFn, } from '@/config/';
+import CONF, { getAuthByAppNameFn, } from '@/config/';
 
 const { stringify, parse, } = JSON;
 
