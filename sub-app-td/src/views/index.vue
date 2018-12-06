@@ -1,13 +1,9 @@
 <template>
   <router-view transition="fade" transition-mode="out-in"></router-view>
 </template>
-<script>
-import * as types from '@/store/types/account-types';
 
+<script>
 export default {
-  created() {
-    if (this.$route.name === 'login') return false;
-    this.$store.dispatch(`td/${types.GET_LOGIN_INFO_REQUEST}`);
-  },
+  name: 'index',
 };
 </script>

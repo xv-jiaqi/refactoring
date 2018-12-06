@@ -11,7 +11,7 @@
         <el-submenu class="sub-menu" index="1">
           <template slot="title"><i class="el-icon-message"></i>导航一</template>
           <el-menu-item-group>
-            <router-link :to="{name: 'test'}">
+            <router-link :to="{name: 'td'}">
               <el-menu-item class="menu-item" index="1-1">选项1</el-menu-item>
             </router-link>
             <router-link :to="{name: 'first'}">

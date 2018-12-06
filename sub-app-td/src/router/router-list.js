@@ -8,11 +8,6 @@ export default [
     redirect: { name: `${APP_NAME}.page-a`, },
     children: [
       {
-        path: 'login',
-        name: `${APP_NAME}.page-a`,
-        component: () => import('@/views/account/login'),
-      },
-      {
         path: 'redirect',
         name: `${APP_NAME}.redirect`,
         // beforeEnter: (to, from, next) => {
@@ -24,25 +19,21 @@ export default [
         ),
       },
       {
-        path: 'home',
-        name: 'home',
-        component: () => import('@/views/home/home.vue'),
-        children: [{
-          path: 'test',
-          name: 'test',
-          meta: {
-            auth: '',
-          },
-          component: () => import('@/views/test/test'),
-        }, {
-          path: 'first',
-          name: 'first',
-          meta: {
-            auth: '',
-          },
-          component: () => import('@/views/test/first'),
-        }],
-      }
+        path: 'first',
+        name: `${APP_NAME}.page-a`,
+        meta: {
+          auth: '',
+        },
+        component: () => import('@/views/test/first'),
+      },
+      {
+        path: 'test',
+        name: `${APP_NAME}.test`,
+        meta: {
+          auth: '',
+        },
+        component: () => import('@/views/test/test'),
+      },
     ],
   }
 ];
