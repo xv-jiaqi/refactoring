@@ -37,11 +37,10 @@ module.exports = {
     'import/no-extraneous-dependencies': [ 'error', {
       devDependencies: true,
     }],
-    'eol-last': [ 'error', 'never' ],
     'quote-props': [ 'error', 'consistent' ],
-    'import/extensions': ['error', 'always', {
+    'import/extensions': [ 'error', 'always', {
       js: 'never',
-      vue: 'never'
+      vue: 'never',
     }],
     'dot-notation': 'off',
     'no-shadow': 'off',

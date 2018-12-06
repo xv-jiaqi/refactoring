@@ -8,7 +8,23 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: { name: 'td' },
+      redirect: { name: 'login' },
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/login/index.vue'),
+      children: [
+        {
+          path: '/home',
+          component: () => import('@/views/home'),
+          redirect: { name: 'home' },
+        },
+      ],
+    },
+    {
+      path: '*',
+      component: () => import('@/views/notFound/'),
     },
   ],
 });

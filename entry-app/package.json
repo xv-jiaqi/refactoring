@@ -10,13 +10,16 @@
   },
   "dependencies": {
     "less-loader": "^4.1.0",
+    "md5": "^2.2.1",
     "normalize.css": "^8.0.1",
     "vue": "^2.5.17",
     "vue-awesome": "^3.2.0",
     "vue-i18n": "^8.3.2",
     "vue-module-register": "1.0.4",
+    "vue-pcms": "^1.0.1-ci.25",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "webpack": "^4.27.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",

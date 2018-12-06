@@ -6,7 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ModifyChunkIdPlugin = require('modify-chunk-id-webpack-plugin');
 const patchCliService = require('./scripts/patch-cli-service');
-const {name: APP_NAME, devPort: PORT = 8888} = require('./package.json');
+const { name: APP_NAME, devPort: PORT = 8888, } = require('./package.json');
 
 patchCliService();
 
@@ -54,7 +54,7 @@ module.exports = {
     devtool: 'eval-source-map',
 
     externals: {
-      vue: 'Vue',
+      'vue': 'Vue',
       'element-ui': 'ELEMENT',
     },
 
@@ -63,22 +63,22 @@ module.exports = {
     output: {
       libraryExport: 'default',
 
-      devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
+      devtoolModuleFilenameTemplate: info => (info.resourcePath.match(/^\.\/\S*?\.vue$/)
         ? `webpack-generated:///${info.resourcePath}?${info.hash}`
-        : `webpack-yourCode:///${info.resourcePath}`,
+        : `webpack-yourCode:///${info.resourcePath}`),
 
       devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]',
     },
 
     resolve: {
-      mainFields: ['src:main', 'main'],
+      mainFields: [ 'src:main', 'main' ],
     },
 
     module: {
       rules: [{
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/],
+        include: [ path.join(__dirname, 'src'), /node_modules\/(pcms-components-.*)/ ],
       }],
     },
 
@@ -86,7 +86,7 @@ module.exports = {
       new webpack.DefinePlugin({
         'process.env.VUE_APP_NAME': JSON.stringify(APP_NAME),
       }),
-      new ModifyChunkIdPlugin({ random: process.env.NODE_ENV === 'development' }),
+      new ModifyChunkIdPlugin({ random: process.env.NODE_ENV === 'development', })
     ],
   },
   // Workaround for
@@ -94,10 +94,10 @@ module.exports = {
   // - https://github.com/jantimon/html-webpack-plugin/issues/870
   // - https://github.com/jantimon/html-webpack-plugin/pull/953
   chainWebpack: (config) => {
-    config.plugin('html').tap((args) => {
-      args[0].chunksSortMode = 'none';
-      return args;
-    });
+    // config.plugin('html').tap((args) => {
+    //   args[0].chunksSortMode = 'none';
+    //   return args;
+    // });
 
     config.module.rules.delete('svg');
     config.module
