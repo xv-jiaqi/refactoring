@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     username() {
-      return this.$store.getters['td/userInfo'].username;
+      return this.$store.getters['userInfo'].username;
     },
     logoSrc() {
       // eslint-disable-next-line

@@ -26,6 +26,7 @@ module.exports = {
 
     ///////////
     'no-shadow': 'off',
+    'dot-notation': 'off',
   },
   parserOptions: {
     parser: 'babel-eslint',

@@ -7,20 +7,18 @@ const router = new Router({
   // mode: 'history',
   routes: [
     {
-      path: '/',
-      redirect: { name: 'login' },
-    },
-    {
       path: '/login',
       name: 'login',
       component: () => import('@/views/login/index.vue'),
-      children: [
-        {
-          path: '/home',
-          component: () => import('@/views/home'),
-          redirect: { name: 'home' },
-        },
-      ],
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import('@/views/home/index.vue'),
+    },
+    {
+      path: '/',
+      redirect: { name: 'login' },
     },
     {
       path: '*',
