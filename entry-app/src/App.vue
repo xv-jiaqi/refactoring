@@ -7,10 +7,17 @@
 <script>
 import loaderMixin from '@/loader-mixin';
 
+import * as types from '@/store/types/login-types';
+
 export default {
   name: 'EntryApp',
 
   mixins: [loaderMixin],
+
+  created() {
+    if (this.$route.name === 'login') return false;
+    this.$store.dispatch(`${types.GET_LOGIN_INFO_REQUEST}`);
+  },
 };
 </script>
 

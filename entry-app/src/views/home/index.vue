@@ -26,7 +26,7 @@
   </el-container>
 </template>
 <script>
-import * as types from '@/store/types/account-types';
+import * as types from '@/store/types/login-types';
 import SideMenu from './side-menu';
 import NavMenu from './nav-menu';
 import NavHandle from './nav-handle';

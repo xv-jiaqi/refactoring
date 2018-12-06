@@ -12,7 +12,7 @@
 import GtLogin from '@/components/gt-login/';
 import FooterBar from './footer-bar';
 import HeaderBar from './header-bar';
-import * as types from '@/store/types/account-types';
+import * as types from '@/store/types/login-types';
 import md5 from 'md5';
 
 export default {
@@ -43,7 +43,7 @@ export default {
         pid,
         code,
       } = formData;
-      return this.$store.dispatch(`td/${types.LOGIN_REQUEST}`, {
+      return this.$store.dispatch(`${types.LOGIN_REQUEST}`, {
         username,
         password: md5(`${password}${username}`),
         platform: 'cgtdesk',
@@ -56,7 +56,7 @@ export default {
       });
     },
     getVcode() {
-      return this.$store.dispatch(`td/${types.GET_VCODE_REQUEST}`).then(res => ({
+      return this.$store.dispatch(`${types.GET_VCODE_REQUEST}`).then(res => ({
         pid: res.data.pid,
         img: res.data.img,
       }), () => {

@@ -21,6 +21,11 @@ module.exports = {
       vue: 'never',
     }],
     'consistent-return': 'off',
+    'one-var': 'off',
+
+
+    ///////////
+    'no-shadow': 'off',
   },
   parserOptions: {
     parser: 'babel-eslint',
