@@ -22,11 +22,11 @@ module.exports = {
     }],
     'consistent-return': 'off',
     'one-var': 'off',
-
-
-    ///////////
     'no-shadow': 'off',
     'dot-notation': 'off',
+    'no-continue': 'off',
+    'no-underscore-dangle': 'off',
+    'no-restricted-syntax': 'off',
   },
   parserOptions: {
     parser: 'babel-eslint',

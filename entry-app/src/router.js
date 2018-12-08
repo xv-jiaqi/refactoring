@@ -14,25 +14,9 @@ const router = new Router({
     {
       path: '/home',
       name: 'home',
-      redirect: { name: 'test' },
       component: { template: '<router-view />' },
-      children: [
-        {
-          path: '/redirect',
-          name: 'redirect',
-          redirect: { name: '/sub-app-td' },
-          children: [
-            {
-              path: 'red',
-              name: 'red',
-              redirect: { name: '/sub-app-td' },
-              component: {
-                template: '<router-view></router-view>',
-              },
-            },
-          ],
-        },
-      ],
+      redirect: { name: '/sub-app-td' },
+      children: [],
     },
     {
       path: '/',

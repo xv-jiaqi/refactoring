@@ -17,6 +17,15 @@ export default [
         name: `${APP_NAME}.page-b`,
         component: () => import('@/views/PageB.vue'),
       },
+      {
+        path: 'frame',
+        name: `${APP_NAME}.frame`,
+        // beforeEnter: (to, from, next) => {
+        //   console.log(to, from, next);
+        // },
+        component: () =>
+          import(/* webpackChunkName: "oldFrame", webpackPrefetch: true */ '@/views/frame'),
+      },
     ],
   },
 ];

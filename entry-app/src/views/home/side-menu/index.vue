@@ -31,7 +31,8 @@ export default {
     return {
       routes: [
         { name: '/sub-app-td', title: 'sub-app-td.test' },
-        { name: '/sub-app-old', title: 'sub-app-old' },
+        { name: '/sub-app-old', title: 'sub-app-old.test' },
+        { name: '/sub-app-old/frame', title: 'sub-app-old.frame' },
         { name: '/notFound', title: 'notFound' },
       ],
     };

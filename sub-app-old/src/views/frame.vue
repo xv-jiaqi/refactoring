@@ -10,6 +10,9 @@
 
 <script>
 export default {
-  name: 'iframe',
+  name: 'frame',
 };
 </script>
+
+<style scoped>
+</style>

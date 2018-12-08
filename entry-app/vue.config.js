@@ -59,18 +59,18 @@ module.exports = {
   ],
 
   chainWebpack: (config) => {
-    // config.module.rules.delete('svg');
-    // config.module
-    //   .rule('svg-sprite-loader')
-    //   .test(/\.svg$/)
-    //   .include
-    //   .add(resolve('src/assets/svgIcons')) // 处理svg目录
-    //   .end()
-    //   .use('svg-sprite-loader')
-    //   .loader('svg-sprite-loader')
-    //   .options({
-    //     symbolId: 'icon-[name]',
-    //   });
+    config.module.rules.delete('svg');
+    config.module
+      .rule('svg-sprite-loader')
+      .test(/\.svg$/)
+      .include
+      .add(resolve('src/assets/svgIcons')) // 处理svg目录
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]',
+      });
 
     config.resolve.alias
       .set('Assets', resolve('src/assets'))

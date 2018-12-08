@@ -3,9 +3,9 @@
     <h1>{{ name }}</h1>
     <div class="nav">
       <router-link class="link"
-                   :to="{name: 'sub-app-two.page-a'}">PageA</router-link>
+                   :to="{name: 'sub-app-old.page-a'}">PageA</router-link>
       <router-link class="link"
-                   :to="{name: 'sub-app-two.page-b'}">PageB</router-link>
+                   :to="{name: 'sub-app-old.page-b'}">PageB</router-link>
     </div>
     <router-view />
   </div>
