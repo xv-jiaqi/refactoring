@@ -9,7 +9,7 @@
                active-text-color="#2b4659"
                :unique-opened="true">
         <el-submenu class="sub-menu" index="2">
-          <template slot="title"><i class="el-icon-menu"></i>导航二</template>
+          <template slot="title"><i class="el-icon-menu"></i>menu</template>
           <el-menu-item-group>
             <router-link v-for="r in routes"
                          :key="r.name"
@@ -30,10 +30,9 @@ export default {
   data() {
     return {
       routes: [
-        { name: '/sub-app-td', title: '/sub-app-td' },
-        { name: '/redirect', title: '/redirect' },
-        { name: '/test', title: 'test'},
-        { name: '/sub-app-two/page-b', title: 'about'},
+        { name: '/sub-app-td', title: 'sub-app-td.test' },
+        { name: '/sub-app-old', title: 'sub-app-old' },
+        { name: '/notFound', title: 'notFound' },
       ],
     };
   },

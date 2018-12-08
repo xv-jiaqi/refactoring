@@ -1,12 +1,14 @@
 <template>
-  <gt-login :ds="dataSource" v-bind="config">
-    <template slot="header">
-      <header-bar></header-bar>
-    </template>
-    <template slot="footer">
-      <footer-bar></footer-bar>
-    </template>
-  </gt-login>
+  <section class="wrap-container">
+    <gt-login :ds="dataSource" v-bind="config">
+      <template slot="header">
+        <header-bar></header-bar>
+      </template>
+      <template slot="footer">
+        <footer-bar></footer-bar>
+      </template>
+    </gt-login>
+  </section>
 </template>
 <script>
 import GtLogin from '@/components/gt-login/';
@@ -69,3 +71,12 @@ export default {
   },
 };
 </script>
+<style scoped>
+  .wrap-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+</style>

@@ -13,48 +13,67 @@ module.exports = {
   rules: {
     'no-console': status,
     'no-debugger': status,
-    'no-plusplus': 'off',
-    'semi': [ 'error', 'always' ],
-    'comma-dangle': [ 'error', {
-      arrays: 'never',
-      objects: 'always',
-      imports: 'always',
-      exports: 'always',
-      functions: 'never',
-    }],
-    'comma-spacing': [ 'error', {
-      before: false,
-      after: true,
-    }],
-    'array-bracket-spacing': [ 'error', 'always', {
-      singleValue: false,
-      objectsInArrays: false,
-      arraysInArrays: false,
-    }],
-    'max-len': [ 'error', {
+    // 'no-plusplus': 'off',
+    // 'semi': [ 'error', 'always' ],
+    // 'comma-dangle': [ 'error', {
+    //   arrays: 'never',
+    //   objects: 'always',
+    //   imports: 'always',
+    //   exports: 'always',
+    //   functions: 'never',
+    // }],
+    // 'comma-spacing': [ 'error', {
+    //   before: false,
+    //   after: true,
+    // }],
+    // 'array-bracket-spacing': [ 'error', 'always', {
+    //   singleValue: false,
+    //   objectsInArrays: false,
+    //   arraysInArrays: false,
+    // }],
+    // 'max-len': [ 'error', {
+    //   code: 120,
+    // }],
+    // 'import/no-extraneous-dependencies': [ 'error', {
+    //   devDependencies: true,
+    // }],
+    // 'quote-props': [ 'error', 'consistent' ],
+    // 'import/extensions': [ 'error', 'always', {
+    //   js: 'never',
+    //   vue: 'never',
+    // }],
+    // 'dot-notation': 'off',
+    // 'no-shadow': 'off',
+    // 'consistent-return': 'off',
+    // 'no-param-reassign': 'off',
+    // 'one-var': 'off',
+    // 'no-continue': 'off',
+    // 'no-underscore-dangle': 'off',
+    // 'no-restricted-syntax': 'off',
+    // 'class-methods-use-this': 'off',
+    // 'vue/valid-v-for': 'off',
+    // 'one-var-declaration-per-line': 'off',
+    // 'prefer-promise-reject-errors': 'off',
+    // 'global-require': 'off',
+
+
+    ///////
+    'max-len': ['error', {
       code: 120,
     }],
-    'import/no-extraneous-dependencies': [ 'error', {
-      devDependencies: true,
-    }],
-    'quote-props': [ 'error', 'consistent' ],
-    'import/extensions': [ 'error', 'always', {
+
+    'global-require': 'off',
+    'import/extensions': ['error', 'always', {
       js: 'never',
       vue: 'never',
     }],
-    'dot-notation': 'off',
-    'no-shadow': 'off',
     'consistent-return': 'off',
-    'no-param-reassign': 'off',
     'one-var': 'off',
-    'no-continue': 'off',
-    'no-underscore-dangle': 'off',
-    'no-restricted-syntax': 'off',
-    'class-methods-use-this': 'off',
-    'vue/valid-v-for': 'off',
-    'one-var-declaration-per-line': 'off',
-    'prefer-promise-reject-errors': 'off',
-    'global-require': 'off',
+
+
+    ///////////
+    'no-shadow': 'off',
+    'dot-notation': 'off',
   },
   parserOptions: {
     // 此项是用来指定eslint解析器的，解析器必须符合规则，

@@ -2,7 +2,7 @@
     "name": "sub-app-td",
     "version": "0.1.0",
     "private": true,
-    "devPort": 16001,
+    "devPort": 6200,
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build --target lib --formats umd-min --name td ./src/module.js",
