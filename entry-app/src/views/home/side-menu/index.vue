@@ -8,38 +8,17 @@
                text-color="#919ea8"
                active-text-color="#2b4659"
                :unique-opened="true">
-        <el-submenu class="sub-menu" index="1">
-          <template slot="title"><i class="el-icon-message"></i>导航一</template>
-          <el-menu-item-group>
-            <router-link :to="{name: 'td'}">
-              <el-menu-item class="menu-item" index="1-1">选项1</el-menu-item>
-            </router-link>
-            <router-link :to="{name: 'first'}">
-              <el-menu-item class="menu-item" index="1-1">选项2</el-menu-item>
-            </router-link>
-          </el-menu-item-group>
-        </el-submenu>
         <el-submenu class="sub-menu" index="2">
           <template slot="title"><i class="el-icon-menu"></i>导航二</template>
           <el-menu-item-group>
-            <router-link :to="{name: 'td.redirect'}">
-              <el-menu-item class="menu-item" index="2-1">选项1</el-menu-item>
+            <router-link v-for="r in routes"
+                         :key="r.name"
+                         :to="r.name"
+                         class="link">
+              <el-menu-item class="menu-item" index="1-1">
+                {{ r.title }}
+              </el-menu-item>
             </router-link>
-            <el-menu-item class="menu-item" index="2-2">选项2</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu class="sub-menu" index="3">
-          <template slot="title"><i class="el-icon-menu"></i>导航二</template>
-          <el-menu-item-group>
-            <el-menu-item class="menu-item" index="2-1">选项1</el-menu-item>
-            <el-menu-item class="menu-item" index="2-2">选项2</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu class="sub-menu" index="4">
-          <template slot="title"><i class="el-icon-menu"></i>导航二</template>
-          <el-menu-item-group>
-            <el-menu-item class="menu-item" index="2-1">选项1</el-menu-item>
-            <el-menu-item class="menu-item" index="2-2">选项2</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -48,6 +27,16 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      routes: [
+        { name: '/sub-app-td', title: '/sub-app-td' },
+        { name: '/redirect', title: '/redirect' },
+        { name: '/test', title: 'test'},
+        { name: '/sub-app-two/page-b', title: 'about'},
+      ],
+    };
+  },
 };
 </script>
 

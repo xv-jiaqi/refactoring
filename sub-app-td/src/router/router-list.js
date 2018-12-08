@@ -4,9 +4,27 @@ export default [
   {
     path: `/${APP_NAME}`,
     name: APP_NAME,
-    component: () => import('@/views/'),
-    redirect: { name: `${APP_NAME}.page-a`, },
+    component: () => import('@/views/index.vue'),
+    redirect: { name: `${APP_NAME}.page-first`, },
     children: [
+      {
+        path: 'first',
+        name: `${APP_NAME}.page-first`,
+        meta: {
+          auth: '',
+        },
+        component: () => import('@/views/test/test'),
+      },
+      {
+        path: 'second',
+        name: `${APP_NAME}.page-second`,
+        meta: {
+          auth: '',
+        },
+        component: {
+          template: '<div>second</div>'
+        },
+      },
       {
         path: 'redirect',
         name: `${APP_NAME}.redirect`,
@@ -17,22 +35,6 @@ export default [
           /* webpackChunkName: "test123", webpackPrefetch: true */
           '@/views/test/iframe'
         ),
-      },
-      {
-        path: 'first',
-        name: `${APP_NAME}.page-a`,
-        meta: {
-          auth: '',
-        },
-        component: () => import('@/views/test/first'),
-      },
-      {
-        path: 'test',
-        name: `${APP_NAME}.test`,
-        meta: {
-          auth: '',
-        },
-        component: () => import('@/views/test/test'),
       },
     ],
   }

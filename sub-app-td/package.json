@@ -1,5 +1,5 @@
 {
-    "name": "td",
+    "name": "sub-app-td",
     "version": "0.1.0",
     "private": true,
     "devPort": 16001,

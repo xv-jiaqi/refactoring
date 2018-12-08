@@ -14,11 +14,42 @@ const router = new Router({
     {
       path: '/home',
       name: 'home',
-      component: () => import('@/views/home/index.vue'),
+      redirect: { name: 'test' },
+      component: { template: '<router-view />'},
+      children: [
+        {
+          path: '/test',
+          name: 'test',
+          component: () => import('@/views/test.vue'),
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import('@/views/about.vue'),
+        },
+        {
+          path: '/redirect',
+          name: 'redirect',
+          redirect: { name: '/sub-app-td' },
+          // component: {
+          //   template: '<router-view></router-view>'
+          // },
+          children: [
+            {
+              path: 'red',
+              name: 'red',
+              redirect: { name: '/sub-app-td'},
+              component: {
+                template: '<router-view></router-view>'
+              }
+            }
+          ]
+        }
+      ],
     },
     {
       path: '/',
-      redirect: { name: 'login' },
+      redirect: { name: 'home' },
     },
     {
       path: '*',
