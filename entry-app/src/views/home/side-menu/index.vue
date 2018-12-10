@@ -31,8 +31,9 @@ export default {
     return {
       routes: [
         { name: '/sub-app-td', title: 'sub-app-td.test' },
-        { name: '/sub-app-old', title: 'sub-app-old.test' },
-        { name: '/sub-app-old/frame', title: 'sub-app-old.frame' },
+        { name: '/sub-app-old/frame', title: 'old.frame' },
+        { name: '/sub-app-old/appAnalysis', title: 'APP分析' },
+        { name: '/sub-app-old/task.pushContent', title: '广告任务' },
         { name: '/notFound', title: 'notFound' },
       ],
     };
@@ -41,6 +42,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .container {
+    z-index: 10;
+  }
+
   .aside {
     line-height: 200px;
     padding-top: 50px;

@@ -5,26 +5,36 @@ export default [
     path: `/${APP_NAME}`,
     name: APP_NAME,
     redirect: { name: `${APP_NAME}.page-a` },
-    component: () => import('@/views/Index.vue'),
+    component: {
+      template: '<router-view />',
+    },
     children: [
-      {
-        path: 'page-a',
-        name: `${APP_NAME}.page-a`,
-        component: () => import('@/views/PageA.vue'),
-      },
-      {
-        path: 'page-b',
-        name: `${APP_NAME}.page-b`,
-        component: () => import('@/views/PageB.vue'),
-      },
       {
         path: 'frame',
         name: `${APP_NAME}.frame`,
-        // beforeEnter: (to, from, next) => {
-        //   console.log(to, from, next);
-        // },
         component: () =>
           import(/* webpackChunkName: "oldFrame", webpackPrefetch: true */ '@/views/frame'),
+        children: [
+          {
+            path: 'bridge',
+            name: 'bridge',
+            beforeEnter: (to) => {
+              const frame = document.querySelector('#old-frame');
+              const msg = {
+                path: to.params['0'],
+                type: 'vue-origin',
+              };
+              frame.contentWindow.postMessage(msg, '*');
+              frame.onload = () => {
+                frame.contentWindow.postMessage(msg, '*');
+              };
+            },
+          },
+        ],
+      },
+      {
+        path: '*',
+        redirect: { name: 'bridge' },
       },
     ],
   },

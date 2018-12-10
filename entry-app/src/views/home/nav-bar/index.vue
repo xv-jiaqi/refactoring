@@ -1,5 +1,5 @@
 <template>
-  <el-header class="header">
+  <el-header class="header" height="65px">
     <img :src="logoSrc" class="logo-page" alt="logo page">
     <slot name="handle"></slot>
     <el-dropdown class="dropdown-menu"
@@ -57,8 +57,8 @@ export default {
 
 <style lang="scss" scoped>
   .header {
+    z-index: 10;
     background-color: #0C3569;
-    height: 65px;
     align-items: center;
     display: flex;
     padding: 0 15px;

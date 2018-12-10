@@ -1,6 +1,5 @@
 export default {
   async login(data) {
-    console.log('login req data : ', JSON.stringify(data, null, 4));
     await new Promise(resolve => setTimeout(resolve, 1000));
     if (Math.random() > 0.6) {
       return Promise.reject('用户名或密码错误');

@@ -1,12 +1,12 @@
 <template>
   <el-container class="wrap-container">
-    <nav-menu :logo-src="logoSrc"
+    <nav-bar :logo-src="logoSrc"
               :drop-list="dropList"
               :username="username">
       <template slot="handle">
         <nav-handle></nav-handle>
       </template>
-    </nav-menu>
+    </nav-bar>
     <el-container>
       <side-menu></side-menu>
       <el-main class="main-container">
@@ -18,13 +18,13 @@
 <script>
 import * as types from '@/store/types/login-types';
 import SideMenu from './side-menu';
-import NavMenu from './nav-menu';
+import NavBar from './nav-bar';
 import NavHandle from './nav-handle';
 
 export default {
   components: {
     SideMenu,
-    NavMenu,
+    NavBar,
     NavHandle,
   },
   data() {

@@ -78,7 +78,6 @@ function path2MD5(authMap, appName) {
     }
   }
 
-  setTimeout(console.log(temp));
   return temp;
 }
 

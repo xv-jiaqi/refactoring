@@ -14,7 +14,7 @@
 <script>
 export default {
   name: 'test',
-  data () {
+  data() {
     const item = {
       date: '2016-05-02',
       name: '王小虎',
@@ -23,11 +23,10 @@ export default {
 
     return {
       tableData: Array(20).fill(item),
-    }
-  }
+    };
+  },
 };
 </script>
 
 <style scoped>
-
 </style>

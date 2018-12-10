@@ -69,11 +69,9 @@ module.exports = {
     }],
     'consistent-return': 'off',
     'one-var': 'off',
-
-
-    ///////////
     'no-shadow': 'off',
     'dot-notation': 'off',
+    'no-param-reassign': 'off',
   },
   parserOptions: {
     // 此项是用来指定eslint解析器的，解析器必须符合规则，

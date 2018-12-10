@@ -9,6 +9,4 @@ const req = require.context('@/assets/svgIcons', false, /\.svg$/);
 // requires and returns all modules that match
 const requireAll = requireContext => requireContext.keys().map(requireContext);
 
-console.log('svg: ', req.keys().map(req));
-
 requireAll(req);
