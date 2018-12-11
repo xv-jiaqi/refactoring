@@ -1,5 +1,11 @@
 const APP_NAME = process.env.VUE_APP_NAME;
 
+import Frame from '@/views/frame';
+import BridgeService from '@/bridgeService';
+
+const selector = '#old-frame';
+let frame, bridge;
+
 export default [
   {
     path: `/${APP_NAME}`,
@@ -12,22 +18,26 @@ export default [
       {
         path: 'frame',
         name: `${APP_NAME}.frame`,
-        component: () =>
-          import(/* webpackChunkName: "oldFrame", webpackPrefetch: true */ '@/views/frame'),
+        // component: () =>
+        //   import(/* webpackChunkName: "oldFrame", webpackPrefetch: true */ '@/views/frame'),
+        component: Frame,
         children: [
           {
             path: 'bridge',
             name: 'bridge',
             beforeEnter: (to) => {
-              const frame = document.querySelector('#old-frame');
-              const msg = {
-                path: to.params['0'],
-                type: 'vue-origin',
-              };
-              frame.contentWindow.postMessage(msg, '*');
-              frame.onload = () => {
-                frame.contentWindow.postMessage(msg, '*');
-              };
+              if (!frame) {
+                frame = document.querySelector(selector);
+              }
+
+              if (bridge) {
+                bridge.send(to.params['0']);
+              } else {
+                frame.onload = () => {
+                  bridge = new BridgeService(frame.contentWindow);
+                };
+                bridge = new BridgeService(frame.contentWindow);
+              }
             },
           },
         ],

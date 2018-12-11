@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 // 字数提示
-const directiveFunc = (el, { value, }) => {
+const directiveFunc = (el, { value }) => {
   const input = el.querySelector('.el-input__inner');
   const numNotice = el.querySelector('.num-notice');
 

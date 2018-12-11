@@ -1,11 +1,13 @@
 <template>
   <div class="sub-app-old">
     <section class="frame">
+      <keep-alive>
       <iframe id="old-frame"
           style="width: 100vw; height: 100vh;"
           src='http://localhost:17081/colgate.html#/crowdManage/customCrowdPack/list?params={"page":1,"count":20}'
           frameborder="0">
       </iframe>
+      </keep-alive>
     </section>
   </div>
 </template>
@@ -23,6 +25,6 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 0;
 }
 </style>

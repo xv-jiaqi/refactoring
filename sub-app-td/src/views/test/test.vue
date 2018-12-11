@@ -1,5 +1,6 @@
 <template>
   <section>
+    <h2>NEW TD</h2>
     <el-table :data="tableData">
       <el-table-column prop="date" label="日期" width="140">
       </el-table-column>
@@ -29,4 +30,8 @@ export default {
 </script>
 
 <style scoped>
+  h2 {
+    color: red;
+    text-align: center;
+  }
 </style>
