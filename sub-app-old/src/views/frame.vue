@@ -1,20 +1,19 @@
 <template>
-  <div class="sub-app-old">
-    <section class="frame">
-      <keep-alive>
-      <iframe id="old-frame"
-          style="width: 100vw; height: 100vh;"
-          src='http://localhost:17081/colgate.html#/crowdManage/customCrowdPack/list?params={"page":1,"count":20}'
-          frameborder="0">
-      </iframe>
-      </keep-alive>
-    </section>
-  </div>
+  <section class="frame"></section>
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
   name: 'frame',
+
+  mounted: function() {
+    const frame = Vue.prototype.frame;
+    frame.style.width = '100%';
+    frame.style.height = '100%';
+    this.$el.appendChild(frame);
+  },
 };
 </script>
 

@@ -3,7 +3,7 @@ const APP_NAME = process.env.VUE_APP_NAME;
 import Frame from '@/views/frame';
 import BridgeService from '@/bridgeService';
 
-const selector = '#old-frame';
+const selector = 'section.frame > iframe';
 let frame, bridge;
 
 export default [
@@ -12,7 +12,7 @@ export default [
     name: APP_NAME,
     redirect: { name: `${APP_NAME}.page-a` },
     component: {
-      template: '<router-view />',
+      template: '<div class="sub-app-old"><keep-alive><router-view /></keep-alive></div>',
     },
     children: [
       {
@@ -33,9 +33,6 @@ export default [
               if (bridge) {
                 bridge.send(to.params['0']);
               } else {
-                frame.onload = () => {
-                  bridge = new BridgeService(frame.contentWindow);
-                };
                 bridge = new BridgeService(frame.contentWindow);
               }
             },

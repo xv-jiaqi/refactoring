@@ -11,26 +11,25 @@ export default class BridgeMessage {
   }
 
   handshake() {
-    this.win.postMessage(this.handshakeKey, '*');
-
     window.addEventListener(
       'message',
       (event) => {
-        const originData = event.data;
+        console.log('>[NEW]: ', event.data);
 
-        if (typeof originData === 'string' && originData === this.handshakeKey) {
-          this.targetOrigin = event.origin;
-          return;
-        }
-
-        const { handshakeKey, data } = originData;
+        const { handshakeKey, data } = event.data || {};
 
         if (handshakeKey === this.handshakeKey) {
           this.receive(data);
         }
+
+        if (!this.targetOrigin) {
+          this.targetOrigin = event.origin;
+        }
       },
       false,
     );
+
+    this.send('', '*');
   }
 
   send(data, targetOrigin = this.targetOrigin) {
@@ -38,7 +37,10 @@ export default class BridgeMessage {
       data,
       handshakeKey: this.handshakeKey,
     };
-    this.win.postMessage(msg, targetOrigin);
+
+    console.log('<[NEW]: ', msg, targetOrigin);
+
+    this.win.postMessage(msg, '*' || targetOrigin);
   }
 
   receive(data) {

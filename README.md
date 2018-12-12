@@ -49,3 +49,7 @@
     - [ ] index.html 规范化
     - [ ] index.html title i18n
     - [ ] history router
+    - [ ] [命名视图改造](https://router.vuejs.org/zh/guide/essentials/named-views.html）
+    - [ ] 首屏载入动画 PWA
+    - [ ] 全局预加载
+    - [ ] old 中的 md5 删掉，从入口共享

@@ -7,6 +7,7 @@ import i18n from './common/i18n';
 import '@/style/index.sc.scss';
 import './assets/svgIcons/index';
 import 'vue-awesome/icons';
+import './preload';
 
 import router from './router';
 import store from './store';
