@@ -1,19 +1,90 @@
 <template>
-  <section class="frame"></section>
+<div>
+  <section class="frame" ref="frame"></section>
+</div>
 </template>
 
 <script>
-import Vue from 'vue';
+import BridgeService from '@/bridgeService';
+
+const framePreload = function (url) {
+  const frame = document.createElement('iframe');
+  frame.src = url;
+  return frame;
+};
+
+const styleGradient = {
+  width: ['1', '100%'],
+  height: ['1', '100%'],
+  opacity: [0, 1],
+  pointerEvents: ['none', 'auto']
+};
 
 export default {
   name: 'frame',
 
-  mounted: function() {
-    const frame = Vue.prototype.frame;
-    frame.style.width = '100%';
-    frame.style.height = '100%';
-    this.$el.appendChild(frame);
+  data() {
+    return {
+      isMounted: false
+    }
   },
+
+  mounted: function() {
+    // console.log('mounted');
+    const frame = framePreload('http://localhost:17081/colgate.html');
+//     container.style.position = "fixed";
+//     container.style.zIndex = "10000";
+//
+// // this will try to put the container behind the <body> element:
+// container.style.zIndex = -1;
+
+    const styleKeys = Object.keys(styleGradient);
+
+    styleKeys.forEach(attr => {
+      frame.style[attr] = styleGradient[attr][0];
+    });
+
+    Object.assign(frame.style, {
+      position: 'fixed',
+      overflow: 'hidden',
+      willChange: 'transform', // 创建新的渲染层, 增强页面渲染性能
+    });
+
+    const iframe = this.$refs.frame.appendChild(frame);
+
+    frame.onload = () => {
+      console.log('load');
+
+      styleKeys.forEach(attr => {
+        frame.style[attr] = styleGradient[attr][1];
+      });
+
+      this.$_brage = new BridgeService(iframe.contentWindow);
+
+      this.postMessage(this.$route.params.state)
+    };
+  },
+
+  watch: {
+    $route:{
+      handler(newVal, oldVal) {
+        // console.log('newVal: ', newVal);
+
+        const state = newVal.params.state;
+        this.postMessage(state)
+      },
+      // immediate: true
+    }
+  },
+
+  methods: {
+    postMessage(state) {
+      // console.log('postMessage', state);
+      if (this.$_brage) {
+        this.$_brage.send(state);
+      }
+    }
+  }
 };
 </script>
 

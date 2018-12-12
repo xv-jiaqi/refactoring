@@ -40,6 +40,7 @@ export default {
           icon: 'home',
           children: [
             { title: 'sub-app-td.test', path: '/sub-app-td' },
+            { title: 'sub-app-td.notFound', path: '/sub-app-td/abc' },
             { title: 'old.frame', path: '/sub-app-old/frame' },
             { title: '首页', path: '/sub-app-old/home' },
           ],

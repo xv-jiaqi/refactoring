@@ -24,16 +24,24 @@ module.exports = {
 
     entry: './src/module.js',
 
-    output: {
-      libraryExport: 'default',
-    },
-
     plugins: [
       new webpack.DefinePlugin({
         'process.env.VUE_APP_NAME': JSON.stringify(APP_NAME),
       }),
       new ModifyChunkIdPlugin({ random: process.env.NODE_ENV === 'development' }),
     ],
+
+    devtool: 'eval-source-map',
+
+    output: {
+      libraryExport: 'default',
+
+      devtoolModuleFilenameTemplate: info => (info.resourcePath.match(/^\.\/\S*?\.vue$/)
+        ? `webpack-generated:///${info.resourcePath}?${info.hash}`
+        : `webpack-yourCode:///${info.resourcePath}`),
+
+      devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]',
+    },
   },
 
   devServer: {

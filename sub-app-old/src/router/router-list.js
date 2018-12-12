@@ -1,10 +1,6 @@
 const APP_NAME = process.env.VUE_APP_NAME;
 
 import Frame from '@/views/frame';
-import BridgeService from '@/bridgeService';
-
-const selector = 'section.frame > iframe';
-let frame, bridge;
 
 export default [
   {
@@ -16,32 +12,8 @@ export default [
     },
     children: [
       {
-        path: 'frame',
-        name: `${APP_NAME}.frame`,
-        // component: () =>
-        //   import(/* webpackChunkName: "oldFrame", webpackPrefetch: true */ '@/views/frame'),
+        path: ':state',
         component: Frame,
-        children: [
-          {
-            path: 'bridge',
-            name: 'bridge',
-            beforeEnter: (to) => {
-              if (!frame) {
-                frame = document.querySelector(selector);
-              }
-
-              if (bridge) {
-                bridge.send(to.params['0']);
-              } else {
-                bridge = new BridgeService(frame.contentWindow);
-              }
-            },
-          },
-        ],
-      },
-      {
-        path: '*',
-        redirect: { name: 'bridge' },
       },
     ],
   },

@@ -37,6 +37,8 @@ const framePreload = function (url) {
 import Vue from 'vue';
 
 setTimeout(() => {
+  console.log('---')
+
   const frame = framePreload('http://localhost:17081/colgate.html');
 
   Vue.prototype.frame = frame;

@@ -37,6 +37,18 @@ module.exports = {
         'process.env.VUE_APP_NAME': JSON.stringify(APP_NAME),
       }),
     ],
+
+    devtool: 'eval-source-map',
+
+    output: {
+      libraryExport: 'default',
+
+      devtoolModuleFilenameTemplate: info => (info.resourcePath.match(/^\.\/\S*?\.vue$/)
+        ? `webpack-generated:///${info.resourcePath}?${info.hash}`
+        : `webpack-yourCode:///${info.resourcePath}`),
+
+      devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]',
+    },
   },
 
   css: {

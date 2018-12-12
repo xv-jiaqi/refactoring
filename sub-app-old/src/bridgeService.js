@@ -14,7 +14,7 @@ export default class BridgeMessage {
     window.addEventListener(
       'message',
       (event) => {
-        console.log('>[NEW]: ', event.data);
+        console.log('%c>%c[NEW]: ', 'background:red', 'color:yellow', event.data);
 
         const { handshakeKey, data } = event.data || {};
 
@@ -38,7 +38,7 @@ export default class BridgeMessage {
       handshakeKey: this.handshakeKey,
     };
 
-    console.log('<[NEW]: ', msg, targetOrigin);
+    console.log('%c<%c[NEW]: ', 'background:blue', 'color:yellow',  msg, targetOrigin);
 
     this.win.postMessage(msg, '*' || targetOrigin);
   }
