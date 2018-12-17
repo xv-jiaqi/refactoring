@@ -1,11 +1,11 @@
 import md5 from 'md5';
 export default class BridgeMessage {
-  constructor(win, handshakeKey) {
-    this.win = win;
-
-    const key = `${handshakeKey}`;
-
-    this.handshakeKey = md5(key);
+  constructor(postMessageWindow, handshakeKey, {
+    receive: receiveCb = f => f ,
+  } = {}) {
+    this.postMessageWindow = postMessageWindow;
+    this.handshakeKey = md5(`${handshakeKey}`);
+    this.receiveCb = receiveCb;
 
     this.handshake();
   }
@@ -40,10 +40,10 @@ export default class BridgeMessage {
 
     console.log('%c<%c[NEW]: ', 'background:blue', 'color:yellow',  msg, targetOrigin);
 
-    this.win.postMessage(msg, '*' || targetOrigin);
+    this.postMessageWindow.postMessage(msg, '*' || targetOrigin);
   }
 
   receive(data) {
-    return data;
+    this.receiveCb(data);
   }
 }

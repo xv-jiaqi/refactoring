@@ -29,6 +29,13 @@ export default {
     }
   },
 
+  computed: {
+    handshakeKey() {
+      const { username, id } = this.$store.getters['userInfo'];
+      return `${id}.${username}`;
+    },
+  },
+
   mounted: function() {
     // console.log('mounted');
     const frame = framePreload('http://localhost:17081/colgate.html');
@@ -59,7 +66,7 @@ export default {
         frame.style[attr] = styleGradient[attr][1];
       });
 
-      this.$_brage = new BridgeService(iframe.contentWindow);
+      this.$_brage = new BridgeService(iframe.contentWindow, this.handshakeKey);
 
       this.postMessage(this.$route.params.state)
     };

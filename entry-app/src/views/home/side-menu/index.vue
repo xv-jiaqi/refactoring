@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <el-aside class="aside" width="185px">
+    <el-aside class="aside" width="190px">
       <el-menu class="aside-menu"
                :default-openeds="['0']"
                default-active="0-0"
