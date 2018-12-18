@@ -4,7 +4,8 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 const router = new Router({
-  // mode: 'history',
+  mode: 'history',
+  base: './',
   routes: [
     {
       path: '/login',
@@ -15,8 +16,7 @@ const router = new Router({
       path: '/home',
       name: 'home',
       component: { template: '<router-view />' },
-      redirect: { name: '/sub-app-td' },
-      children: [],
+      redirect: { name: '/sub-app-old' },
     },
     {
       path: '/',

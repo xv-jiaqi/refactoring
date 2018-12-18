@@ -6,13 +6,17 @@ export default [
   {
     path: `/${APP_NAME}`,
     name: APP_NAME,
-    redirect: { name: `${APP_NAME}.page-a` },
     component: {
       template: '<div class="sub-app-old"><keep-alive><router-view /></keep-alive></div>',
     },
     children: [
       {
         path: ':state',
+        redirect: { name: `${APP_NAME}.frame` },
+      },
+      {
+        name: `${APP_NAME}.frame`,
+        path: ':state/:params?',
         component: Frame,
       },
     ],

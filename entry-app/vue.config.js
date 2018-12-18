@@ -64,6 +64,7 @@ module.exports = {
   devServer: {
     port: PORT,
     proxy: PROXY,
+    historyApiFallback: true,
   },
 
   transpileDependencies: [

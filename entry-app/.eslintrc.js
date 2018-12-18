@@ -15,6 +15,12 @@ module.exports = {
       code: 120,
     }],
 
+    'no-unused-vars': ['error', {
+      'vars': 'all',
+      'args': 'none',
+      'ignoreRestSiblings': false
+    }],
+
     'global-require': 'off',
     'import/extensions': ['error', 'always', {
       js: 'never',
