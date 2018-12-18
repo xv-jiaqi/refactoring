@@ -7,6 +7,7 @@
 <script>
 import md5 from 'md5';
 import BridgeService from '@/bridgeService';
+
 const APP_NAME = process.env.VUE_APP_NAME;
 
 const framePreload = url => {
@@ -28,7 +29,7 @@ export default {
   data() {
     return {
       isMounted: false,
-      routeMode: location.hash ? '#' : '',
+      routeMode: window.location.hash ? '#' : '',
     };
   },
 
@@ -39,11 +40,11 @@ export default {
     },
   },
 
-  mounted: function() {
+  mounted() {
     const frame = framePreload('http://localhost:17081/colgate.html');
     const styleKeys = Object.keys(styleGradient);
 
-    styleKeys.forEach((attr) => {
+    styleKeys.forEach(attr => {
       frame.style[attr] = styleGradient[attr][0];
     });
 
@@ -56,18 +57,18 @@ export default {
     const iframe = this.$refs.frame.appendChild(frame);
 
     frame.onload = () => {
-      styleKeys.forEach((attr) => {
+      styleKeys.forEach(attr => {
         frame.style[attr] = styleGradient[attr][1];
       });
 
-      const routeMode = this.routeMode;
+      const { routeMode } = this;
 
       const postMessageOpts = {
         receive({ path: state, params }) {
           const hash = md5(`${state}${JSON.stringify(params)}`).substring(0, 5);
           const path = `${routeMode}/${APP_NAME}/${state}/${hash}`;
 
-          history.replaceState(params, null, path);
+          window.history.replaceState(params, null, path);
         },
       };
 
@@ -81,8 +82,7 @@ export default {
     $route: {
       handler(newVal, oldVal) {
         // console.log('newVal: ', newVal);
-
-        const state = newVal.params.state;
+        const { state } = newVal.params;
         this.postMessage(state);
       },
       // immediate: true
@@ -92,6 +92,7 @@ export default {
   methods: {
     postMessage(state) {
       // console.log('postMessage', state);
+
       if (this.$_brage) {
         this.$_brage.send(state);
       }

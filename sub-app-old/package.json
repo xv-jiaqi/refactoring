@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vue/eslint-config-airbnb": "^4.0.0",
     "md5": "^2.2.1"
   },
   "devDependencies": {
