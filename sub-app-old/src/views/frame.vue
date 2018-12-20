@@ -23,6 +23,31 @@ const styleGradient = {
   pointerEvents: ['none', 'auto'],
 };
 
+class SessionStore {
+  constructor(key = 'key') {
+    this.key = key;
+
+    if (key in sessionStorage) {
+      this.value = new Map(JSON.parse(sessionStorage[key]));
+    } else {
+      this.value = new Map();
+    }
+  }
+
+  getItem(id) {
+    return this.value.get(id);
+  }
+
+  setItem(id, val) {
+    this.value.set(id, val);
+
+    const serializeData = JSON.stringify([...this.value]);
+    sessionStorage.setItem(this.key, serializeData);
+
+    return serializeData;
+  }
+}
+
 export default {
   name: 'frame',
 
@@ -30,6 +55,7 @@ export default {
     return {
       isMounted: false,
       routeMode: window.location.hash ? '#' : '',
+      sessionStore: new SessionStore('state'),
     };
   },
 
@@ -61,19 +87,23 @@ export default {
         frame.style[attr] = styleGradient[attr][1];
       });
 
-      const { routeMode } = this;
+      const { routeMode, sessionStore } = this;
 
       const postMessageOpts = {
-        receive({ path: state, params }) {
+        receive({ path: state, params = {} }) {
+          if (state === undefined) return;
+
           const hash = md5(`${state}${JSON.stringify(params)}`).substring(0, 5);
           const path = `${routeMode}/${APP_NAME}/${state}/${hash}`;
 
           window.history.replaceState(params, null, path);
+          sessionStore.setItem(hash, params);
         },
       };
 
       this.$_brage = new BridgeService(iframe.contentWindow, this.handshakeKey, postMessageOpts);
 
+      console.log('frame loaded: ', this.$route.params);
       this.postMessage(this.$route.params.state);
     };
   },
@@ -81,7 +111,6 @@ export default {
   watch: {
     $route: {
       handler(newVal, oldVal) {
-        // console.log('newVal: ', newVal);
         const { state } = newVal.params;
         this.postMessage(state);
       },
@@ -91,8 +120,6 @@ export default {
 
   methods: {
     postMessage(state) {
-      // console.log('postMessage', state);
-
       if (this.$_brage) {
         this.$_brage.send(state);
       }

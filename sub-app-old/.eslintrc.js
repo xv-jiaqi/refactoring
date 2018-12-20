@@ -22,14 +22,11 @@ module.exports = {
     }],
 
     'global-require': 'off',
-    'import/extensions': ['error', 'always', {
-      js: 'never',
-      vue: 'never',
-    }],
     'arrow-parens': ['error', 'as-needed'],
     'prefer-destructuring': ['error', {
       'object': true, 'array': false
     }],
+    'import/extensions': 'off',
     'consistent-return': 'off',
     'one-var': 'off',
     'no-shadow': 'off',
