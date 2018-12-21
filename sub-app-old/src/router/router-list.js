@@ -11,13 +11,15 @@ export default [
     },
     children: [
       {
-        path: ':state',
-        redirect: { name: `${APP_NAME}.frame` },
-      },
-      {
         name: `${APP_NAME}.frame`,
-        path: ':state/:params?',
+        path: ':state/:paramsId?',
         component: Frame,
+        beforeRouteEnter (to, from, next) {
+          console.log('enter: ', to, from);
+        },
+        beforeRouteLeave (to, from , next) {
+          console.log('level: ', to, from);
+        },
       },
     ],
   },

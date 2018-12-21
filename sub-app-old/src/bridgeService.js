@@ -11,25 +11,26 @@ export default class BridgeMessage {
   }
 
   handshake() {
-    window.addEventListener(
-      'message',
-      (event) => {
-        console.log('%c>%c[NEW]: ', 'background:red', 'color:yellow', event.data);
+    window.handler = (window.handler || handlerFn.bind(this));
 
-        const { handshakeKey, data } = event.data || {};
+    const listenerOpts = ['message', handler, false];
 
-        if (handshakeKey === this.handshakeKey) {
-          this.receive(data);
-        }
-
-        if (!this.targetOrigin) {
-          this.targetOrigin = event.origin;
-        }
-      },
-      false,
-    );
+    window.removeEventListener(...listenerOpts);
+    window.addEventListener(...listenerOpts);
 
     this.send('', '*');
+
+    function handlerFn (event) {
+      const { handshakeKey, data } = event.data || {};
+
+      if (handshakeKey === this.handshakeKey) {
+        this.receive(data);
+      }
+
+      if (!this.targetOrigin) {
+        this.targetOrigin = event.origin;
+      }
+    }
   }
 
   send(data, targetOrigin = this.targetOrigin) {
@@ -38,12 +39,12 @@ export default class BridgeMessage {
       handshakeKey: this.handshakeKey,
     };
 
-    console.log('%c<%c[NEW]: ', 'background:blue', 'color:yellow',  msg, targetOrigin);
-
     this.postMessageWindow.postMessage(msg, '*' || targetOrigin);
   }
 
   receive(data) {
+    console.log('receive', data);
+
     this.receiveCb(data);
   }
 }

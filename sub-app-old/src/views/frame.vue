@@ -48,6 +48,8 @@ class SessionStore {
   }
 }
 
+const calcHash = (string, hashLen = 5) => md5(string).substring(0, hashLen);
+
 export default {
   name: 'frame',
 
@@ -81,38 +83,52 @@ export default {
     });
 
     const iframe = this.$refs.frame.appendChild(frame);
+    const { routeMode, sessionStore } = this;
+    const postMessageOpts = {
+      receive({ path: state, params }) {
+        if (state === undefined) return;
+
+        const hash = !!Object.keys(params).length
+          ? calcHash(`${state}${params}`)
+          : '';
+        const path = `${routeMode}/${APP_NAME}/${state}/${hash}`;
+
+        window.history.replaceState(params, null, path);
+
+        if (hash) sessionStore.setItem(hash, params);
+      },
+    };
 
     frame.onload = () => {
       styleKeys.forEach(attr => {
         frame.style[attr] = styleGradient[attr][1];
       });
 
-      const { routeMode, sessionStore } = this;
-
-      const postMessageOpts = {
-        receive({ path: state, params = {} }) {
-          if (state === undefined) return;
-
-          const hash = md5(`${state}${JSON.stringify(params)}`).substring(0, 5);
-          const path = `${routeMode}/${APP_NAME}/${state}/${hash}`;
-
-          window.history.replaceState(params, null, path);
-          sessionStore.setItem(hash, params);
-        },
-      };
-
       this.$_brage = new BridgeService(iframe.contentWindow, this.handshakeKey, postMessageOpts);
 
+      const { state, paramsId } = this.$route.params;
+      const message = {
+        state,
+        params: this.sessionStore.getItem(paramsId),
+      };
+
+      console.log('tag: ', history.state, this.sessionStore.getItem(paramsId), JSON.stringify(history.state) === JSON.stringify(this.sessionStore.getItem(paramsId)));
+
       console.log('frame loaded: ', this.$route.params);
-      this.postMessage(this.$route.params.state);
+      this.postMessage(message);
     };
   },
 
   watch: {
     $route: {
       handler(newVal, oldVal) {
-        const { state } = newVal.params;
-        this.postMessage(state);
+        const { state, paramsId } = newVal.params;
+        const message = {
+          state,
+          params: this.sessionStore.getItem(paramsId),
+        };
+
+        this.postMessage(message);
       },
       // immediate: true
     },
