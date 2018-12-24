@@ -1,6 +1,9 @@
 <template>
   <section>
     <h2>NEW TD</h2>
+    <router-link to="/sub-app-old/crowdManage.selfCrowdPack.list/d1d09">
+      <h3>crowdManage.selfCrowdPack.list/d1d09</h3>
+    </router-link>
     <el-table :data="tableData">
       <el-table-column prop="date" label="日期" width="140">
       </el-table-column>

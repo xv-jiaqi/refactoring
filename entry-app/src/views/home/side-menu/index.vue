@@ -39,7 +39,7 @@ export default {
           title: 'HOME',
           icon: 'home',
           children: [
-            { title: 'sub-app-old.index', path: '/sub-app-old/index' },
+            { title: 'sub-app-old.index', path: '/sub-app-old/crowdManage.customCrowdPack' },
             { title: 'sub-app-td.test', path: '/sub-app-td' },
             { title: 'sub-app-td.notFound', path: '/sub-app-td/abc' },
           ],

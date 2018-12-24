@@ -13,6 +13,7 @@ import store from './store';
 import App from './App';
 
 Vue.component('v-icon', Icon);
+Vue.config.devtools = true;
 
 Vue.config.productionTip = false;
 Vue.use(GlobalMethods);

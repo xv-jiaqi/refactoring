@@ -70,6 +70,8 @@ export default {
 
   mounted() {
     const frame = framePreload('http://localhost:17081/colgate.html');
+    const iframe = this.$refs.frame.appendChild(frame);
+    const { routeMode, sessionStore } = this;
     const styleKeys = Object.keys(styleGradient);
 
     styleKeys.forEach(attr => {
@@ -82,8 +84,6 @@ export default {
       willChange: 'transform', // 创建新的渲染层, 增强页面渲染性能
     });
 
-    const iframe = this.$refs.frame.appendChild(frame);
-    const { routeMode, sessionStore } = this;
     const postMessageOpts = {
       receive({ path: state, params }) {
         if (state === undefined) return;
@@ -100,10 +100,6 @@ export default {
     };
 
     frame.onload = () => {
-      styleKeys.forEach(attr => {
-        frame.style[attr] = styleGradient[attr][1];
-      });
-
       this.$_brage = new BridgeService(iframe.contentWindow, this.handshakeKey, postMessageOpts);
 
       const { state, paramsId } = this.$route.params;
@@ -112,10 +108,13 @@ export default {
         params: this.sessionStore.getItem(paramsId),
       };
 
-      console.log('tag: ', history.state, this.sessionStore.getItem(paramsId), JSON.stringify(history.state) === JSON.stringify(this.sessionStore.getItem(paramsId)));
-
-      console.log('frame loaded: ', this.$route.params);
-      this.postMessage(message);
+      this.handshake(message).then(data => {
+        return this.postMessage(message);
+      }).then(() => {
+        styleKeys.forEach(attr => {
+          frame.style[attr] = styleGradient[attr][1];
+        });
+      });
     };
   },
 
@@ -132,9 +131,19 @@ export default {
       },
       // immediate: true
     },
+    '$i18n.locale': {
+      handler(newVal, oldVal) {
+        this.postMessage(newVal);
+      },
+      // deep: true,
+    }
   },
 
   methods: {
+    handshake() {
+      return this.$_brage.handshake();
+    },
+
     postMessage(state) {
       if (this.$_brage) {
         this.$_brage.send(state);
