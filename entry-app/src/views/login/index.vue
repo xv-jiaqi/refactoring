@@ -5,6 +5,7 @@
         <header-bar></header-bar>
       </template>
       <template slot="footer">
+        <router-view/>
         <footer-bar></footer-bar>
       </template>
     </gt-login>
@@ -72,12 +73,12 @@ export default {
 };
 </script>
 <style scoped>
-  .wrap-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 100;
-  }
+  /*.wrap-container {*/
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 100vw;*/
+    /*height: 100vh;*/
+    /*z-index: 100;*/
+  /*}*/
 </style>

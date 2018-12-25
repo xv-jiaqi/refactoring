@@ -11,7 +11,7 @@ module.exports = {
 
   // service api
   '/td': {
-    target: 'http://192.168.10.151:7081',
+    target: 'http://localhost:6666',
   },
 };
 

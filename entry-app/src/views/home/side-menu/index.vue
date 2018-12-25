@@ -39,7 +39,7 @@ export default {
           title: 'HOME',
           icon: 'home',
           children: [
-            { title: 'sub-app-old.index', path: '/sub-app-old/crowdManage.customCrowdPack' },
+            { title: 'sub-app-old.index', path: '/home/abc' },
             { title: 'sub-app-td.test', path: '/sub-app-td' },
             { title: 'sub-app-td.notFound', path: '/sub-app-td/abc' },
           ],
@@ -48,7 +48,7 @@ export default {
           title: '人群管理',
           icon: 'user',
           children: [
-            { title: '自选人群包', path: '/sub-app-old/crowdManage.customCrowdPack' },
+            { title: '自选人群包', path: '/home/sub-app-old/crowdManage.customCrowdPack' },
             { title: '私有人群包', path: '/sub-app-old/crowdManage.selfCrowdPack' },
             { title: 'LBS人群包', path: '/sub-app-old/crowdManage.lbsCrowdPack' },
             { title: '扩展人群包', path: '/sub-app-old/crowdManage.extendCrowdPack' },

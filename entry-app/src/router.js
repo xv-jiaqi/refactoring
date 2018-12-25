@@ -10,13 +10,16 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/login/index.vue'),
+      components: {
+        login: () => import('@/views/login/index.vue'),
+      },
     },
     {
       path: '/home',
       name: 'home',
-      component: { template: '<router-view />' },
-      redirect: { name: '/sub-app-old' },
+      components: {
+        default: () => import('@/views/home/index.vue')
+      },
     },
     {
       path: '/',

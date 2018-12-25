@@ -1,5 +1,7 @@
 <template>
   <el-container class="wrap-container">
+    <router-view name="login"></router-view>
+
     <nav-bar :logo-src="logoSrc"
               :drop-list="dropList"
               :username="username">
