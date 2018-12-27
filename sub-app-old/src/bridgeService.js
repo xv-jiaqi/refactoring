@@ -14,7 +14,7 @@ export default class BridgeMessage {
   }
 
   init() {
-    window.receiveHandler = (window.receiveHandler || this.receive);
+    window.receiveHandler = (window.receiveHandler || this.receive.bind(this));
 
     const listenerOpts = ['message', receiveHandler, false];
 
@@ -27,6 +27,7 @@ export default class BridgeMessage {
 
     return new Promise((resolve => {
       const handshakeHandler = e => {
+        console.log('handshakeHandler fn');
         const { data: { data, handshakeKey, isHandshake } = {}} = e;
 
         if (isHandshake && handshakeKey === shakeKey) {
@@ -52,8 +53,11 @@ export default class BridgeMessage {
     this.postMessageWindow.postMessage(msg, targetOrigin);
   }
 
-  receive({ data: { data, handshakeKey, isHandshake } = {} }) {
+  receive(recData) {
+    const { data: { data, handshakeKey, isHandshake } = {} } = recData;
+
     if (handshakeKey !== this.handshakeKey) {
+      console.log(recData);
       return Promise.reject(new Error('Error handshake key !'));
     }
 
@@ -62,7 +66,7 @@ export default class BridgeMessage {
     }
 
     if (isHandshake) {
-      return this.send('ok', this.handshakeKey, true);
+      return this.send('ok', this.targetOrigin, true);
     }
 
     console.log('receive: ', data);

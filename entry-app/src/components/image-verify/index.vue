@@ -32,6 +32,9 @@ export default {
       });
     },
   },
+  created() {
+    this.init();
+  },
 };
 </script>
 <style lang="scss" scoped>

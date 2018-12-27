@@ -18,12 +18,12 @@ const router = new Router({
       path: '/home',
       name: 'home',
       components: {
-        default: () => import('@/views/home/index.vue')
+        default: () => import('@/views/home/index.vue'),
       },
     },
     {
       path: '/',
-      redirect: { name: 'home' },
+      redirect: { name: 'login' },
     },
     {
       path: '*',

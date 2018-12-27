@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Loading from './loadingService';
 // import router from '@/router/';
 import Vue from 'vue';
 import errorCode from './errorCode';
@@ -7,6 +8,7 @@ import CONF from '@/config/';
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 const reqCache = {};
+const loading = new Loading();
 
 export default function ({
   url, body = null, onlyOne = false, responseType = 'json', prefix = CONF.pathPrefix,
@@ -14,6 +16,9 @@ export default function ({
   if (onlyOne && reqCache[url]) {
     return reqCache[url];
   }
+
+  loading.showLoading();
+
   const promise = new Promise((resolve, reject) => {
     const reqPath = `${CONF.rootPath}/${prefix}${url}`;
     axios({
@@ -62,6 +67,9 @@ export default function ({
         });
         delete reqCache[url];
         return reject(new Error('请求失败'));
+      })
+      .finally(() => {
+        loading.tryHideLoading();
       });
   });
 

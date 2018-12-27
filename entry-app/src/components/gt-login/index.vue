@@ -17,8 +17,7 @@
             <el-input
                 v-model="formData.username"
                 :placeholder="$t('login.username')"
-                prefix-icon="user-name-icon"
-            >
+                prefix-icon="user-name-icon">
             </el-input>
           </el-form-item>
           <el-form-item class="form-item">
@@ -28,10 +27,10 @@
                 :placeholder="$t('login.password')"
                 prefix-icon="user-pwd-icon"
                 @click.native="togglePwdShow"
-                :suffix-icon="showPwd ? 'hide-pwd-icon' : 'show-pwd-icon'"
-            ></el-input>
+                :suffix-icon="showPwd ? 'hide-pwd-icon' : 'show-pwd-icon'">
+            </el-input>
           </el-form-item>
-          <el-form-item class="form-item" v-if="vcode">
+          <el-form-item class="form-item">
             <el-input
                 v-model="formData.code"
                 class="code-input"
@@ -41,10 +40,12 @@
             <image-verify class="verify-code" @pid-change="pidChange" :ds="dataSource"></image-verify>
           </el-form-item>
           <el-form-item class="form-item">
-            <el-checkbox v-model="formData.keeping">{{$t('login.keeping')}}</el-checkbox>
+            <el-tooltip content="功能暂不开放">
+              <el-checkbox v-model="formData.keeping" :disabled="true" title="功能暂不开放">{{$t('login.keeping')}}</el-checkbox>
+            </el-tooltip>
           </el-form-item>
           <el-form-item class="form-item">
-            <el-button type="primary" class="login-btn" @click="confirmLogin" :disabled="loading || formInvalid">
+            <el-button v-btn-click="confirmLogin" type="primary" class="login-btn" :disabled="formInvalid">
               {{$t('login.submit')}}
             </el-button>
           </el-form-item>
@@ -99,41 +100,38 @@ export default {
         username, password, code, pid,
       } = this.formData;
 
-      if (!this.vcode) {
-        return Boolean(!username || !password);
+      if (pid !== undefined) {
+        return Boolean(!username || !password || !code);
       }
-      return Boolean(!username || !password || !code);
+
+      return Boolean(!username || !password);
     },
   },
 
   methods: {
-    registerEmit() {
-      this.$emit('register-action');
-    },
-
     pidChange(pid) {
       this.formData.pid = pid;
     },
 
     togglePwdShow(e) {
       const classList = Array.prototype.slice.call(e.target.classList);
-      if (classList.indexOf('hide-pwd-icon') >= 0) {
+      if (classList.includes('hide-pwd-icon')) {
         this.showPwd = false;
       }
-      if (classList.indexOf('show-pwd-icon') >= 0) {
+      if (classList.indexOf('show-pwd-icon')) {
         this.showPwd = true;
       }
     },
 
     confirmLogin() {
       if (this.formInvalid) return false;
-      this.loading = true;
-      this.$DS.login(this.formData).then(
+      // this.loading = true;
+      return this.$DS.login(this.formData).then(
         () => {
-          this.loading = false;
+          // this.loading = false;
         },
         (err) => {
-          this.loading = false;
+          // this.loading = false;
           this.$notify.error({
             title: '错误',
             message: err || '登录失败',
@@ -142,6 +140,11 @@ export default {
       );
     },
   },
+  created () {
+    this.$addDS('mock', require('./ds/mock.js'));
+
+    this.dataSource.getVcode = this.$DS.getVcode
+  }
 };
 </script>
 <style lang="scss">
@@ -265,5 +268,11 @@ export default {
     height: 55px;
     width: 100%;
     font-size: $font-size-x-large;
+  }
+
+  .el-checkbox__input,
+  .el-checkbox__label {
+    line-height: 0;
+    vertical-align: middle;
   }
 </style>

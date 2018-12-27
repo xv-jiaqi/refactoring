@@ -4,6 +4,14 @@
 
 `Angular.js` technology stack migrated to `vue.js`。
 
+## 业务
+
+- [ ] login
+    - UI
+    - login
+    - password expires
+    - keep password
+
 ## TODO
 
 - [x] sourcemap debug
@@ -53,3 +61,7 @@
     - [ ] 首屏载入动画 PWA
     - [ ] 全局预加载
     - [ ] old 中的 md5 删掉，从入口共享
+
+    怎样防止重复发送 Ajax 请求？ - 长天之云的回答 - 知乎
+    https://www.zhihu.com/question/19805411/answer/15465427
+

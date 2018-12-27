@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <!--<router-view name="login"></router-view>-->
-    <!--<router-view name="home"></router-view>-->
-    <Home></Home>
+    <router-view name="login"></router-view>
+    <Home v-if="mode"></Home>
   </div>
 </template>
 
@@ -19,6 +18,12 @@ export default {
 
   components: {
     Home,
+  },
+
+  computed: {
+    mode() {
+      return this.$route.name !== 'login';
+    },
   },
 
   created() {
