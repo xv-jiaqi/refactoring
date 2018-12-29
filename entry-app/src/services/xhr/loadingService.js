@@ -1,7 +1,6 @@
 // import { Loading } from 'element-ui';
 import Vue from 'vue';
 const Loading =  Vue.prototype.$loading;
-const queryCount =  Vue.prototype.$loadingQueryCount;
 
 export default class {
   constructor() {
@@ -10,7 +9,6 @@ export default class {
 
   init() {
     this.queryCount = 0;
-    Loading.queryCount = 0;
   }
 
   start() {
@@ -20,7 +18,6 @@ export default class {
       text: 'Loading',
       spinner: 'el-icon-loading',
       background: 'rgba(0, 0, 0, 0.5)',
-      target: '.header'
     });
   }
 
@@ -31,12 +28,10 @@ export default class {
 
   plus() {
     this.queryCount++;
-    Loading.queryCount++;
   }
 
   minus() {
     this.queryCount--;
-    Loading.queryCount--;
   }
 
   showLoading() {

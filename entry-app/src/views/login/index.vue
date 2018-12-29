@@ -48,15 +48,13 @@ export default {
       return this.$store.dispatch(`${types.LOGIN_REQUEST}`, {
         username,
         password: md5(`${password}${username}`),
-        platform: 'cgtdesk',
+        platform: this.$store.getters['config'].appName,
         dog_info: {},
         pid,
         code,
       }).then(async () => {
         await this.$store.dispatch(`${types.GET_LOGIN_INFO_REQUEST}`);
         this.$router.push({ name: 'home' });
-      }).catch(err => {
-
       });
     },
     getVcode() {

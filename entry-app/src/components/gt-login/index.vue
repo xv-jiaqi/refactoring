@@ -125,18 +125,13 @@ export default {
 
     confirmLogin() {
       if (this.formInvalid) return false;
-      // this.loading = true;
-      return this.$DS.login(this.formData).then(
-        () => {
-          // this.loading = false;
-        },
-        (err) => {
-          // this.loading = false;
+
+      return this.$DS.login(this.formData)
+        .catch(err => void
           this.$notify.error({
-            title: '错误',
-            message: err || '登录失败',
-          });
-        },
+            title: this.$t('error'),
+            message: err || this.$t('home.loginFail'),
+          })
       );
     },
   },

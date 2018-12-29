@@ -35,15 +35,18 @@ export default function ({
 
         // 请求失败
         if (errno !== 0) {
-          Vue.prototype.$message({
-            message: errorCode[errno] || '请求失败',
-            type: 'error',
-          });
-          return reject(response.data);
-        }
+          if (errorCode[errno]) {
+            Vue.prototype.$message({
+              message: errorCode[errno] || '请求失败',
+              type: 'error',
+            });
 
-        if (data.result === 1) {
-          return reject(data.error_info || new Error('请求失败'));
+            return reject(response.data);
+          }
+
+          if (data.result === 1) {
+            return reject(data.error_info || new Error('请求失败'));
+          }
         }
 
         if (data.out_line) {
@@ -51,7 +54,6 @@ export default function ({
             message: '该账号已在别处登录',
             type: 'error',
           });
-          // return router.push({ name: 'login', });
         }
 
         resolve(data);
@@ -59,7 +61,6 @@ export default function ({
       .catch((error) => {
         const { response } = error;
         if (response && response.status === 401) {
-          // return router.push({ name: 'login', });
         }
         Vue.prototype.$message({
           message: '请求失败',

@@ -11,6 +11,8 @@ export default {
 
       const nextLangIndex = langKeys.length - (langKeys.indexOf(currentLang) + 1);
 
+      sessionStorage.lang = langKeys[nextLangIndex];
+
       this.$i18n.locale = langKeys[nextLangIndex];
     },
   },
