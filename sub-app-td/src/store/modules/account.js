@@ -1,6 +1,5 @@
 import * as types from '../types/account-types';
 import accountService from '@/services/account-service';
-import Vue from 'vue';
 import CONF from '@/config/';
 // import errorCode from '../../services/xhr/errorCode';
 
@@ -31,7 +30,6 @@ const actions = {
       .getLoginInfo()
       .then(async ({ data = {}, }) => {
         const session = Object.assign({}, {
-          ...Vue.session,
           ...data,
           ...CONF,
           privileges: undefined,

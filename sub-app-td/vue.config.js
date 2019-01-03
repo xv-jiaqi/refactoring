@@ -65,7 +65,7 @@ module.exports = {
 
       devtoolModuleFilenameTemplate: info => (info.resourcePath.match(/^\.\/\S*?\.vue$/)
         ? `webpack-generated:///${info.resourcePath}?${info.hash}`
-        : `webpack-yourCode:///${info.resourcePath}`),
+        : `webpack-td:///${info.resourcePath}`),
 
       devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]',
     },

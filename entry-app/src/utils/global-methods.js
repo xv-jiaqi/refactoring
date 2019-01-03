@@ -1,4 +1,5 @@
 import { CreateRegister } from 'vue-module-register';
+import http from '@/services/xhr';
 import bus from './bus';
 
 const shared = {
@@ -6,6 +7,7 @@ const shared = {
   $sharedMethods: {
     CreateRegister,
   },
+  $http: http,
 };
 
 export default {

@@ -10,13 +10,21 @@ export default [
     redirect: { name: `${APP_NAME}.test` },
     children: [
       {
-        path: 'test',
-        name: `${APP_NAME}.test`,
+        path: 'role/list',
+        name: `${APP_NAME}.role.list`,
         meta: {
           auth: '',
         },
-        component: () => import('@/views/test/test'),
+        component: () => import('@/views/role/list'),
       },
+      {
+        path: 'role/edit',
+        name: `${APP_NAME}.role.edit`,
+        meta: {
+          auth: '',
+        },
+        component: () => import('@/views/role/edit'),
+      }
     ],
   },
 ];

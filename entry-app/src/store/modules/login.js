@@ -8,12 +8,14 @@ import CONF from '@/config/';
 const state = {
   userInfo: {},
   auth: [],
+  config: {...CONF},
 };
 
 // getters
 const getters = {
   userInfo: state => state.userInfo,
   auth: state => state.auth,
+  config: state => state.config,
 };
 
 // actions
@@ -48,7 +50,7 @@ const actions = {
 
         return session;
       }).catch(() => {
-        // Router.push({ name: 'login', });
+        // this.$router.push({ name: 'login' })
       });
   },
 

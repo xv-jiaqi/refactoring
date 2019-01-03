@@ -9,17 +9,17 @@
                active-text-color="#2b4659"
                :unique-opened="true">
         <router-link v-for="(rGroup, $index) in routerGroup"
-                     :key="rGroup.toString()"
+                     :key="'g' + $index"
                      :to="rGroup.path || rGroup.children[0].path">
-          <el-submenu class="sub-menu" :index="$index">
+          <el-submenu class="sub-menu" :index="$index.toString()">
             <template slot="title">
               <v-icon :name="rGroup.icon" class="icon"></v-icon>{{ rGroup.title }}
             </template>
             <el-menu-item-group>
               <router-link v-for="(r, $i) in rGroup.children"
-                           :key="r.path"
+                           :key="'r' + $i"
                            :to="r.path">
-                <el-menu-item class="menu-item" :index="`${$index}-${$i}`">
+                <el-menu-item class="menu-item" :index="`${$index}${$i}`">
                   {{ r.title }}
                 </el-menu-item>
               </router-link>
@@ -39,8 +39,8 @@ export default {
           title: 'HOME',
           icon: 'home',
           children: [
-            { title: 'sub-app-old.index', path: '/home/abc' },
-            { title: 'sub-app-td.test', path: '/sub-app-td' },
+            { title: 'sub-app-old.index', path: '/sub-app-old/' },
+            { title: 'sub-app-td.role', path: '/sub-app-td/role/edit' },
             { title: 'sub-app-td.notFound', path: '/sub-app-td/abc' },
           ],
         },

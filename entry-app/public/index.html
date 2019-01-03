@@ -16,8 +16,9 @@
     <!-- built files will be auto injected -->
     <script
         type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js">
+        src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue<%= process.env.NODE_ENV === 'development' ? '' : '.min' %>.js">
     </script>
+
     <script
         type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.min.js">

@@ -14,6 +14,10 @@ log('NODE_ENV: ', NODE_ENV);
 module.exports = {
   baseUrl: `/${APP_NAME}/`,
 
+  outputDir: 'dist',
+
+  lintOnSave: true,
+
   productionSourceMap: false,
 
   configureWebpack: {
@@ -46,6 +50,7 @@ module.exports = {
 
   devServer: {
     port: PORT,
+    hot: true,
   },
 };
 
