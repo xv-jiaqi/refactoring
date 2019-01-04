@@ -1,28 +1,38 @@
 <template>
   <div class="label-wrapper" @click="toggleChildren">
-    <div :style="indent" :class="labelClasses" class="trunk">
-      <el-checkbox v-if="nodes && label" :label="$t(`authRole.${label}`)" name=""></el-checkbox>
-    </div>
-    <div class="branch">
+    <el-checkbox
+        v-if="nodes && label"
+        :style="indent"
+        :class="labelClasses"
+        class="trunk"
+        v-model="checked"
+        :disabled="disabled"
+        :label="$t(`authRole.${label}`)" name="">
+    </el-checkbox>
+    <section class="branch">
       <tree
           v-if="showChildren"
           v-for="node in nodes"
           :nodes="node.nodes"
           :label="node.name"
+          :is-checked="node.isSelected"
+          :is-disabled="node.isDisabled"
           :depth="depth + 1"
           :key="node.id">
       </tree>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
   export default {
     name: 'tree',
-    props: [ 'nodes', 'label', 'depth' ],
+    props: [ 'nodes', 'label', 'isChecked', 'isDisabled', 'depth' ],
     data() {
       return {
-        showChildren: true
+        checked: this.isChecked,
+        disabled: this.isDisabled,
+        showChildren: true,
       }
     },
     computed: {
@@ -33,15 +43,15 @@
         }
       },
       labelClasses() {
-        return { 'has-children': this.nodes }
+        return { 'has-children': this.nodes && this.nodes.length }
       },
       indent() {
-        return { transform: `translate(${this.depth * 90}px)` }
+        // return { transform: `translate(${this.depth * 90}px)` }
       },
     },
     methods: {
       toggleChildren() {
-        this.showChildren = !this.showChildren;
+        // this.showChildren = !this.showChildren;
       }
     },
   };
@@ -50,8 +60,15 @@
 <style scoped>
   .label-wrapper{
     display: flex;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    align-items: center;
+  }
+
+  .trunk {
+    flex: 0 0 150px;
+  }
+
+  .branch {
+    flex: 0 0 150px;
+    padding: 8px 0;
   }
 </style>

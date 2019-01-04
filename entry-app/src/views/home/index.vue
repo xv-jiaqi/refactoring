@@ -87,5 +87,6 @@
   .main-container {
     border-bottom-left-radius: 5px;
     height: calc(100vh - 65px);
+    position: relative;
   }
 </style>
