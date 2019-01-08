@@ -21,6 +21,13 @@ class RoleService {
       url: '/group/getDetail',
     });
   }
+
+  createNewRole(params) {
+    return $http({
+      body: params,
+      url: '/group/add',
+    });
+  }
 }
 
 export default new RoleService();

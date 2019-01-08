@@ -1,22 +1,23 @@
 <template>
-  <div class="label-wrapper" @click="toggleChildren">
+  <div class="label-wrapper" @click.stop="toggleChildren">
     <el-checkbox
         v-if="nodes && label"
         :style="indent"
-        :class="labelClasses"
         class="trunk"
         v-model="checked"
-        :disabled="disabled"
+        :disabled="isDisabled"
+        @change="handleCheckedChange"
         :label="$t(`authRole.${label}`)" name="">
     </el-checkbox>
     <section class="branch">
       <tree
-          v-if="showChildren"
-          v-for="node in nodes"
+          v-for="(node, $index) in nodes"
           :nodes="node.nodes"
           :label="node.name"
           :is-checked="node.isSelected"
           :is-disabled="node.isDisabled"
+          :res-data="node"
+          :indexs="[...indexs, $index]"
           :depth="depth + 1"
           :key="node.id">
       </tree>
@@ -27,24 +28,46 @@
 <script>
   export default {
     name: 'tree',
-    props: [ 'nodes', 'label', 'isChecked', 'isDisabled', 'depth' ],
+    props: {
+      nodes: {
+        type: Array,
+        required: true,
+      },
+      label: {
+        type: String,
+        default: '',
+      },
+      isChecked: {
+        type: Boolean,
+        default: false,
+      },
+      isDisabled: {
+        type: Boolean,
+        default: false,
+      },
+      depth: {
+        type: [Number, String],
+        default: 0,
+      },
+      indexs: {
+        type: Array,
+        default: () => ([]),
+      },
+      resData: {
+        type: Object,
+        default: () => {},
+      },
+    },
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
     data() {
       return {
         checked: this.isChecked,
-        disabled: this.isDisabled,
-        showChildren: true,
       }
     },
     computed: {
-      iconClasses() {
-        return {
-          'fa-plus-square-o': !this.showChildren,
-          'fa-minus-square-o': this.showChildren
-        }
-      },
-      labelClasses() {
-        return { 'has-children': this.nodes && this.nodes.length }
-      },
       indent() {
         // return { transform: `translate(${this.depth * 90}px)` }
       },
@@ -52,7 +75,16 @@
     methods: {
       toggleChildren() {
         // this.showChildren = !this.showChildren;
-      }
+      },
+      handleCheckedChange(checkStatus) {
+        this.$bus.emit('toggle-tree', {
+          ...this.resData,
+
+          isChecked: checkStatus,
+          depth: this.depth,
+          indexs: this.indexs,
+        });
+      },
     },
   };
 </script>

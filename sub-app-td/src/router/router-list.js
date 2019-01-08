@@ -18,13 +18,13 @@ export default [
         component: () => import('@/views/role/list'),
       },
       {
-        path: 'role/edit',
-        name: `${APP_NAME}.role.edit`,
+        path: 'role/:type',
+        name: `${APP_NAME}.role`,
         meta: {
           auth: '',
         },
-        component: () => import('@/views/role/edit'),
-      }
+        component: () => import('@/views/role/item'),
+      },
     ],
   },
 ];

@@ -18,7 +18,7 @@
             <el-menu-item-group>
               <router-link v-for="(r, $i) in rGroup.children"
                            :key="'r' + $i"
-                           :to="r.path">
+                           :to="{ path: r.path }">
                 <el-menu-item class="menu-item" :index="`${$index}${$i}`">
                   {{ r.title }}
                 </el-menu-item>
@@ -40,7 +40,7 @@ export default {
           icon: 'home',
           children: [
             { title: 'sub-app-old.index', path: '/sub-app-old/' },
-            { title: 'sub-app-td.role', path: '/sub-app-td/role/edit' },
+            { title: 'sub-app-td.role', path: '/sub-app-td/role/new' },
             { title: 'sub-app-td.notFound', path: '/sub-app-td/abc' },
           ],
         },
