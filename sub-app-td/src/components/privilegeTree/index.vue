@@ -6,6 +6,8 @@
 
 <script>
 import Tree from '@/components/tree/';
+import Vue from 'vue';
+const { recursiveLoop } = Vue.prototype.$util;
 
 export default {
   name: 'privilegeTree',
@@ -24,30 +26,20 @@ export default {
     };
   },
   mounted() {
-    this.$bus.on('toggle-tree', data => {
-      const { id, isChecked, isSelected, name, order_id, pid, sn, nodes, depth, indexs } = data;
+    this.$bus.on('toggle-tree', changeData => {
+      const { id, isChecked, isSelected, name, order_id, pid, sn, nodes, depth, indexs } = changeData;
+      console.log(isChecked);
       const isChange = isChecked !== isSelected;
 
-      nodes.forEach((node, index) => {
-        data.nodes[index].isSelected = isChecked;
-        // this.$set(this.treeData, index, { ...node, isSelected: isChecked })
+      nodes.forEach(node => {
+        node.isSelected = isChange;
       });
 
-      console.log(indexs, name, this.treeData);
-
-      let node = indexs.reduce((pre, cur) => {
-        return pre.nodes[cur]
-      }, { nodes: this.treeData });
-
-      console.log('res: ', node);
-
-      this.$forceUpdate();
-
-      this.$nextTick(() => {
-        nodes.forEach((node, index) => {
-          data.nodes[index].isSelected = isChecked;
-        });
+      recursiveLoop(nodes, null, 'nodes', node => {
+        return Object.assign(node, { isSelected: isChange })
       });
+
+      console.log('treedata', this.treeData);
 
       if (isChange) {
         this.changedData.add(sn);

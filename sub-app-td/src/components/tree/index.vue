@@ -1,5 +1,8 @@
 <template>
-  <div class="label-wrapper" @click.stop="toggleChildren">
+  <div class="label-wrapper"
+       @click.stop="toggleChildren"
+       :depth="depth"
+       :index="index" :class="{'wrapper': depth === 1 }">
     <el-checkbox
         v-if="nodes && label"
         :style="indent"
@@ -18,6 +21,7 @@
           :is-disabled="node.isDisabled"
           :res-data="node"
           :indexs="[...indexs, $index]"
+          :index="$index"
           :depth="depth + 1"
           :key="node.id">
       </tree>
@@ -53,19 +57,28 @@
         type: Array,
         default: () => ([]),
       },
+      index: {
+        type: Number,
+        default: 0,
+      },
       resData: {
         type: Object,
         default: () => {},
       },
     },
-    model: {
-      prop: 'checked',
-      event: 'change'
-    },
+    // model: {
+    //   prop: 'checked',
+    //   event: 'change'
+    // },
     data() {
       return {
         checked: this.isChecked,
       }
+    },
+    watch: {
+      isChecked: function (newVal) {
+        this.checked = newVal;
+      },
     },
     computed: {
       indent() {
@@ -93,6 +106,10 @@
   .label-wrapper{
     display: flex;
     align-items: center;
+  }
+
+  .wrapper:nth-of-type(odd) {
+    background-color: #f6f6f6;
   }
 
   .trunk {

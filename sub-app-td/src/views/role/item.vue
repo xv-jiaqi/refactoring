@@ -80,18 +80,15 @@
         [ { data },
           { data: { sns = []} = {} } = {},
         ]) => {
-          this.form.privileges = recursiveLoop(data, {} ,'nodes', (item, parentNode) => {
-            const { sn } = item;
+          this.form.privileges = recursiveLoop(data, null, 'nodes', (node, parentNode) => {
+            const { sn } = node;
 
-            return {
-              ...item,
+            return Object.assign(node, {
               parentNode,
               isSelected: sns.includes(sn),
               isDisabled: false,
-            }
+            })
           });
-
-          console.log(this.form.privileges);
       });
     },
     methods: {
