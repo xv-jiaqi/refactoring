@@ -22,10 +22,31 @@ class RoleService {
     });
   }
 
-  createNewRole(params) {
+  getRoleList(params) {
+    return $http({
+      body: params,
+      url: '/group/getList',
+    });
+  }
+
+  createRole(params) {
     return $http({
       body: params,
       url: '/group/add',
+    });
+  }
+
+  editRole(params) {
+    return $http({
+      body: params,
+      url: '/group/update',
+    });
+  }
+
+  deleteRole(params) {
+    return $http({
+      body: params,
+      url: '/group/del',
     });
   }
 }

@@ -15,6 +15,10 @@ export default {
   home: {
     welcome: '欢迎您',
   },
+  roleManage: {
+    createSuccessInfo: '新增角色成功',
+    editSuccessInfo: '角色修改成功',
+  },
   "authRole": {
     "audience_portrait": "查看人群画像",
     "audience_portrait_download_statistics": "下载表格",

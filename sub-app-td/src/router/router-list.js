@@ -18,7 +18,7 @@ export default [
         component: () => import('@/views/role/list'),
       },
       {
-        path: 'role/:type',
+        path: 'role/:type/:id?',
         name: `${APP_NAME}.role`,
         meta: {
           auth: '',

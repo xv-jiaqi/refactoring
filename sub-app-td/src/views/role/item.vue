@@ -1,19 +1,20 @@
 <template>
   <section class="role">
     <section class="header">
-      <h6>角色管理</h6>
+      <h6>角色管理{{ isPreview }}</h6>
     </section>
     <section class="content">
       <el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-ruleForm">
         <el-form-item label="角色名称" prop="name">
-          <el-input v-model="form.name" placeholder="最多64个字符"></el-input>
+          <el-input v-model="form.name" placeholder="最多64个字符" :disabled="isPreview"></el-input>
         </el-form-item>
         <el-form-item label="角色描述" prop="description">
-          <el-input v-model="form.description" placeholder="最多128个字符"></el-input>
+          <el-input v-model="form.description" placeholder="最多128个字符" :disabled="isPreview"></el-input>
         </el-form-item>
         <el-form-item label="权限配置" prop="permissions">
           <privilege-tree
               @changed-data="changeData"
+              :init-selected="sns"
               :tree-data="form.privileges">
           </privilege-tree>
         </el-form-item>
@@ -21,7 +22,7 @@
     </section>
     <section class="footer">
       <el-button size="small" @click="cancel"> 返 回 </el-button>
-      <el-button size="small" type="primary" @click="confirm" :disabled="isConfirmValid"> 确 定 </el-button>
+      <el-button size="small" type="primary" @click="confirm" :disabled="isConfirmValid" v-if="!isPreview"> 确 定 </el-button>
     </section>
   </section>
 </template>
@@ -32,7 +33,7 @@
   import privilegeTree from '@/components/privilegeTree/';
   import Vue from 'vue';
 
-  const { recursiveLoop } = Vue.prototype.$util;
+  const { treeTraversal } = Vue.prototype.$util;
 
   export default {
     name: 'item',
@@ -42,6 +43,13 @@
     data() {
       return {
         pageType: this.$route.params.type,
+        id: this.$route.params.id,
+        pageTypeMap: new Map([
+          ['NEW', 'new'],
+          ['EDIT', 'edit'],
+          ['DETAIL', 'detail'],
+        ]),
+        sns: [],
 
         form: {
           name: '',
@@ -56,59 +64,100 @@
           description: [
             { min: 0, max: 128, message: '最多128个字符', trigger: 'change' }
           ],
-          privileges: [
-            // { type: 'array', required: true, message: '请至少选择一个权限', trigger: 'change' }
-          ],
-        }
+        },
       }
     },
-    created() {
-      const getAllPrivilege = roleService.getAllPrivilege();
-      const getSelectedPrivilege = roleService.getSelectedPrivilege({ id: 556 });
+    watch: {
+      $route: {
+        handler(newVal) {
+          const { type: pageType, id } = newVal.params;
+          this.pageType = pageType;
+          this.id = id;
 
-      const requestP = [ getAllPrivilege ];
+          this.isPreview = this.pageType === this.pageTypeMap.get('DETAIL');
+          this.init();
+        },
+        immediate: true,
+      },
+    },
+    methods: {
+      init() {
+        const requestQuery = [ roleService.getAllPrivilege() ];
 
-      switch (this.pageType) {
-        case 'new':
-          break;
-        case 'edit':
-          requestP.push(getSelectedPrivilege);
-          break;
-      }
+        switch (this.pageType) {
+          case this.pageTypeMap.get('NEW'):
+            break;
+          case this.pageTypeMap.get('EDIT'):
+          case this.pageTypeMap.get('DETAIL'):
+          default:
+            requestQuery.push(roleService.getSelectedPrivilege({ id: this.id }));
+        }
 
-      Promise.all(requestP).then((
-        [ { data },
-          { data: { sns = []} = {} } = {},
-        ]) => {
-          this.form.privileges = recursiveLoop(data, null, 'nodes', (node, parentNode) => {
+        Promise.all(requestQuery).then((
+          [ { data },
+            { data: { sns = [], name, desc } = {} } = {},
+          ]) => {
+          this.form.name = name;
+          this.form.description = desc;
+          this.sns = sns;
+
+          this.form.privileges = treeTraversal(data, 'nodes', (node, parentNode) => {
             const { sn } = node;
 
             return Object.assign(node, {
               parentNode,
               isSelected: sns.includes(sn),
-              isDisabled: false,
+              isDisabled: this.isPreview,
             })
           });
-      });
-    },
-    methods: {
+        });
+      },
       confirm() {
-        if (this.pageType === 'new') {
-          const { name, description: desc } = this.form;
-          const params = { name, desc};
+        const { name, description: desc } = this.form;
+        const { id, sns } = this;
 
-          roleService.createNewRole(params).then(res => {
-            debugger
-          }).catch(e =>{
-            debugger
-          })
+        let params = { name, desc, sns };
+
+        switch (this.pageType) {
+          case this.pageTypeMap.get('EDIT'):
+            params = { ...params, id };
+
+            roleService.editRole(params).then(({ result, error_info: errorInfo }) => {
+              if (result === 0) {
+                this.$message({
+                  message: this.$t('roleManage.editSuccessInfo'),
+                  type: 'success',
+                })
+              }
+            });
+            break;
+          case this.pageTypeMap.get('NEW'):
+            roleService.createRole(params).then(({ result, error_info: errorInfo }) => {
+              if (result === 0) {
+                this.$message({
+                  message: this.$t('roleManage.createSuccessInfo'),
+                  type: 'success',
+                })
+              } else {
+                this.$message({
+                  message: errorInfo,
+                  type: 'error'
+                })
+              }
+            }).catch(e =>{
+              debugger
+            });
+            break;
+          case this.pageTypeMap.get('DETAIL'):
+          default:
         }
       },
       cancel() {
         this.$router.go(-1);
       },
       changeData(changedData) {
-        // console.log('changedData', changedData);
+        this.sns = changedData;
+        console.log('changedData', changedData);
       },
     },
     computed: {

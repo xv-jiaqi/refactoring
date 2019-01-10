@@ -40,7 +40,9 @@ export default {
           icon: 'home',
           children: [
             { title: 'sub-app-old.index', path: '/sub-app-old/' },
-            { title: 'sub-app-td.role', path: '/sub-app-td/role/new' },
+            { title: '新建角色', path: '/sub-app-td/role/new' },
+            { title: '编辑角色', path: '/sub-app-td/role/edit/588' },
+            { title: '角色详情', path: '/sub-app-td/role/detail/588' },
             { title: 'sub-app-td.notFound', path: '/sub-app-td/abc' },
           ],
         },

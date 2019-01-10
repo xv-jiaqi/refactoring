@@ -90,13 +90,9 @@
         // this.showChildren = !this.showChildren;
       },
       handleCheckedChange(checkStatus) {
-        this.$bus.emit('toggle-tree', {
-          ...this.resData,
+        this.resData.isChecked = checkStatus;
 
-          isChecked: checkStatus,
-          depth: this.depth,
-          indexs: this.indexs,
-        });
+        this.$bus.emit('toggle-tree', this.resData);
       },
     },
   };
