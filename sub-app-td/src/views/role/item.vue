@@ -1,7 +1,7 @@
 <template>
   <section class="role">
     <section class="header">
-      <h6>角色管理{{ isPreview }}</h6>
+      <h6>角色管理</h6>
     </section>
     <section class="content">
       <el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-ruleForm">

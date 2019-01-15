@@ -9,7 +9,7 @@ export async function getAuthByAppNameFn(appName) {
 export default {
   appName: conf.appName,
   alias: conf.appName,
-  logogram: conf.appName,
+  // logogram: conf.appName,
 
   // APP 配置优先级高于公共配置
   ...conf,

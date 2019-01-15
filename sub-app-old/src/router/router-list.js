@@ -7,7 +7,8 @@ export default [
     path: `/${APP_NAME}`,
     name: APP_NAME,
     component: {
-      template: '<div class="sub-app-old"><keep-alive><router-view /></keep-alive></div>',
+      template: '<div class="sub-app-old"><router-view /></div>',
+      // template: '<div class="sub-app-old"><keep-alive><router-view /></keep-alive></div>',
     },
     children: [
       {

@@ -11,7 +11,7 @@ export default [
     children: [
       {
         path: 'role/list',
-        name: `${APP_NAME}.role.list`,
+        name: `${APP_NAME}.list`,
         meta: {
           auth: '',
         },

@@ -2,75 +2,90 @@ import md5 from 'md5';
 // import { window, document } from 'global';
 
 export default class BridgeMessage {
-  constructor(postMessageWindow, handshakeKey, {
-    targetOrigin = '*',
-    receive: receiveCb = f => f ,
-  } = {}) {
-    this.postMessageWindow = postMessageWindow;
-    this.targetOrigin = targetOrigin;
-    this.handshakeKey = handshakeKey ? md5(`${handshakeKey}`) : undefined;
+  constructor({
+                sendWindow = window,
+                receiveWindow = window,
+                handshakeKey = null,
+                targetOrigin = '*',
 
+                receive = f => f,
+              } = {}) {
+
+    Object.assign(this, {
+      sendWindow,
+      receiveWindow,
+      targetOrigin,
+      receiveHook: receive,
+      handshakeKey: handshakeKey ? md5(`${handshakeKey}`) : null,
+    });
+
+    this.callbackList = new Map();
+    this.originRegExp = new RegExp(/^https?:\/{2}[\w\.]+(\:\d+)?(?=\/?)/);
     this.init();
   }
 
   init() {
-    window.receiveHandler = (window.receiveHandler || this.receive.bind(this));
+    const listenerOpts = ['message', this.receive.bind(this), false];
 
-    const listenerOpts = ['message', receiveHandler, false];
-
-    window.removeEventListener(...listenerOpts);
-    window.addEventListener(...listenerOpts);
+    this.receiveWindow.addEventListener(...listenerOpts);
   }
 
-  handshake(shakeKey = this.handshakeKey) {
-    this.send(shakeKey, this.targetOrigin, true);
+  parseOrigin(url = '') {
+    const match = this.originRegExp.exec(url);
 
-    return new Promise((resolve => {
-      const handshakeHandler = e => {
-        console.log('handshakeHandler fn');
-        const { data: { data, handshakeKey, isHandshake } = {}} = e;
-
-        if (isHandshake && handshakeKey === shakeKey) {
-          e.stopPropagation();
-          window.removeEventListener('message', handshakeHandler, true);
-          resolve(data);
-        }
-      };
-
-      window.addEventListener('message', handshakeHandler, true);
-    }));
+    if (match) {
+      return match[0];
+    }
   }
 
-  send(data, targetOrigin = this.targetOrigin, isHandshake = false) {
-    this.targetOrigin = targetOrigin;
+  isVaild(receiveData = {}) {
+    const { data: { handshakeKey } = {}, origin } = receiveData;
+
+    if (this.handshakeKey) {
+      if (this.handshakeKey !== handshakeKey) {
+        return false;
+      }
+    }
+
+    return this.parseOrigin(origin) === this.parseOrigin(this.targetOrigin);
+  }
+
+  send(data, callback, opts = {}) {
+    let cbKey = null;
+    if (typeof callback === 'function') {
+      cbKey = new Date().getTime();
+      this.callbackList.set(cbKey, callback);
+    }
 
     const msg = {
       data,
       handshakeKey: this.handshakeKey,
-      isHandshake,
+      receipt: cbKey,
+      ...opts
     };
 
-    this.postMessageWindow.postMessage(msg, targetOrigin);
+    this.sendWindow.postMessage(msg, this.targetOrigin);
   }
 
   receive(recData) {
-    const { data: { data, handshakeKey, isHandshake } = {} } = recData;
+    const { data: { data, cbKey, receipt } = {}} = recData;
 
-    if (handshakeKey !== this.handshakeKey) {
-      console.log(recData);
-      return Promise.reject(new Error('Error handshake key !'));
+    // 收到 cbKey 表示消息已接收到
+    if (cbKey && this.callbackList.has(cbKey)) {
+      this.callbackList.get(cbKey)();
+      this.callbackList.delete(cbKey);
+      return;
     }
 
-    if (!this.targetOrigin) {
-      this.targetOrigin = event.origin;
+    // 收到 receipt 表示需要发送回执消息
+    if(receipt) {
+      this.send(null, null, { cbKey: receipt });
     }
 
-    if (isHandshake) {
-      return this.send('ok', this.targetOrigin, true);
+    if (this.isVaild(recData)) {
+      this.receiveHook(data, this);
+    } else {
+      console.error('invalid hook', recData.data);
     }
-
-    console.log('receive: ', data);
-
-    return Promise.resolve(data);
   }
 }
