@@ -1,9 +1,7 @@
 <template>
   <div class="header">
-    <img class="logo-login" :src="logoSrc" alt="logo page">
-    <div class="lang">
-      <lang-btn></lang-btn>
-    </div>
+    <img class="logo-login" :src="logoSrc" alt="logo page" />
+    <div class="lang"><lang-btn></lang-btn></div>
   </div>
 </template>
 
@@ -24,27 +22,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .header {
-    background-color: $white;
-    display: flex;
-    height: 65px;
-    align-items: center;
-    padding: 0 6vw;
-  }
+.header {
+  background-color: $white;
+  display: flex;
+  height: 65px;
+  align-items: center;
+  padding: 0 6vw;
+}
 
-  .lang {
-    flex: auto;
-    text-align: right;
-  }
+.lang {
+  flex: auto;
+  text-align: right;
+}
 
+.logo-login {
+  height: 60%;
+  min-width: 10em;
+}
+
+@media screen and (max-width: $screen-xs-max) {
   .logo-login {
-    height: 60%;
-    min-width: 10em;
+    display: none;
   }
-
-  @media screen and (max-width: $screen-xs-max) {
-    .logo-login {
-      display: none;
-    }
-  }
+}
 </style>

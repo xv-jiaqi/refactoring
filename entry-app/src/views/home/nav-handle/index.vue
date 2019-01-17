@@ -16,26 +16,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.slot {
+  flex: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icon-email {
+  margin-right: 30px;
+}
+
+.lang-btn {
+  background-color: $white;
+  color: $themeColor;
+  margin-right: 30px;
+}
+
+@media screen and (max-width: $screen-xs-max) {
   .slot {
-    flex: auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: left;
   }
-
-  .icon-email {
-    margin-right: 30px;
-  }
-
-  .lang-btn {
-    background-color: $white;
-    color: $themeColor;
-    margin-right: 30px;
-  }
-
-  @media screen and (max-width: $screen-xs-max) {
-    .slot {
-      justify-content: left;
-    }
-  }
+}
 </style>

@@ -10,8 +10,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 const reqCache = {};
 const loading = new Loading();
 
-export default function ({
-  url, body = null, onlyOne = false, responseType = 'json', prefix = CONF.pathPrefix,
+export default function({
+  url,
+  body = null,
+  onlyOne = false,
+  responseType = 'json',
+  prefix = CONF.pathPrefix,
 } = {}) {
   if (onlyOne && reqCache[url]) {
     return reqCache[url];
@@ -27,7 +31,7 @@ export default function ({
       data: body,
       responseType,
     })
-      .then((response) => {
+      .then(response => {
         if (responseType !== 'json') return resolve(response);
 
         delete reqCache[url];
@@ -58,9 +62,10 @@ export default function ({
 
         resolve(data);
       })
-      .catch((error) => {
+      .catch(error => {
         const { response } = error;
         if (response && response.status === 401) {
+          console.error('401!');
         }
         Vue.prototype.$message({
           message: '请求失败',

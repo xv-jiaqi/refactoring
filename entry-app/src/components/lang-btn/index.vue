@@ -1,5 +1,5 @@
 <template>
-  <el-button class="lang-btn" size="small" @click="changeLangEvent">{{$t('lang')}}</el-button>
+  <el-button class="lang-btn" size="small" @click="changeLangEvent">{{ $t('lang') }}</el-button>
 </template>
 
 <script>
@@ -20,11 +20,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .lang-btn {
-    background-color: $themeColor;
-    color: $white;
-    width: 84px;
-    height: 32px;
-    font-weight: bold;
-  }
+.lang-btn {
+  background-color: $themeColor;
+  color: $white;
+  width: 84px;
+  height: 32px;
+  font-weight: bold;
+}
 </style>

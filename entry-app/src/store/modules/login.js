@@ -8,7 +8,7 @@ import CONF from '@/config/';
 const state = {
   userInfo: {},
   auth: [],
-  config: {...CONF},
+  config: { ...CONF },
 };
 
 // getters
@@ -32,12 +32,15 @@ const actions = {
     return accountService
       .getLoginInfo()
       .then(async ({ data = {} }) => {
-        const session = Object.assign({}, {
-          ...Vue.session,
-          ...data,
-          ...CONF,
-          privileges: undefined,
-        });
+        const session = Object.assign(
+          {},
+          {
+            ...Vue.session,
+            ...data,
+            ...CONF,
+            privileges: undefined,
+          },
+        );
 
         const { privileges = [] } = data;
 
@@ -49,7 +52,8 @@ const actions = {
         commit(`${types.AUTH}`, session.auth);
 
         return session;
-      }).catch(() => {
+      })
+      .catch(() => {
         // this.$router.push({ name: 'login' })
       });
   },

@@ -3,5 +3,5 @@ export default {
   alias: 'colgate',
   // logogram: 'cgtd',
 
-  bridgePath: 'http://localhost:17081/colgate.html'
+  bridgePath: 'http://localhost:17081/colgate.html',
 };

@@ -7230,6 +7230,7 @@ vue-module-register@^2.0.3:
 vue-pcms@^1.0.1-ci.25:
   version "1.0.1-ci.25"
   resolved "http://192.168.10.223:7001/vue-pcms/download/vue-pcms-1.0.1-ci.25.tgz#74c69c1e962591536cb2f8c0bd9587aac598dced"
+  integrity sha1-dMacHpYlkVNssvjAvZWHqsWY3O0=
 
 vue-router@^3.0.2:
   version "3.0.2"

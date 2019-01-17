@@ -1,6 +1,6 @@
 // import { Loading } from 'element-ui';
 import Vue from 'vue';
-const Loading =  Vue.prototype.$loading;
+const Loading = Vue.prototype.$loading;
 
 export default class {
   constructor() {
@@ -39,7 +39,7 @@ export default class {
       this.start();
     }
 
-    this.plus()
+    this.plus();
   }
 
   tryHideLoading() {
@@ -53,4 +53,4 @@ export default class {
   focusHideLoading() {
     this.end();
   }
-};
+}

@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import storeModules from '@/store/index';
 
-
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -12,7 +11,7 @@ const store = new Vuex.Store({
   modules: {
     ...storeModules,
   },
-  strict: process.env.NODE_ENV !== 'production'
+  strict: process.env.NODE_ENV !== 'production',
 });
 
 export default store;

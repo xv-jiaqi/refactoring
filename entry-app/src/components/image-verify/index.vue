@@ -1,6 +1,6 @@
 <template>
-  <div @click='init' class="img-verify-box">
-    <img class="verify-img" :src="imageSrc" alt="verify img">
+  <div @click="init" class="img-verify-box">
+    <img class="verify-img" :src="imageSrc" alt="verify img" />
   </div>
 </template>
 <script>
@@ -19,17 +19,20 @@ export default {
 
       this.pid = '';
       this.getImageSrc = true;
-      this.$DS.getVcode().then((res = {}) => {
-        this.imageSrc = res.img || '';
-        this.pid = res.pid || '';
-        this.getImageSrc = false;
+      this.$DS.getVcode().then(
+        (res = {}) => {
+          this.imageSrc = res.img || '';
+          this.pid = res.pid || '';
+          this.getImageSrc = false;
 
-        this.$emit('pid-change', res.pid);
-      }, (err) => {
-        console.error('get image src error :', err);
-        this.imageSrc = '';
-        this.getImageSrc = false;
-      });
+          this.$emit('pid-change', res.pid);
+        },
+        err => {
+          console.error('get image src error :', err);
+          this.imageSrc = '';
+          this.getImageSrc = false;
+        },
+      );
     },
   },
   created() {

@@ -5,9 +5,7 @@
 <script>
 export default {
   name: 'not-found',
-
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

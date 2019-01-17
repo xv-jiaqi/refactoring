@@ -34,7 +34,6 @@ const router = new Router({
   ]),
 });
 
-
 // const router = new Router({
 //   // mode: 'history',
 //   base: './',

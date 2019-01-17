@@ -1,22 +1,26 @@
 <template>
   <el-header class="header" height="65px">
-    <img :src="logoSrc" class="logo-page" alt="logo page">
-    <slot name="handle"></slot>
-    <el-dropdown class="dropdown-menu"
-                 @command="handleCommand"
-                 @visible-change="dropdownIconChange"
-                 trigger="hover"
-                 size="medium"
-                 :show-timeout="100"
-                 placement="bottom">
-      <span class="dropdown-link">{{$t('home.welcome')}}, {{username}}</span>
-      <i class="el-icon-arrow-down dropdown-icon" :class="{'dropdown-active': isActive}"></i>
+    <img :src="logoSrc" class="logo-page" alt="logo page" /> <slot name="handle"></slot>
+    <el-dropdown
+      class="dropdown-menu"
+      @command="handleCommand"
+      @visible-change="dropdownIconChange"
+      trigger="hover"
+      size="medium"
+      :show-timeout="100"
+      placement="bottom"
+    >
+      <span class="dropdown-link">{{ $t('home.welcome') }}, {{ username }}</span>
+      <i class="el-icon-arrow-down dropdown-icon" :class="{ 'dropdown-active': isActive }"></i>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item v-for="(item, index) in dropList" :key="item.key"
-                          class="dropdown-item"
-                          :command="item.callback"
-                          :divided="index !== 0">
-          {{item.text}}
+        <el-dropdown-item
+          v-for="(item, index) in dropList"
+          :key="item.key"
+          class="dropdown-item"
+          :command="item.callback"
+          :divided="index !== 0"
+        >
+          {{ item.text }}
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -56,58 +60,58 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .header {
-    z-index: 10;
-    background-color: #0C3569;
-    align-items: center;
-    display: flex;
-    padding: 0 15px;
-  }
+.header {
+  z-index: 10;
+  background-color: #0c3569;
+  align-items: center;
+  display: flex;
+  padding: 0 15px;
+}
 
+.logo-page {
+  height: 60%;
+  min-width: 10em;
+}
+
+.dropdown-menu {
+  width: 155px;
+  border-left: 1px solid #4c555e;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-link {
+  color: $white;
+  font-size: 12px;
+  display: inline-block;
+  padding: 5px 0;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dropdown-icon {
+  color: #fff;
+  font-weight: bolder;
+  padding: 10px;
+  transition: transform 0.4s;
+  transform: rotate(-180deg);
+}
+
+.dropdown-active {
+  transform: rotate(0deg);
+}
+
+.dropdown-item {
+  width: 140px;
+  text-align: center;
+  font-size: 14px;
+}
+
+@media screen and (max-width: $screen-xs-max) {
   .logo-page {
-    height: 60%;
-    min-width: 10em;
+    display: none;
   }
-
-  .dropdown-menu {
-    width: 155px;
-    border-left: 1px solid #4c555e;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .dropdown-link {
-    color: $white;
-    font-size: 12px;
-    display: inline-block;
-    padding: 5px 0;
-    cursor: pointer;
-    text-align: center;
-  }
-
-  .dropdown-icon {
-    color: #fff;
-    font-weight: bolder;
-    padding: 10px;
-    transition: transform .4s;
-    transform: rotate(-180deg);
-  }
-
-  .dropdown-active {
-    transform: rotate(0deg);
-  }
-
-  .dropdown-item {
-    width: 140px;
-    text-align: center;
-    font-size: 14px;
-  }
-
-  @media screen and (max-width: $screen-xs-max) {
-    .logo-page {
-      display: none;
-    }
-  }
+}
 </style>

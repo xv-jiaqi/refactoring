@@ -23,9 +23,7 @@ function authMatch(privileges, md5AuthMap) {
       return;
     }
 
-    const isAnd = authSet[0] === AND
-      ? !!authSet.shift()
-      : false;
+    const isAnd = authSet[0] === AND ? !!authSet.shift() : false;
 
     do {
       const auth = authSet.shift();
@@ -116,6 +114,6 @@ async function authConfig(privileges) {
   return auth;
 }
 
-export default function (privileges = []) {
+export default function(privileges = []) {
   return authConfig(privileges);
 }

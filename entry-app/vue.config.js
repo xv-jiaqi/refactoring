@@ -46,9 +46,10 @@ module.exports = {
     output: {
       libraryExport: 'default',
 
-      devtoolModuleFilenameTemplate: info => (info.resourcePath.match(/^\.\/\S*?\.vue$/)
-        ? `webpack-generated:///${info.resourcePath}?${info.hash}`
-        : `webpack-yourCode:///${info.resourcePath}`),
+      devtoolModuleFilenameTemplate: info =>
+        info.resourcePath.match(/^\.\/\S*?\.vue$/)
+          ? `webpack-generated:///${info.resourcePath}?${info.hash}`
+          : `webpack-yourCode:///${info.resourcePath}`,
 
       devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]',
     },
@@ -70,17 +71,14 @@ module.exports = {
     historyApiFallback: true,
   },
 
-  transpileDependencies: [
-    /\bvue-awesome\b/,
-  ],
+  transpileDependencies: [/\bvue-awesome\b/],
 
-  chainWebpack: (config) => {
+  chainWebpack: config => {
     config.module.rules.delete('svg');
     config.module
       .rule('svg-sprite-loader')
       .test(/\.svg$/)
-      .include
-      .add(resolve('src/assets/svgIcons')) // 处理svg目录
+      .include.add(resolve('src/assets/svgIcons')) // 处理svg目录
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
@@ -88,8 +86,6 @@ module.exports = {
         symbolId: 'icon-[name]',
       });
 
-    config.resolve.alias
-      .set('Assets', resolve('src/assets'))
-      .set('Style', resolve('src/style'));
+    config.resolve.alias.set('Assets', resolve('src/assets')).set('Style', resolve('src/style'));
   },
 };
