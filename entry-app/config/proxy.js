@@ -5,7 +5,7 @@ module.exports = {
   },
   '/sub-app-old/': {
     target: 'http://localhost:6900/',
-    pathRewrite: {'/sub-app-old/sub-app-old' : '/sub-app-old'},
+    // pathRewrite: {'/sub-app-old/sub-app-old' : '/sub-app-old'},
     bypass,
   },
 
@@ -17,7 +17,7 @@ module.exports = {
 };
 
 function bypass (req, res, proxyOptions) {
-  if (req.headers.accept.indexOf('html') !== -1) {
+  if (req.headers.accept.includes('html')) {
     console.log('[sub-app-old]: Skipping proxy for browser request.');
     return '/index.html';
   }
