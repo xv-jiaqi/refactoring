@@ -7,8 +7,8 @@ Vue.use(Router);
 const existedRouters = containerHelper.getRoutes();
 const router = new Router({
   // mode: 'history',
-  base: './',
-  routers: existedRouters.concat([
+  // base: './',
+  routes: existedRouters.concat([
     {
       path: '/',
       redirect: { name: 'login' },

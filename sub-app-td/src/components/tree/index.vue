@@ -8,7 +8,6 @@
   >
     <el-checkbox
       v-if="nodes && label"
-      :style="indent"
       class="trunk"
       v-model="checked"
       :disabled="isDisabled"
