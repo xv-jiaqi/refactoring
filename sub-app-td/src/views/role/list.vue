@@ -1,7 +1,6 @@
 <template>
   <div>
-    <button @click="goNew">NEW</button>
-    <button @click="goEdit">DETAIL</button>
+    LIST
   </div>
 
 </template>

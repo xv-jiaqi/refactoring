@@ -178,7 +178,7 @@
       },
       '$i18n.locale': {
         handler(newVal, oldVal) {
-          this.postMessage(newVal);
+          this.postMessage({ newVal, type: 'lang'});
         },
         // deep: true,
       },

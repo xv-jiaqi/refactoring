@@ -42,8 +42,6 @@ export default {
             { title: '新建角色', path: '/sub-app-td/role/new' },
             { title: '编辑角色', path: '/sub-app-td/role/edit/588' },
             { title: '角色详情', path: '/sub-app-td/role/detail/588' },
-            { title: '角色列表', path: '/sub-app-td/role/list' },
-            { title: 'sub-app-td.notFound', path: '/sub-app-td/abc' },
           ],
         },
         {

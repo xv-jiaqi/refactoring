@@ -7,7 +7,7 @@ export default [
     component: {
       template: '<router-view />',
     },
-    redirect: { name: `${APP_NAME}.test` },
+    redirect: { name: `${APP_NAME}.role` },
     children: [
       {
         path: 'role/list',
