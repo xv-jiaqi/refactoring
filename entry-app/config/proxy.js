@@ -1,12 +1,12 @@
 module.exports = {
   '/sub-app-td/': {
     target: 'http://localhost:6200/',
-    bypass,
+    // bypass,
   },
   '/sub-app-old/': {
     target: 'http://localhost:6900/',
     // pathRewrite: {'/sub-app-old/sub-app-old' : '/sub-app-old'},
-    bypass,
+    // bypass,
   },
 
   // service api
@@ -15,10 +15,10 @@ module.exports = {
     target: 'http://192.168.10.151:7081',
   },
 };
-
-function bypass (req, res, proxyOptions) {
-  if (req.headers.accept.includes('html')) {
-    console.log('[sub-app-old]: Skipping proxy for browser request.');
-    return '/index.html';
-  }
-}
+//
+// function bypass (req, res, proxyOptions) {
+//   if (req.headers.accept.includes('html')) {
+//     console.log('[sub-app-old]: Skipping proxy for browser request.');
+//     return '/index.html';
+//   }
+// }
