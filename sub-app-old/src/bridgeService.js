@@ -3,14 +3,13 @@ import md5 from 'md5';
 
 export default class BridgeMessage {
   constructor({
-                sendWindow = window,
-                receiveWindow = window,
-                handshakeKey = null,
-                targetOrigin = '*',
+    sendWindow = window,
+    receiveWindow = window,
+    handshakeKey = null,
+    targetOrigin = '*',
 
-                receive = f => f,
-              } = {}) {
-
+    receive = f => f,
+  } = {}) {
     Object.assign(this, {
       sendWindow,
       receiveWindow,
@@ -61,14 +60,14 @@ export default class BridgeMessage {
       data,
       handshakeKey: this.handshakeKey,
       receipt: cbKey,
-      ...opts
+      ...opts,
     };
 
     this.sendWindow.postMessage(msg, this.targetOrigin);
   }
 
   receive(recData) {
-    const { data: { data, cbKey, receipt } = {}} = recData;
+    const { data: { data, cbKey, receipt } = {} } = recData;
 
     // 收到 cbKey 表示消息已接收到
     if (cbKey && this.callbackList.has(cbKey)) {
@@ -78,7 +77,7 @@ export default class BridgeMessage {
     }
 
     // 收到 receipt 表示需要发送回执消息
-    if(receipt) {
+    if (receipt) {
       this.send(null, null, { cbKey: receipt });
     }
 

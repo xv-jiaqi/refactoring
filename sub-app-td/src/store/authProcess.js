@@ -1,7 +1,7 @@
 import md5 from 'md5';
-import CONF, { getAuthByAppNameFn, } from '@/config/';
+import CONF, { getAuthByAppNameFn } from '@/config/';
 
-const { stringify, parse, } = JSON;
+const { stringify, parse } = JSON;
 
 /**
  * 权限查询匹配
@@ -10,9 +10,10 @@ const { stringify, parse, } = JSON;
  */
 function authMatch(privileges, md5AuthMap) {
   const AUTH = {};
-  const ignore = 'authIgnore', AND = 'and';
+  const ignore = 'authIgnore',
+    AND = 'and';
 
-  Object.entries(md5AuthMap).forEach(([ authKey, authSet ]) => {
+  Object.entries(md5AuthMap).forEach(([authKey, authSet]) => {
     if (authSet === ignore || authSet.includes(ignore)) {
       AUTH[authKey] = true;
       return;
@@ -22,9 +23,7 @@ function authMatch(privileges, md5AuthMap) {
       return;
     }
 
-    const isAnd = authSet[0] === AND
-      ? !!authSet.shift()
-      : false;
+    const isAnd = authSet[0] === AND ? !!authSet.shift() : false;
 
     do {
       const auth = authSet.shift();
@@ -56,9 +55,9 @@ function authMatch(privileges, md5AuthMap) {
  */
 function path2MD5(authMap, appName) {
   const temp = {};
-  const ignoreWords = [ 'authIgnore', 'and', 'agency', 'client', 'admin' ];
+  const ignoreWords = ['authIgnore', 'and', 'agency', 'client', 'admin'];
 
-  for (const [ authKey, authArr ] of Object.entries(authMap)) {
+  for (const [authKey, authArr] of Object.entries(authMap)) {
     temp[authKey] = [];
 
     for (const auth of Array.from(authArr)) {
@@ -87,7 +86,7 @@ function path2MD5(authMap, appName) {
  * @returns {Promise<any>}
  */
 async function authConfig(privileges) {
-  const { appName, role, } = CONF;
+  const { appName, role } = CONF;
 
   const authMap = await getAuthByAppNameFn(appName);
 
@@ -116,6 +115,6 @@ async function authConfig(privileges) {
   return auth;
 }
 
-export default function (privileges = []) {
+export default function(privileges = []) {
   return authConfig(privileges);
 }

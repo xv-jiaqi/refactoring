@@ -1,5 +1,3 @@
-const APP_NAME = require('./package.json').name;
-
 module.exports = {
   plugins: {
     autoprefixer: {},

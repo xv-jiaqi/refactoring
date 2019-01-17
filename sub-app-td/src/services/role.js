@@ -5,9 +5,7 @@ const { $http } = Vue.prototype;
  * 角色管理 API
  */
 class RoleService {
-  constructor() {
-
-  }
+  constructor() {}
 
   getAllPrivilege() {
     return $http({

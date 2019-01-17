@@ -3,31 +3,38 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [
-    'plugin:vue/essential',
-    '@vue/prettier',
-  ],
+  extends: ['plugin:vue/essential', '@vue/prettier'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 
-    'max-len': ['error', {
-      code: 120,
-    }],
+    'no-useless-escape': 'off',
 
-    'no-unused-vars': ['error', {
-      'vars': 'all',
-      'args': 'none',
-      'ignoreRestSiblings': false
-    }],
+    'max-len': [
+      'error',
+      {
+        code: 120,
+      },
+    ],
+
+    'no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'none',
+        ignoreRestSiblings: false,
+      },
+    ],
 
     'global-require': 'off',
-    'arrow-parens': [
-      'error', 'as-needed'
+    'arrow-parens': ['error', 'as-needed'],
+    'prefer-destructuring': [
+      'error',
+      {
+        object: true,
+        array: false,
+      },
     ],
-    'prefer-destructuring': ['error', {
-      'object': true, 'array': false
-    }],
     'import/extensions': 'off',
     'consistent-return': 'off',
     'one-var': 'off',

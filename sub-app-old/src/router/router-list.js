@@ -13,10 +13,10 @@ export default [
         name: `${APP_NAME}.frame`,
         path: ':state/:paramsId?',
         component: Frame,
-        beforeRouteEnter (to, from, next) {
+        beforeRouteEnter(to, from, next) {
           console.log('enter: ', to, from);
         },
-        beforeRouteLeave (to, from , next) {
+        beforeRouteLeave(to, from, next) {
           console.log('level: ', to, from);
         },
       },

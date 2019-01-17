@@ -25,19 +25,22 @@ const actions = {
     return accountService.logout();
   },
 
-  [types.GET_LOGIN_INFO_REQUEST]({ commit, }) {
+  [types.GET_LOGIN_INFO_REQUEST]({ commit }) {
     return accountService
       .getLoginInfo()
-      .then(async ({ data = {}, }) => {
-        const session = Object.assign({}, {
-          ...data,
-          ...CONF,
-          privileges: undefined,
-        });
+      .then(async ({ data = {} }) => {
+        const session = Object.assign(
+          {},
+          {
+            ...data,
+            ...CONF,
+            privileges: undefined,
+          },
+        );
 
-        const { privileges = [], } = data;
+        const { privileges = [] } = data;
 
-        const { default: authProcess, } = await import('@/store/authProcess');
+        const { default: authProcess } = await import('@/store/authProcess');
 
         session.auth = await authProcess(privileges);
 
@@ -45,7 +48,8 @@ const actions = {
         commit(`${types.AUTH}`, session.auth);
 
         return session;
-      }).catch(() => {
+      })
+      .catch(() => {
         // Router.push({ name: 'login', });
       });
   },

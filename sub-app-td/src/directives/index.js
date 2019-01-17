@@ -6,11 +6,17 @@ const directiveFunc = (el, { value }) => {
   const numNotice = el.querySelector('.num-notice');
 
   if (numNotice) {
-    numNotice.setAttribute('class', input.value.length > value ? 'num-notice num-error-notice' : 'num-notice');
+    numNotice.setAttribute(
+      'class',
+      input.value.length > value ? 'num-notice num-error-notice' : 'num-notice',
+    );
     numNotice.innerHTML = `${input.value.length}/${value}`;
   } else {
     const newNode = document.createElement('span');
-    newNode.setAttribute('class', input.value.length > value ? 'num-notice num-error-notice' : 'num-notice');
+    newNode.setAttribute(
+      'class',
+      input.value.length > value ? 'num-notice num-error-notice' : 'num-notice',
+    );
     newNode.innerHTML = `${input.value.length}/${value}`;
     el.appendChild(newNode);
   }
@@ -27,7 +33,7 @@ Vue.directive('text-num', {
 });
 
 // 权限埋点
-const hasAuth = (elePath) => {
+const hasAuth = elePath => {
   const authInfo = JSON.parse(window.localStorage.authInfo || '{}');
   return authInfo[elePath];
 };

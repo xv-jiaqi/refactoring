@@ -8,8 +8,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 const reqCache = {};
 
-export default function ({
-  url, body = null, onlyOne = false, responseType = 'json', prefix = CONF.pathPrefix,
+export default function({
+  url,
+  body = null,
+  onlyOne = false,
+  responseType = 'json',
+  prefix = CONF.pathPrefix,
 } = {}) {
   if (onlyOne && reqCache[url]) {
     return reqCache[url];
@@ -22,11 +26,11 @@ export default function ({
       data: body,
       responseType,
     })
-      .then((response) => {
+      .then(response => {
         if (responseType !== 'json') return resolve(response);
 
         delete reqCache[url];
-        const { errno = 0, data = {}, } = response.data || {};
+        const { errno = 0, data = {} } = response.data || {};
 
         // 请求失败
         if (errno !== 0) {
@@ -51,8 +55,8 @@ export default function ({
 
         resolve(data);
       })
-      .catch((error) => {
-        const { response, } = error;
+      .catch(error => {
+        const { response } = error;
         if (response && response.status === 401) {
           // return router.push({ name: 'login', });
         }

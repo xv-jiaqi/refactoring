@@ -1,7 +1,5 @@
 <template>
-  <section class="tree">
-    <Tree :nodes="treeData"></Tree>
-  </section>
+  <section class="tree"><Tree :nodes="treeData"></Tree></section>
 </template>
 
 <script>
@@ -26,17 +24,18 @@ export default {
   },
   computed: {
     changedData() {
-      return new Set(this.initSelected)
-    }
+      return new Set(this.initSelected);
+    },
   },
   mounted() {
     this.$bus.on('toggle-tree', changeData => {
+      // eslint-disable-next-line
       const { id, isChecked, isSelected, name, pid, sn, nodes } = changeData;
 
       // 当前节点下行判断
       treeTraversal(nodes, 'nodes', node => {
         changedDataRepo.bind(this)(isChecked, node.sn);
-        return Object.assign(node, { isSelected: isChecked })
+        return Object.assign(node, { isSelected: isChecked });
       });
 
       // 当前节点上行判断
@@ -60,7 +59,7 @@ export default {
         if (status) {
           this.changedData.add(sn);
         } else {
-          if (this.changedData.has(sn)){
+          if (this.changedData.has(sn)) {
             this.changedData.delete(sn);
           }
         }
@@ -78,6 +77,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
