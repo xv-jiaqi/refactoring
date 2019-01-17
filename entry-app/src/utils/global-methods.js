@@ -2,6 +2,7 @@ import { CreateRegister } from 'vue-module-register';
 import http from '@/services/xhr';
 import bus from './bus';
 import * as util from './utils';
+import loading from '@/services/xhr/loadingService';
 
 const shared = {
   $bus: bus,
@@ -10,6 +11,7 @@ const shared = {
   },
   $http: http,
   $util: util,
+  $Loading: loading
 };
 
 export default {

@@ -3,10 +3,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import md5 from 'md5';
 import BridgeService from '@/bridgeService';
 import SessionStore from './sessionStore';
 import FramePreload from './framePreload';
+
+const { $Loading: Loading } = Vue.prototype;
 
 const APP_NAME = process.env.VUE_APP_NAME;
 const calcHash = (string, hashLen = 5) => md5(string).substring(0, hashLen);
@@ -35,7 +38,11 @@ export default {
     const frameObj = new FramePreload(this.bridgePath).preload();
     const iframe = this.$refs.frame.appendChild(frameObj.frame);
 
+    const loading = new Loading();
+    loading.showLoading();
+
     frameObj.frame.onload = () => {
+      loading.tryHideLoading();
       const SHAKE_HANDS = {
         PING: 'ping',
         PONG: 'pong',

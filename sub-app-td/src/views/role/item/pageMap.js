@@ -5,4 +5,4 @@ export default {
   EDIT: 'edit',
   // 角色详情
   DETAIL: 'detail',
-}
+};
