@@ -7,79 +7,10 @@
 <script>
   import md5 from 'md5';
   import BridgeService from '@/bridgeService';
+  import SessionStore from './sessionStore';
+  import FramePreload from './framePreload';
 
   const APP_NAME = process.env.VUE_APP_NAME;
-
-  class FramePreload {
-    constructor(url = '') {
-      this.src = url;
-      this.createElement();
-
-      this.styleGradient = {
-        width: ['1', '100%'],
-        height: ['1', '100%'],
-        opacity: [0, 1],
-        pointerEvents: ['none', 'auto'],
-      };
-      this.styleKeys = Object.keys(this.styleGradient);
-    }
-
-    createElement() {
-      const elementName = 'iframe';
-      this.frame = document.createElement(elementName);
-      this.frame.src = this.src;
-    }
-
-    preload() {
-      const styles = {
-        position: 'fixed',
-        overflow: 'hidden',
-        willChange: 'transform', // 创建新的渲染层, 增强页面渲染性能
-      };
-
-      this.styleKeys.forEach(attr => {
-        this.frame.style[attr] = this.styleGradient[attr][0];
-      });
-
-      Object.assign(this.frame.style, styles);
-
-      return this;
-    }
-
-    loaded() {
-      this.styleKeys.forEach(attr => {
-        this.frame.style[attr] = this.styleGradient[attr][1];
-      });
-
-      return this;
-    }
-  }
-
-  class SessionStore {
-    constructor(key = 'key') {
-      this.key = key;
-
-      if (key in sessionStorage) {
-        this.value = new Map(JSON.parse(sessionStorage[key]));
-      } else {
-        this.value = new Map();
-      }
-    }
-
-    getItem(id) {
-      return this.value.get(id);
-    }
-
-    setItem(id, val) {
-      this.value.set(id, val);
-
-      const serializeData = JSON.stringify([...this.value]);
-      sessionStorage.setItem(this.key, serializeData);
-
-      return serializeData;
-    }
-  }
-
   const calcHash = (string, hashLen = 5) => md5(string).substring(0, hashLen);
 
   export default {
