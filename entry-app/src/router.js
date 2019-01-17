@@ -6,61 +6,32 @@ Vue.use(Router);
 
 const existedRouters = containerHelper.getRoutes();
 const router = new Router({
-  // mode: 'history',
+  mode: 'history',
   // base: './',
   routes: existedRouters.concat([
     {
       path: '/',
-      redirect: { name: 'login' },
+      redirect: { name: 'home' },
     },
     {
       path: '/login',
       name: 'login',
       components: {
-        login: () => import('@/views/login/index.vue'),
+        login: () => import('@/views/login'),
       },
     },
     {
       path: '/home',
       name: 'home',
       components: {
-        default: () => import('@/views/home/index.vue'),
+        home: () => import('@/views/home'),
       },
     },
     {
       path: '*',
-      component: () => import('@/views/notFound/'),
+      component: () => import('@/views/notFound'),
     },
   ]),
 });
-
-// const router = new Router({
-//   // mode: 'history',
-//   base: './',
-//   routes: [
-//     {
-//       path: '/login',
-//       name: 'login',
-//       components: {
-//         login: () => import('@/views/login/index.vue'),
-//       },
-//     },
-//     {
-//       path: '/home',
-//       name: 'home',
-//       components: {
-//         default: () => import('@/views/home/index.vue'),
-//       },
-//     },
-//     {
-//       path: '/',
-//       redirect: { name: 'login' },
-//     },
-//     {
-//       path: '*',
-//       component: () => import('@/views/notFound/'),
-//     },
-//   ],
-// });
 
 export default router;

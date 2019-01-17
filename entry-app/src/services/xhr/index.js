@@ -15,6 +15,7 @@ export default function({
   body = null,
   onlyOne = false,
   responseType = 'json',
+  baseURL = '/',
   prefix = CONF.pathPrefix,
 } = {}) {
   if (onlyOne && reqCache[url]) {
@@ -25,10 +26,12 @@ export default function({
 
   const promise = new Promise((resolve, reject) => {
     const reqPath = `${CONF.rootPath}/${prefix}${url}`;
+
     axios({
       method: 'post', // 所有请求都用post
       url: reqPath,
       data: body,
+      baseURL,
       responseType,
     })
       .then(response => {

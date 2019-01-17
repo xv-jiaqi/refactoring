@@ -20,6 +20,9 @@ export default {
     mode() {
       return this.$route.name !== 'login';
     },
+    m() {
+      return true;
+    }
   },
 
   created() {

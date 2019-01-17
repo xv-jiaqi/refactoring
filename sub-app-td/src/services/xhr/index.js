@@ -4,6 +4,8 @@ import Vue from 'vue';
 import errorCode from './errorCode';
 import CONF from '@/config/';
 
+console.log(CONF)
+
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 const reqCache = {};

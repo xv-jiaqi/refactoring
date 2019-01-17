@@ -41,9 +41,9 @@
 <script>
 // import * as types from '@/store/types/roleTypes';
 import roleService from '@/services/role';
-import privilegeTree from '@/components/privilegeTree/';
+import privilegeTree from 'sub-app-td/src/views/role/item.temp/item';
+import pageTypeMap from './typeMap';
 import Vue from 'vue';
-
 const { treeTraversal } = Vue.prototype.$util;
 
 export default {
@@ -55,7 +55,7 @@ export default {
     return {
       pageType: this.$route.params.type,
       id: this.$route.params.id,
-      pageTypeMap: new Map([['NEW', 'new'], ['EDIT', 'edit'], ['DETAIL', 'detail']]),
+      pageTypeMap: new Map(Object.assign(pageTypeMap)),
       sns: [],
 
       form: {
