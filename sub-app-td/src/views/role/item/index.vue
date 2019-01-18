@@ -42,7 +42,7 @@
 // import * as types from '@/store/types/roleTypes';
 import roleService from '@/services/role';
 import privilegeTree from '@/components/privilegeTree/';
-import pageTypeMap from './typeMap';
+import pageTypeMap from './pageMap';
 import Vue from 'vue';
 const { treeTraversal } = Vue.prototype.$util;
 
