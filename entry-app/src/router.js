@@ -7,7 +7,7 @@ Vue.use(Router);
 const existedRouters = containerHelper.getRoutes();
 const router = new Router({
   mode: 'history',
-  // base: './',
+  // base: './gt/',
   routes: existedRouters.concat([
     {
       path: '/',

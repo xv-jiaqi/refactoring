@@ -4,6 +4,7 @@ import Loading from './loadingService';
 import Vue from 'vue';
 import errorCode from './errorCode';
 import CONF from '@/config/';
+import router from '@/router';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
@@ -68,8 +69,9 @@ export default function({
       .catch(error => {
         const { response } = error;
         if (response && response.status === 401) {
-          console.error('401!');
+          router.push({ name: 'login' });
         }
+
         Vue.prototype.$message({
           message: '请求失败',
           type: 'error',

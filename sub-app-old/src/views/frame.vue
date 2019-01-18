@@ -23,6 +23,7 @@ export default {
       routeMode: window.location.hash ? '#' : '',
       sessionStore: new SessionStore('state'),
       bridgePath: this.$store.state['common']['config'].bridgePath,
+      loading: Loading,
     };
   },
 
@@ -38,11 +39,10 @@ export default {
     const frameObj = new FramePreload(this.bridgePath).preload();
     const iframe = this.$refs.frame.appendChild(frameObj.frame);
 
-    const loading = new Loading();
-    loading.showLoading();
+    this.loading.showLoading();
 
     frameObj.frame.onload = () => {
-      loading.tryHideLoading();
+      this.loading.tryHideLoading();
       const SHAKE_HANDS = {
         PING: 'ping',
         PONG: 'pong',

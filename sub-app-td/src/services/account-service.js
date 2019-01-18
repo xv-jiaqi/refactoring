@@ -1,4 +1,5 @@
-import xhr from './xhr';
+import Vue from 'vue';
+const { $http } = Vue.prototype;
 
 /**
  * 账号模块 API
@@ -10,7 +11,7 @@ class AccountService {
    * @param  {String} formData.password
    */
   login(formData) {
-    return xhr({
+    return $http({
       url: '/user/login',
       body: formData,
       onlyOne: true,
@@ -22,7 +23,7 @@ class AccountService {
    * 注销登录
    */
   logout() {
-    return xhr({
+    return $http({
       url: '/user/logout',
       prefix: 'auth',
     });
@@ -32,7 +33,7 @@ class AccountService {
    * 获取登录信息
    */
   getLoginInfo() {
-    return xhr({
+    return $http({
       url: '/user/getLoginInfo',
     });
   }
@@ -41,7 +42,7 @@ class AccountService {
    * 验证码
    */
   getVcode() {
-    return xhr({
+    return $http({
       url: '/user/getVerifyCode',
       prefix: 'auth',
     });

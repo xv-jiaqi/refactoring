@@ -11,7 +11,7 @@ const shared = {
   },
   $http: http,
   $util: util,
-  $Loading: loading
+  $Loading: new loading,
 };
 
 export default {
