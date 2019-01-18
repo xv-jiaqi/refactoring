@@ -23,7 +23,7 @@ export default [
         meta: {
           auth: '',
         },
-        component: () => import('@/views/role/item/index.vue'),
+        component: () => import('@/views/role/item/'),
       },
     ],
   },
