@@ -3,34 +3,36 @@
     <el-aside class="aside" width="190px">
       <el-menu
         class="aside-menu"
-        :default-openeds="['0']"
-        default-active="0-0"
         background-color="#f7f7f7"
         text-color="#919ea8"
         active-text-color="#2b4659"
+        :default-openeds="['0']"
+        default-active="0"
         :unique-opened="true"
         @select="handleSelect"
+        @open="handleOpen"
+        @close="handleClose"
         :router="true"
       >
-        <template v-for="(rGroup, $index) in routerGroup">
+        <template v-for="(rGroup, index) in routerGroup">
           <el-submenu
             v-if="(rGroup.children || []).length"
             class="sub-menu"
-            :key="$index"
+            :key="index"
             :route="{ path: rGroup.path }"
-            :to="rGroup.path || rGroup.children[0].path"
-            :index="$index.toString()"
+            :index="index.toString()"
           >
             <template slot="title">
-              <v-icon :name="rGroup.icon" class="icon"></v-icon><span>{{ rGroup.title }}</span>
+              <v-icon :name="rGroup.icon" class="icon"></v-icon>
+              <span>{{ rGroup.title }}</span>
             </template>
             <el-menu-item-group>
               <el-menu-item
                 class="menu-item"
-                v-for="(r, $i) in rGroup.children"
-                :key="`${index}${i}`"
+                v-for="(r, i) in rGroup.children"
+                :key="`${index}-${i}`"
                 :route="{ path: r.path }"
-                :index="`${$index}-${$i}`"
+                :index="`${index}-${i}`"
               >
                 {{ r.title }}
               </el-menu-item>
@@ -39,8 +41,9 @@
           <el-menu-item
             v-else
             class="sub-menu"
-            :key="$index"
-            :index="$index.toString()"
+            :key="index"
+            :route="{ path: rGroup.path }"
+            :index="index.toString()"
           >
             <v-icon :name="rGroup.icon" class="icon"></v-icon>
             <span slot="title">{{ rGroup.title }}</span>
@@ -60,7 +63,13 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      console.log('handleSelect: ', key, keyPath);
+    },
+    handleOpen(key, keyPath) {
+      console.log('handleOpen: ', key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log('handleClose: ', key, keyPath);
     },
   },
 };

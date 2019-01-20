@@ -70,11 +70,8 @@ module.exports = {
     proxy: PROXY,
     // historyApiFallback: true,
     historyApiFallback: {
-      rewrites: [
-        { from: /sub-app-td\/role\/edit\/588/, to: '@/views/notFound/404.html' }
-      ]
-    }
-
+      rewrites: [{ from: /sub-app-td\/role\/edit\/588/, to: '@/views/notFound/404.html' }],
+    },
   },
 
   transpileDependencies: [/\bvue-awesome\b/],

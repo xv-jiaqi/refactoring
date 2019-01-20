@@ -35,7 +35,10 @@ export default {
     const frameObj = new FramePreload(this.bridgePath).preload();
     const iframe = this.$refs.frame.appendChild(frameObj.frame);
 
+    this.$Loading.showLoading();
+
     frameObj.frame.onload = () => {
+      this.$Loading.tryHideLoading();
       const SHAKE_HANDS = {
         PING: 'ping',
         PONG: 'pong',
