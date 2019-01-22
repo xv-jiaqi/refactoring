@@ -6,8 +6,8 @@
         background-color="#f7f7f7"
         text-color="#919ea8"
         active-text-color="#2b4659"
-        :default-openeds="['0']"
-        default-active="0"
+        :default-openeds="menuOpened"
+        :default-active="menuActive"
         :unique-opened="true"
         @select="handleSelect"
         @open="handleOpen"
@@ -59,17 +59,28 @@ export default {
   data() {
     return {
       routerGroup: navMenu,
+      menuActive: '0',
+      menuOpened: ['0'],
     };
   },
   methods: {
-    handleSelect(key, keyPath) {
-      console.log('handleSelect: ', key, keyPath);
+    handleSelect(key, [opened, active]) {
+      this.menuActive = active;
+      this.menuOpened = [opened];
+      console.log('handleSelect: ', key, [opened, active]);
     },
     handleOpen(key, keyPath) {
+      this.menuActive = `${key}-0`;
+      this.menuOpened = [key.toString()];
+
+      this.routerGo(this.routerGroup[key].children[0]);
       console.log('handleOpen: ', key, keyPath);
     },
     handleClose(key, keyPath) {
       console.log('handleClose: ', key, keyPath);
+    },
+    routerGo(route) {
+      this.$router.push(route);
     },
   },
 };
