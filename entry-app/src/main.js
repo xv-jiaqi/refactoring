@@ -16,6 +16,7 @@ import i18n from './common/i18n';
 import '@/directives/index';
 import '@/style/index.sc.scss';
 import './assets/svgIcons/index';
+import './permission';
 import 'vue-awesome/icons';
 
 containerHelper.mountStoreInstance(store);

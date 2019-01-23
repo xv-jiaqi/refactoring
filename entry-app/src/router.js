@@ -16,6 +16,9 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
+      meta: {
+        auth: '',
+      },
       components: {
         login: () => import('@/views/login'),
       },
@@ -23,6 +26,9 @@ const router = new Router({
     {
       path: '/home',
       name: 'home',
+      meta: {
+        auth: '',
+      },
       components: {
         home: () => import('@/views/home'),
       },
