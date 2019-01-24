@@ -8,10 +8,8 @@ router.beforeEach((to, from, next) => {
   if (whiteList.includes(to.name)) {
     next();
   } else {
-
+    next();
   }
 });
 
-router.afterEach(() => {
-
-});
+router.afterEach(() => {});

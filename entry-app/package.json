@@ -36,6 +36,10 @@
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
   },
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": ">= 6.5.0"
+  },
   "browserslist": [
     "> 1%",
     "last 3 versions",

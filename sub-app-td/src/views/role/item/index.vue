@@ -72,18 +72,13 @@ export default {
       },
     };
   },
-  watch: {
-    $route: {
-      handler(newVal) {
-        const { type: pageType, id } = newVal.params;
-        this.pageType = pageType;
-        this.id = id;
+  created() {
+    const { type: pageType, id } = this.$route.params;
+    this.pageType = pageType;
+    this.id = id;
 
-        this.isPreview = this.pageType === this.pageTypeMap.get('DETAIL');
-        this.init();
-      },
-      immediate: true,
-    },
+    this.isPreview = this.pageType === this.pageTypeMap.get('DETAIL');
+    this.init();
   },
   methods: {
     init() {

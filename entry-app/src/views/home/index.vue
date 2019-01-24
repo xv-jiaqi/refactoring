@@ -8,7 +8,7 @@
     <el-container>
       <side-menu></side-menu>
       <el-main class="main-container">
-        <router-view transition="fade" transition-mode="out-in"></router-view>
+        <router-view :key="key" transition="fade" transition-mode="out-in"></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -63,6 +63,11 @@ export default {
     },
     mode() {
       return this.$route.name !== 'login';
+    },
+    key() {
+      return this.$route.name !== undefined
+        ? this.$route.name + +new Date()
+        : this.$route + +new Date();
     },
   },
   methods: {
