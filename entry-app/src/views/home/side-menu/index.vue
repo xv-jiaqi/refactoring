@@ -63,6 +63,9 @@ export default {
       menuOpened: ['0'],
     };
   },
+  created() {
+    this.$router.push(this.routerGroup[this.menuActive]);
+  },
   methods: {
     handleSelect(key, [opened, active]) {
       this.menuActive = active;

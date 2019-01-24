@@ -1,6 +1,6 @@
 // import { Loading } from 'element-ui';
 import Vue from 'vue';
-const Loading = Vue.prototype.$loading;
+const $Loading = Vue.prototype.$loading;
 
 export default class {
   constructor() {
@@ -13,7 +13,7 @@ export default class {
 
   start() {
     this.init();
-    this.loading = Loading({
+    this.loading = $Loading({
       lock: true,
       text: 'Loading',
       spinner: 'el-icon-loading',

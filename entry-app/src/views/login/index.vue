@@ -52,6 +52,12 @@ export default {
         .then(async () => {
           await this.$store.dispatch(`${types.GET_LOGIN_INFO_REQUEST}`);
           this.$router.push({ name: 'home' });
+        })
+        .catch(err => {
+          this.$message({
+            message: this.$t(err),
+            type: 'error',
+          });
         });
     },
     getVcode() {

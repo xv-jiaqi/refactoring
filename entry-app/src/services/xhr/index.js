@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Loading from './loadingService';
 // import router from '@/router/';
 import Vue from 'vue';
 import errorCode from './errorCode';
@@ -9,7 +8,6 @@ import router from '@/router';
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 const reqCache = {};
-const loading = new Loading();
 
 export default function({
   url,
@@ -23,7 +21,8 @@ export default function({
     return reqCache[url];
   }
 
-  loading.showLoading();
+  const { $Loading } = Vue.prototype;
+  $Loading.showLoading();
 
   const promise = new Promise((resolve, reject) => {
     const reqPath = `${CONF.rootPath}/${prefix}${url}`;
@@ -51,10 +50,10 @@ export default function({
 
             return reject(response.data);
           }
+        }
 
-          if (data.result === 1) {
-            return reject(data.error_info || new Error('请求失败'));
-          }
+        if (data.result === 1) {
+          return reject(data.error_info || new Error('请求失败'));
         }
 
         if (data.out_line) {
@@ -80,7 +79,7 @@ export default function({
         return reject(new Error('请求失败'));
       })
       .finally(() => {
-        loading.tryHideLoading();
+        $Loading.tryHideLoading();
       });
   });
 

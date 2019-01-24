@@ -65,9 +65,17 @@ export default {
       return this.$route.name !== 'login';
     },
     key() {
-      return this.$route.name !== undefined
-        ? this.$route.name + +new Date()
-        : this.$route + +new Date();
+      const {
+        name,
+        path,
+        meta: { keepAlive } = {},
+      } = this.$route;
+
+      if (keepAlive) {
+        return name || path;
+      }
+
+      return `${name || path}${+new Date()}`;
     },
   },
   methods: {

@@ -3,8 +3,8 @@ import VuePcms from 'vue-pcms';
 import App from '@/App';
 import router from '@/router';
 import store from '@/store';
-import containerHelper from './container-helper';
 import GlobalMethods from '@/utils/global-methods';
+import containerHelper from './container-helper';
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
